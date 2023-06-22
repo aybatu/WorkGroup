@@ -8,22 +8,26 @@
 import UIKit
 
 class CreatProjectSuccessfulViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        navigationItem.hidesBackButton = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func createNewProjectButton(_ sender: UIButton) {
+        guard let navController = self.navigationController else {return}
+        let viewControllers = navController.viewControllers
+        
+        if viewControllers.count > 0 {
+            let projectDetailsVC = viewControllers[1]
+            navController.popToViewController(projectDetailsVC, animated: true)
+        }
     }
-    */
-
+    
+    @IBAction func mainMenuButton(_ sender: UIButton) {
+        guard let navController = self.navigationController else {return}
+        navController.popToRootViewController(animated: true)
+    }
+    
 }

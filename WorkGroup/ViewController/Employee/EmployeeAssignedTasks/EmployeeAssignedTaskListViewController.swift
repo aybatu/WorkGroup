@@ -7,23 +7,35 @@
 
 import UIKit
 
-class EmployeeAssignedTaskListViewController: UIViewController {
-
+class EmployeeAssignedTaskListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
+    private let assignedTasks = ["Task1", "Task2", "Task3"]
+    @IBOutlet weak var taskListTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        taskListTableView.delegate = self
+        taskListTableView.dataSource = self
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func mainMenuButton(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return assignedTasks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = taskListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Employee.employeeTaskLisCellIdentifier, for: indexPath)
+        
+        cell.textLabel?.text = assignedTasks[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: Constant.Segue.Employee.taskListToTaskDetails, sender: self)
+    }
 }

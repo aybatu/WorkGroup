@@ -8,22 +8,40 @@
 import UIKit
 
 class PerformanceEmployeeListViewController: UIViewController {
-
+    @IBOutlet weak var performanceDateListTableView: UITableView!
+    private let employeeList = ["Employee1", "Employee2", "Employee3"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        performanceDateListTableView.delegate = self
+        performanceDateListTableView.dataSource = self
+        navigationItem.title = "Employee List"
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func mainMenuButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popToRootViewController(animated: true)
     }
-    */
+    
 
+}
+
+extension PerformanceEmployeeListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return employeeList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = performanceDateListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.employeeListForPerformanceReportCellIdentifier, for: indexPath)
+        
+        cell.textLabel?.text = employeeList[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: Constant.Segue.Manager.employeeListToPerformanceDate, sender: self)
+    }
+    
 }

@@ -7,23 +7,40 @@
 
 import UIKit
 
-class EmployeeMeetingListViewController: UIViewController {
-
+class EmployeeMeetingListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var meetingListTableView: UITableView!
+    
+    let meetingList = ["Meeting1", "Meeting2", "Meeting3"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        meetingListTableView.delegate = self
+        meetingListTableView.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func mainMenuButton(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
     }
-    */
-
+    
+    @IBAction func mainMenu(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return meetingList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = meetingListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Employee.employeeMeetingListCellIdentifier, for: indexPath)
+        cell.textLabel?.text = meetingList[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constant.Segue.Employee.meetingListToMeetingDetails, sender: self)
+    }
+    
 }

@@ -8,22 +8,22 @@
 import UIKit
 
 class ProjectEditTaskDetailViewController: UIViewController {
-
+    let isTaskEdited = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveChangesButton(_ sender: UIButton) {
+        if isTaskEdited {
+            performSegue(withIdentifier: Constant.Segue.Manager.editTaskToSuccess, sender: self)
+        } else {
+            performSegue(withIdentifier: Constant.Segue.Manager.editTaskToFail, sender: self)
+        }
     }
-    */
+    
+    
 
 }

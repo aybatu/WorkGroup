@@ -12,18 +12,23 @@ class MeetingEditDetailsSuccessfulViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationItem.hidesBackButton = true
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backToMeetingsButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        let viewControllers = navigationController.viewControllers
+        if viewControllers.count > 0 {
+            let meetingList = viewControllers[1]
+            navigationController.popToViewController(meetingList, animated: true)
+        }
     }
-    */
+    
+    @IBAction func backToMainMenuButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popToRootViewController(animated: true)
+       
+    }
 
 }

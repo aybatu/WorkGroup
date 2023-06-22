@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1296A92A43F10400866159 /* RegisteredCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1296A82A43F10400866159 /* RegisteredCompany.swift */; };
+		1B1800D72A437F18003E67AF /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1800D62A437F18003E67AF /* DataBase.swift */; };
+		1B38432B2A43316400421371 /* RoutingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3843292A43305F00421371 /* RoutingTest.swift */; };
 		1B3CDE6B2A3B8D20003E8744 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA694F92A34BB000098C542 /* LoginViewController.swift */; };
 		1B4705502A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47054F2A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift */; };
 		1B4705522A3BA2210013D9C9 /* CreateUserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4705512A3BA2210013D9C9 /* CreateUserAccountViewController.swift */; };
@@ -16,6 +19,7 @@
 		1B47055A2A3BA2A20013D9C9 /* EditUserAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4705592A3BA2A20013D9C9 /* EditUserAccountDetailsViewController.swift */; };
 		1B47055C2A3BA3020013D9C9 /* EditUserAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47055B2A3BA3020013D9C9 /* EditUserAccountSuccessViewController.swift */; };
 		1B47055E2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47055D2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift */; };
+		1B7782B12A448C9100CC6013 /* AccountTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7782B02A448C9100CC6013 /* AccountTypes.swift */; };
 		1B7879B52A3A520E00CC17E1 /* ProjectListEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7879B42A3A520E00CC17E1 /* ProjectListEdit.swift */; };
 		1B7879B92A3A534400CC17E1 /* ProjectDetailsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7879B82A3A534400CC17E1 /* ProjectDetailsEditViewController.swift */; };
 		1B7879BB2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7879BA2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift */; };
@@ -30,7 +34,7 @@
 		1BA695032A3516430098C542 /* CreateProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA695022A3516430098C542 /* CreateProjectViewController.swift */; };
 		1BBE94A92A2F501C0053A264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94A82A2F501C0053A264 /* AppDelegate.swift */; };
 		1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94AA2A2F501C0053A264 /* SceneDelegate.swift */; };
-		1BBE94AD2A2F501C0053A264 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94AC2A2F501C0053A264 /* LoadingViewController.swift */; };
+		1BBE94AD2A2F501C0053A264 /* LunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94AC2A2F501C0053A264 /* LunchScreenViewController.swift */; };
 		1BBE94B02A2F501C0053A264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE94AE2A2F501C0053A264 /* Main.storyboard */; };
 		1BBE94B32A2F501C0053A264 /* WorkGroup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94B12A2F501C0053A264 /* WorkGroup.xcdatamodeld */; };
 		1BBE94B52A2F501D0053A264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE94B42A2F501D0053A264 /* Assets.xcassets */; };
@@ -48,9 +52,17 @@
 		1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43F12A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift */; };
 		1BCA43F42A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43F32A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift */; };
 		1BCA43F62A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43F52A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift */; };
+		1BD49D362A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD49D352A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift */; };
+		1BD49D382A3D27C500E0AA41 /* CreateCompanyAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD49D372A3D27C500E0AA41 /* CreateCompanyAccountSuccessViewController.swift */; };
+		1BD49D3A2A3D27D100E0AA41 /* CreateCompanyAccountFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD49D392A3D27D100E0AA41 /* CreateCompanyAccountFailViewController.swift */; };
+		1BD49D3C2A3D37C300E0AA41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD49D3B2A3D37C300E0AA41 /* Reachability.swift */; };
 		1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */; };
 		1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */; };
 		1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */; };
+		1BE466C02A43B6F30073973F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466BF2A43B6F30073973F /* LoadingViewController.swift */; };
+		1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466C62A43C3DE0073973F /* BinarySearch.swift */; };
+		1BE466C92A43C6280073973F /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466C82A43C6280073973F /* UserAccount.swift */; };
+		1BEC96902A3F4EB300D0AFE9 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */; };
 		1BECD7762A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7752A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift */; };
 		1BECD77A2A3B31D7006889CA /* MeetingScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7792A3B31D7006889CA /* MeetingScheduleViewController.swift */; };
 		1BECD77C2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD77B2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift */; };
@@ -63,6 +75,8 @@
 		1BECD78C2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD78B2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift */; };
 		1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD78D2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift */; };
 		1BECD7902A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD78F2A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift */; };
+		1BFD036F2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */; };
+		1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +97,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B1296A82A43F10400866159 /* RegisteredCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCompany.swift; sourceTree = "<group>"; };
+		1B1800D62A437F18003E67AF /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		1B3843292A43305F00421371 /* RoutingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingTest.swift; sourceTree = "<group>"; };
 		1B47054F2A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainMenuViewController.swift; sourceTree = "<group>"; };
 		1B4705512A3BA2210013D9C9 /* CreateUserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserAccountViewController.swift; sourceTree = "<group>"; };
 		1B4705532A3BA2320013D9C9 /* CreateUserAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserAccountSuccessViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +108,7 @@
 		1B4705592A3BA2A20013D9C9 /* EditUserAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		1B47055B2A3BA3020013D9C9 /* EditUserAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		1B47055D2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserAccountFailViewController.swift; sourceTree = "<group>"; };
+		1B7782B02A448C9100CC6013 /* AccountTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypes.swift; sourceTree = "<group>"; };
 		1B7879B42A3A520E00CC17E1 /* ProjectListEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListEdit.swift; sourceTree = "<group>"; };
 		1B7879B82A3A534400CC17E1 /* ProjectDetailsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsEditViewController.swift; sourceTree = "<group>"; };
 		1B7879BA2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditTaskListViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +125,7 @@
 		1BBE94A52A2F501C0053A264 /* WorkGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BBE94A82A2F501C0053A264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BBE94AA2A2F501C0053A264 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1BBE94AC2A2F501C0053A264 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		1BBE94AC2A2F501C0053A264 /* LunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchScreenViewController.swift; sourceTree = "<group>"; };
 		1BBE94AF2A2F501C0053A264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1BBE94B22A2F501C0053A264 /* WorkGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkGroup.xcdatamodel; sourceTree = "<group>"; };
 		1BBE94B42A2F501D0053A264 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,9 +146,17 @@
 		1BCA43F12A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePerformanceGraphViewController.swift; sourceTree = "<group>"; };
 		1BCA43F32A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMarkTaskCompleteFailViewController.swift; sourceTree = "<group>"; };
 		1BCA43F52A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMarkTaskCompleteSuccessViewController.swift; sourceTree = "<group>"; };
+		1BD49D352A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyAccountViewController.swift; sourceTree = "<group>"; };
+		1BD49D372A3D27C500E0AA41 /* CreateCompanyAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyAccountSuccessViewController.swift; sourceTree = "<group>"; };
+		1BD49D392A3D27D100E0AA41 /* CreateCompanyAccountFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyAccountFailViewController.swift; sourceTree = "<group>"; };
+		1BD49D3B2A3D37C300E0AA41 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceEmployeeListViewController.swift; sourceTree = "<group>"; };
 		1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDateViewController.swift; sourceTree = "<group>"; };
 		1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceGraphViewController.swift; sourceTree = "<group>"; };
+		1BE466BF2A43B6F30073973F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		1BE466C62A43C3DE0073973F /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
+		1BE466C82A43C6280073973F /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		1BECD7752A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskDetailViewController.swift; sourceTree = "<group>"; };
 		1BECD7792A3B31D7006889CA /* MeetingScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingScheduleViewController.swift; sourceTree = "<group>"; };
 		1BECD77B2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingInviteEmployeeViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +169,8 @@
 		1BECD78B2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditEmployeeListViewController.swift; sourceTree = "<group>"; };
 		1BECD78D2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditEmployeeListFailViewController.swift; sourceTree = "<group>"; };
 		1BECD78F2A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditEmployeeListSuccessViewController.swift; sourceTree = "<group>"; };
+		1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskSuccessfulViewController.swift; sourceTree = "<group>"; };
+		1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskFailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +198,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B1800D42A437CBF003E67AF /* NetworkMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				1BD49D3B2A3D37C300E0AA41 /* Reachability.swift */,
+			);
+			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
+		1B1800D52A437CD7003E67AF /* AppEntities */ = {
+			isa = PBXGroup;
+			children = (
+				1B1296A82A43F10400866159 /* RegisteredCompany.swift */,
+				1BE466C82A43C6280073973F /* UserAccount.swift */,
+				1B7782B02A448C9100CC6013 /* AccountTypes.swift */,
+			);
+			path = AppEntities;
+			sourceTree = "<group>";
+		};
 		1B7879B62A3A526600CC17E1 /* EditProject */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				1BECD7752A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift */,
+				1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */,
+				1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */,
 			);
 			path = CreateProjectTask;
 			sourceTree = "<group>";
@@ -204,9 +252,11 @@
 		1BA694FB2A3515250098C542 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				1BD49D342A3D276E00E0AA41 /* RegisterCompany */,
 				1BA694F92A34BB000098C542 /* LoginViewController.swift */,
 				1BBE94DB2A2FACC10053A264 /* MainMenuViewController.swift */,
-				1BBE94AC2A2F501C0053A264 /* LoadingViewController.swift */,
+				1BBE94AC2A2F501C0053A264 /* LunchScreenViewController.swift */,
+				1BE466BF2A43B6F30073973F /* LoadingViewController.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -275,6 +325,7 @@
 		1BBE94A72A2F501C0053A264 /* WorkGroup */ = {
 			isa = PBXGroup;
 			children = (
+				1BE466C12A43BA2D0073973F /* SupportFiles */,
 				1BBE94E32A2FCBAA0053A264 /* Model */,
 				1BBE94B92A2F501D0053A264 /* Info.plist */,
 				1BBE94E22A2FC4520053A264 /* Utilities */,
@@ -298,6 +349,7 @@
 		1BBE94CB2A2F501E0053A264 /* WorkGroupUITests */ = {
 			isa = PBXGroup;
 			children = (
+				1B3843292A43305F00421371 /* RoutingTest.swift */,
 				1BBE94CC2A2F501E0053A264 /* WorkGroupUITests.swift */,
 				1BBE94CE2A2F501E0053A264 /* WorkGroupUITestsLaunchTests.swift */,
 			);
@@ -352,6 +404,7 @@
 		1BBE94E22A2FC4520053A264 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -359,6 +412,10 @@
 		1BBE94E32A2FCBAA0053A264 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1B1800D52A437CD7003E67AF /* AppEntities */,
+				1B1800D42A437CBF003E67AF /* NetworkMonitor */,
+				1B1800D62A437F18003E67AF /* DataBase.swift */,
+				1BE466C62A43C3DE0073973F /* BinarySearch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +455,16 @@
 				1BCA43F12A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift */,
 			);
 			path = EmployeePerformance;
+			sourceTree = "<group>";
+		};
+		1BD49D342A3D276E00E0AA41 /* RegisterCompany */ = {
+			isa = PBXGroup;
+			children = (
+				1BD49D352A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift */,
+				1BD49D372A3D27C500E0AA41 /* CreateCompanyAccountSuccessViewController.swift */,
+				1BD49D392A3D27D100E0AA41 /* CreateCompanyAccountFailViewController.swift */,
+			);
+			path = RegisterCompany;
 			sourceTree = "<group>";
 		};
 		1BE31CA32A3B939C00C89B4F /* EmployeesPerformance */ = {
@@ -445,6 +512,13 @@
 				1B47055D2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift */,
 			);
 			path = AdminEditAccount;
+			sourceTree = "<group>";
+		};
+		1BE466C12A43BA2D0073973F /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 		1BECD7742A3B2E41006889CA /* EditTask */ = {
@@ -633,19 +707,25 @@
 			files = (
 				1B4705522A3BA2210013D9C9 /* CreateUserAccountViewController.swift in Sources */,
 				1BECD78C2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift in Sources */,
+				1BD49D382A3D27C500E0AA41 /* CreateCompanyAccountSuccessViewController.swift in Sources */,
 				1BCA43EB2A3CED9600A2ED59 /* EmployeeAssignedTaskListViewController.swift in Sources */,
 				1B7879BB2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift in Sources */,
 				1B7879C02A3A668000CC17E1 /* CreatProjectSuccessfulViewController.swift in Sources */,
 				1BCA43F42A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift in Sources */,
+				1B1296A92A43F10400866159 /* RegisteredCompany.swift in Sources */,
 				1BECD7762A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift in Sources */,
 				1BCA43F02A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift in Sources */,
 				1B7879CA2A3A68A300CC17E1 /* ProjectTaskEditSuccessfulViewController.swift in Sources */,
 				1BBE94DC2A2FACC10053A264 /* MainMenuViewController.swift in Sources */,
 				1BCA43E82A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift in Sources */,
+				1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */,
 				1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */,
 				1BECD77E2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift in Sources */,
 				1B7879C22A3A66BA00CC17E1 /* CreatProjectFailViewController.swift in Sources */,
+				1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */,
+				1BD49D362A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift in Sources */,
 				1B7879C42A3A66FD00CC17E1 /* ProjectDetailsChangeSuccessfulViewController.swift in Sources */,
+				1BE466C92A43C6280073973F /* UserAccount.swift in Sources */,
 				1BECD7902A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift in Sources */,
 				1B47055A2A3BA2A20013D9C9 /* EditUserAccountDetailsViewController.swift in Sources */,
 				1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */,
@@ -661,7 +741,8 @@
 				1BECD7832A3B330C006889CA /* MeetingEditListEViewController.swift in Sources */,
 				1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */,
 				1B4705542A3BA2320013D9C9 /* CreateUserAccountSuccessViewController.swift in Sources */,
-				1BBE94AD2A2F501C0053A264 /* LoadingViewController.swift in Sources */,
+				1BD49D3C2A3D37C300E0AA41 /* Reachability.swift in Sources */,
+				1BBE94AD2A2F501C0053A264 /* LunchScreenViewController.swift in Sources */,
 				1BBE94A92A2F501C0053A264 /* AppDelegate.swift in Sources */,
 				1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */,
 				1BECD7872A3B3384006889CA /* MeetingEditDetailsFailViewController.swift in Sources */,
@@ -669,16 +750,22 @@
 				1BBE94B32A2F501C0053A264 /* WorkGroup.xcdatamodeld in Sources */,
 				1B7879B52A3A520E00CC17E1 /* ProjectListEdit.swift in Sources */,
 				1BECD7852A3B3321006889CA /* MeetingEditDetailsViewController.swift in Sources */,
+				1BE466C02A43B6F30073973F /* LoadingViewController.swift in Sources */,
+				1BD49D3A2A3D27D100E0AA41 /* CreateCompanyAccountFailViewController.swift in Sources */,
 				1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */,
 				1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */,
 				1B7879B92A3A534400CC17E1 /* ProjectDetailsEditViewController.swift in Sources */,
 				1BECD7892A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift in Sources */,
 				1B4705502A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift in Sources */,
+				1B1800D72A437F18003E67AF /* DataBase.swift in Sources */,
 				1B47055E2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift in Sources */,
 				1BECD7802A3B3291006889CA /* MeetingCreateFailViewController.swift in Sources */,
+				1BFD036F2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift in Sources */,
 				1BCA43F62A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift in Sources */,
 				1B7879C62A3A673500CC17E1 /* ProjectDetailsChangeFailViewController.swift in Sources */,
+				1B7782B12A448C9100CC6013 /* AccountTypes.swift in Sources */,
 				1B7879C82A3A687700CC17E1 /* ProjectEditTaskDetailViewController.swift in Sources */,
+				1BEC96902A3F4EB300D0AFE9 /* Constant.swift in Sources */,
 				1BCA43E62A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift in Sources */,
 				1B47055C2A3BA3020013D9C9 /* EditUserAccountSuccessViewController.swift in Sources */,
 			);
@@ -697,6 +784,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BBE94CD2A2F501E0053A264 /* WorkGroupUITests.swift in Sources */,
+				1B38432B2A43316400421371 /* RoutingTest.swift in Sources */,
 				1BBE94CF2A2F501E0053A264 /* WorkGroupUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -861,7 +949,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkGroup/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -889,7 +977,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkGroup/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

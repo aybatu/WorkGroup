@@ -8,22 +8,40 @@
 import UIKit
 
 class PerformanceDateViewController: UIViewController {
-
+    @IBOutlet weak var performanceDateListTableView: UITableView!
+    private let dateList = ["01/01/23 - 01/02/23", "01/02/23 - 01/03/23", "01/03/23 - 01/04/23"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        performanceDateListTableView.delegate = self
+        performanceDateListTableView.dataSource = self
+        
+    }
+    
+    @IBAction func mainMenuButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func employeeListbutton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popViewController(animated: true)
     }
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension PerformanceDateViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dateList.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = performanceDateListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.employeePerformanceDateCellIdentifier, for: indexPath)
+        cell.textLabel?.text = dateList[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constant.Segue.Manager.performanceDateToPerformanceGraph, sender: self)
+    }
 }

@@ -8,22 +8,21 @@
 import UIKit
 
 class EmployeeAssignedTaskDetailViewController: UIViewController {
-
+    private var isTaskCompleted: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func markTaskCompleted(_ sender: UIButton) {
+        if isTaskCompleted {
+            performSegue(withIdentifier: Constant.Segue.Employee.taskDetailToSuccess, sender: nil)
+        } else {
+            performSegue(withIdentifier: Constant.Segue.Employee.taskDetailToFail, sender: nil)
+        }
     }
-    */
+    
+    
 
 }

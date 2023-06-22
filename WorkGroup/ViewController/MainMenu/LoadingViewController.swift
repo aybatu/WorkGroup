@@ -1,56 +1,39 @@
-//
-//  ViewController.swift
-//  WorkGroup
-//
-//  Created by Aybatu KERKUKLUOGLU on 06/06/2023.
-//
-
 import UIKit
 
 class LoadingViewController: UIViewController {
-    private let activityIndicator = UIActivityIndicatorView(style: .large)
-    private let loadingLabel = UILabel()
+    var registrationNumber: String?
+    var emailAddress: String?
+    var password: String?
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        
         // Configure the activity indicator
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.startAnimating()
         activityIndicator.color = .white
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
         
-        // Configure the loading label
-        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
-        loadingLabel.text = "Loading WorkGroup..."
-        loadingLabel.textColor = .white
-        loadingLabel.font = .boldSystemFont(ofSize: 16.0)
-        
-        
-        // Add subviews
+        // Add the activity indicator to the view
         view.addSubview(activityIndicator)
-        view.addSubview(loadingLabel)
-        
-        // Add constraints
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            loadingLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 8.0),
-            loadingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        setGradientBackground()
-        
+
+   
     }
     
-    private func setGradientBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        view.layer.insertSublayer(gradientLayer, at: 0)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Show the navigation bar
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     
 }
-

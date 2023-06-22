@@ -8,22 +8,39 @@
 import UIKit
 
 class ProjectDetailsEditViewController: UIViewController {
-
+    let isChangesSaved = true
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        navigationItem.title = "Project Details"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveChangesButton(_ sender: UIButton) {
+        if isChangesSaved {
+            performSegue(withIdentifier: Constant.Segue.Manager.projectDetailSaveToSuccess, sender: self)
+        } else {
+            performSegue(withIdentifier: Constant.Segue.Manager.projectDetailSaveToFail, sender: self)
+        }
     }
-    */
-
+    
+    @IBAction func discardButton(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Discard", message: "Are you sure you want to discard?", preferredStyle: .alert)
+        
+        let discardAction = UIAlertAction(title: "Discard", style: .destructive) { (_) in
+            self.performDiscard()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(discardAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    private func performDiscard() {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popViewController(animated: true)
+    }
+    
 }

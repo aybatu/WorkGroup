@@ -9,21 +9,42 @@ import UIKit
 
 class MeetingEditListEViewController: UIViewController {
 
+    @IBOutlet weak var editMeetingListTableView: UITableView!
+    let meetingList = ["Meeting1", "Meeting2", "Meeting3"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        editMeetingListTableView.delegate = self
+        editMeetingListTableView.dataSource = self
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func mainMenuButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popToRootViewController(animated: true)
     }
-    */
+    
+}
 
+extension MeetingEditListEViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return meetingList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = editMeetingListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.editMeetingListCellIdentifier, for: indexPath)
+        
+        cell.textLabel?.text = meetingList[indexPath.row]
+        
+      
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: Constant.Segue.Manager.editMeetingListToMeetingDetails, sender: self)
+    }
+    
+    
 }

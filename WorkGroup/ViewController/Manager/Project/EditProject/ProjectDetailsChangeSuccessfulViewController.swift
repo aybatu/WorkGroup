@@ -11,19 +11,24 @@ class ProjectDetailsChangeSuccessfulViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.hidesBackButton = true
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+  
+    @IBAction func projectListButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        let viewControllers = navigationController.viewControllers
+        
+        if viewControllers.count > 0 {
+            let projectListViewController = navigationController.viewControllers[1]
+            navigationController.popToViewController(projectListViewController, animated: true)
+        }
     }
-    */
-
+    
+    @IBAction func backToMenuButton(_ sender: UIButton) {
+        guard let navigationController = self.navigationController else {return}
+        navigationController.popToRootViewController(animated: true)
+    }
+    
 }

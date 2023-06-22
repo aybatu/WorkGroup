@@ -16,14 +16,18 @@ class EditUserAccountSuccessViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func accountListButton(_ sender: UIButton) {
+        guard let navController = self.navigationController else {return}
+        let viewControllers = navController.viewControllers
+        if viewControllers.count > 0 {
+            let accountListViewController = viewControllers[1]
+            navController.popToViewController(accountListViewController, animated: true)
+            
+        }
     }
-    */
-
+    
+    @IBAction func backToMenuButton(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
 }

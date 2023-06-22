@@ -8,22 +8,29 @@
 import UIKit
 
 class ProjectAddTaskDetailViewController: UIViewController {
-
+    let isTaskAdded = true
+    let isProjectCreated = true
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        guard let navigationController = self.navigationController else {return}
+        navigationController.title = "Task Details"
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addTaskButton(_ sender: UIButton) {
+        if isTaskAdded {
+            performSegue(withIdentifier: Constant.Segue.Manager.addTaskToSuccess, sender: self)
+        } else {
+            performSegue(withIdentifier: Constant.Segue.Manager.addTaskToFail, sender: self)
+        }
     }
-    */
-
+    
+    @IBAction func createProjectButton(_ sender: UIButton) {
+        if isProjectCreated {
+            performSegue(withIdentifier: Constant.Segue.Manager.createProjectToSuccess, sender: self)
+        } else {
+            performSegue(withIdentifier: Constant.Segue.Manager.createProjectToFail, sender: self
+            )
+        }
+    }
 }
