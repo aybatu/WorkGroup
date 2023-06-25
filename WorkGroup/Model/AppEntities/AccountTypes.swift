@@ -7,7 +7,7 @@
 
 enum AccountTypes: String {
     case MANAGER
-    case ADMIN
     case EMPLOYEE
+    case ADMIN
     static let allCases = [MANAGER, ADMIN, EMPLOYEE]
 }

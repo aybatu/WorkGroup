@@ -10,6 +10,7 @@ import UIKit
 class AdminMainMenuViewController: UIViewController {
     
     var companyRegistrationNumber: String?
+    private var userAccounts: Set<UserAccount> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +19,35 @@ class AdminMainMenuViewController: UIViewController {
         navigationItem.rightBarButtonItem = logoutButton
         
     }
+    @IBAction func createUserAccountButton(_ sender: UIButton) {
+        let loadingVC = LoadingViewController()
+        loadingVC.modalPresentationStyle = .fullScreen
+        present(loadingVC, animated: false)
+        
+        
+        getEmployeeList { userAccountsSet in
+            loadingVC.dismiss(animated: false) {
+                self.userAccounts = userAccountsSet
+                self.performSegue(withIdentifier: Constant.Segue.Admin.mainMenuToCreateAccount, sender: self)
+            }
+        }
+        
+        
+    }
     
+    @IBAction func editEmployeeAccount(_ sender: UIButton) {
+        let loadingVC = LoadingViewController()
+        loadingVC.modalPresentationStyle = .fullScreen
+        present(loadingVC, animated: false)
+        
+        
+        getEmployeeList { userAccountsSet in
+            loadingVC.dismiss(animated: false) {
+                self.userAccounts = userAccountsSet
+                self.performSegue(withIdentifier: Constant.Segue.Admin.mainMenuToEditAccounts, sender: self)
+            }
+        }
+    }
     @objc func logoutButtonTapped() {
         // Show a confirmation alert or perform any necessary logout actions
         let confirmationAlert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
@@ -30,11 +59,7 @@ class AdminMainMenuViewController: UIViewController {
     }
     
     func logout() {
-        // Perform logout actions here
-        // For example, clear session data, reset app state, or navigate to the login screen
-        // You can use `dismiss(animated:completion:)` to dismiss the current view controller or `popToRootViewController(animated:)` to navigate back to the root view controller
         
-        // Example: Dismiss the current view controller and navigate back to the login screen
         dismiss(animated: true, completion: nil)
     }
     
@@ -42,7 +67,37 @@ class AdminMainMenuViewController: UIViewController {
         if segue.identifier == Constant.Segue.Admin.mainMenuToCreateAccount {
             if let createAccountVC = segue.destination as? CreateUserAccountViewController {
                 createAccountVC.companyRegistrationNo = companyRegistrationNumber
+                createAccountVC.userAccounts = self.userAccounts
+            }
+        } else if segue.identifier == Constant.Segue.Admin.mainMenuToEditAccounts {
+            if let editAccountsVC = segue.destination as? EditUserAccountListViewController {
+                editAccountsVC.userAccounts = self.userAccounts
             }
         }
+    }
+    
+    private func getEmployeeList(completion: @escaping (Set<UserAccount>) -> Void) {
+        let search = Search<RegisteredCompany>()
+        
+        if let companyRegistrationNumber = companyRegistrationNumber {
+            let company = search.binarySearch(TemporaryDatabase.registeredCompanies, target: companyRegistrationNumber, keyPath: \.registrationNumber)
+            if let companySafe = company {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    let userAccounts = companySafe.userAccounts
+                    var userAccountsSet: Set<UserAccount> = []
+                    for userAccount in userAccounts {
+                        userAccountsSet.insert(userAccount)
+                    }
+                    completion(userAccountsSet)
+                }
+                
+            } else {
+                print("Company could not found in database. Please check your company if registered in the system.")
+            }
+        } else {
+            print("Error, could not fetch company registration number. Please try again.")
+        }
+        
+        
     }
 }

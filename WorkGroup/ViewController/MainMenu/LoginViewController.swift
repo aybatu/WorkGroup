@@ -26,16 +26,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        guard let password = loginPasswordTextField.text,
-              let userName = loginEmailTextField.text,
-              let registerNo = companyRegistrationNumberTextField.text else {
+        guard let registerNo = companyRegistrationNumberTextField.text else {
             return
         }
         
         let loadingViewController = LoadingViewController()
-        loadingViewController.emailAddress = userName
-        loadingViewController.password = password
-        loadingViewController.registrationNumber = registerNo
+       
         loadingViewController.modalPresentationStyle = .fullScreen
         present(loadingViewController, animated: false)
         

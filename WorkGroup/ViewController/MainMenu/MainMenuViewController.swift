@@ -12,10 +12,9 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.title = "Main Menu"
+        navigationController?.title = "MAIN MENU"
         
     }
   
-    
-
+ 
 }

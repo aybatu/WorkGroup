@@ -27,6 +27,7 @@ class CreateUserAccountViewController: UIViewController {
     @IBOutlet private weak var createUserAccButton: UIButton!
     @IBOutlet private weak var confirmEmailAddressLabel: UILabel!
     
+    var userAccounts: Set<UserAccount> = []
     private var isAccountCreated = true
     private var tableView = UITableView()
     private var textFields: [UITextField] = []
@@ -36,6 +37,7 @@ class CreateUserAccountViewController: UIViewController {
     private var doEmailsMatch = false
     private var isPasswordValid = false
     private var doPasswordsMatch = false
+    private var isAccountExist = false
     var companyRegistrationNo: String?
     private var accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
@@ -47,6 +49,7 @@ class CreateUserAccountViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
+       
         
         
     }
@@ -71,19 +74,40 @@ class CreateUserAccountViewController: UIViewController {
         }
         
         if isEmailValid && doEmailsMatch && isPasswordValid && doPasswordsMatch && isNameValid && isSurnameValid {
-            
+            let loadingViewController = LoadingViewController()
             let newUser = UserAccount(accountType: accountType, emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
             let search = Search<RegisteredCompany>()
             let companies = TemporaryDatabase.registeredCompanies
-            if let company = search.binarySearch(companies, target: registerNo, keyPath: \.registrationNumber) {
-                company.addUserAccount(newUser)
-                isAccountCreated = true
-            }
+            loadingViewController.modalPresentationStyle = .fullScreen
+            present(loadingViewController, animated: false)
             
-            if isAccountCreated {
-                performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)
-            } else {
-                performSegue(withIdentifier: Constant.Segue.Admin.createAccountToFail, sender: self)
+            
+            loadingViewController.dismiss(animated: false) {
+                if let company = search.binarySearch(companies, target: registerNo, keyPath: \.registrationNumber) {
+                    let (inserted, _) = self.userAccounts.insert(newUser)
+                    if inserted {
+                        company.addUserAccount(newUser)
+                        self.isAccountCreated = true
+                        self.isAccountExist = false
+                    } else {
+                        self.isAccountCreated = false
+                        self.isAccountExist = true
+                    }
+                }
+                
+                if self.isAccountCreated {
+                    self.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)
+                } else {
+                    self.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToFail, sender: self)
+                }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.Segue.Admin.createAccountToFail {
+            if let failVC = segue.destination as? CreateUserAccountFailViewController {
+                failVC.errorMessage = (emailAddressTextField.text ?? "") + " " + Constant.Warning.CreateAccount.isAccountExist
             }
         }
     }
@@ -137,99 +161,36 @@ class CreateUserAccountViewController: UIViewController {
     }
 }
 
-extension CreateUserAccountViewController {
-    private func validateName(_ name: String) {
-        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let isValid = !trimmedName.isEmpty
-        
-        employeeNameTextField.layer.borderWidth = 1.0
-        employeeNameTextField.layer.borderColor = isValid ? UIColor.green.cgColor : UIColor.red.cgColor
-        employeeNameLabel.text = isValid ? "Employee Name" : "Employee Name is required"
-        employeeNameLabel.textColor = isValid ? nil : .red
-        
-        isNameValid = isValid
-    }
-    
-    private func validateSurname(_ surname: String) {
-        let trimmedSurname = surname.trimmingCharacters(in: .whitespacesAndNewlines)
-        let isValid = !trimmedSurname.isEmpty
-        
-        employeeSurnameTextField.layer.borderWidth = 1.0
-        employeeSurnameTextField.layer.borderColor = isValid ? UIColor.green.cgColor : UIColor.red.cgColor
-        employeeSurnameLabel.text = isValid ? "Employee Surname" : "Employee Surname is required"
-        employeeSurnameLabel.textColor = isValid ? nil : .red
-        
-        isSurnameValid = isValid
-    }
-    
-    private func validateEmail(_ email: String) {
-        let emailRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        let isValid = emailPredicate.evaluate(with: email)
-        
-        emailAddressTextField.layer.borderWidth = 1.0
-        emailAddressTextField.layer.borderColor = isValid ? UIColor.green.cgColor : UIColor.red.cgColor
-        emailAddressLabel.text = isValid ? "Please enter a valid email address." : "Please enter a valid password. Minimum length 8 characters including at least one uppercase, one number, and one special character."
-        emailAddressLabel.textColor = isValid ? nil : .red
-        
-        isEmailValid = isValid
-    }
-    
-    private func doEmailsMatch(_ email: String, _ confirmEmail: String) {
-        let doMatch = email == confirmEmail
-        
-        confirmEmailAddressTextField.layer.borderWidth = 1.0
-        confirmEmailAddressTextField.layer.borderColor = doMatch ? UIColor.green.cgColor : UIColor.red.cgColor
-        confirmEmailAddressLabel.text = doMatch ? "Email addresses match." : "Email addresses do not match."
-        confirmEmailAddressLabel.textColor = doMatch ? nil : .red
-        
-        doEmailsMatch = doMatch
-    }
-    
-    private func validatePassword(_ password: String) {
-        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
-        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
-        let isValid = passwordPredicate.evaluate(with: password)
-        
-        passwordTextField.layer.borderWidth = 1.0
-        passwordTextField.layer.borderColor = isValid ? UIColor.green.cgColor : UIColor.red.cgColor
-        passwordLabel.text = isValid ? "Please enter a valid password." : "Please enter a valid password. Minimum length 8 characters including at least one uppercase, one number, and one special character."
-        passwordLabel.textColor = isValid ? nil : .red
-        
-        isPasswordValid = isValid
-    }
-    
-    private func doPasswordsMatch(_ password: String, _ confirmPassword: String) {
-        let doMatch = password == confirmPassword
-        
-        confirmPasswordTextField.layer.borderWidth = 1.0
-        confirmPasswordTextField.layer.borderColor = doMatch ? UIColor.green.cgColor : UIColor.red.cgColor
-        confirmPasswordLabel.text = doMatch ? "Passwords match." : "Passwords do not match."
-        confirmPasswordLabel.textColor = doMatch ? nil : .red
-        
-        doPasswordsMatch = doMatch
-    }
-}
-
 extension CreateUserAccountViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {return true}
+      
+        let userAccountValidator = UserAccountValidator()
         switch textField {
         case employeeNameTextField:
-            validateName(employeeNameTextField?.text ?? "")
+            isNameValid = userAccountValidator.validateName(updatedText, employeeNameTextField: employeeNameTextField, employeeNameLabel: employeeNameLabel)
         case employeeSurnameTextField:
-            validateSurname(employeeSurnameTextField?.text ?? "")
+            isSurnameValid = userAccountValidator.validateSurname(updatedText, employeeSurnameTextField: employeeSurnameTextField, employeeSurnameLabel: employeeSurnameLabel)
         case emailAddressTextField:
-            validateEmail(emailAddressTextField?.text ?? "")
+            isEmailValid = userAccountValidator.validateEmail(updatedText, emailAddressTextField: emailAddressTextField, emailAddressLabel: emailAddressLabel)
         case confirmEmailAddressTextField:
-            doEmailsMatch(emailAddressTextField?.text ?? "", confirmEmailAddressTextField?.text ?? "")
+            doEmailsMatch = userAccountValidator.doEmailsMatch(emailAddressTextField?.text ?? "", updatedText, confirmEmailAddressTextField: confirmEmailAddressTextField, confirmEmailAddressLabel: confirmEmailAddressLabel)
         case passwordTextField:
-            validatePassword(passwordTextField?.text ?? "")
+            isPasswordValid = userAccountValidator.validatePassword(updatedText, passwordTextField: passwordTextField, passwordLabel: passwordLabel)
         case confirmPasswordTextField:
-            doPasswordsMatch(passwordTextField?.text ?? "", confirmPasswordTextField?.text ?? "")
+            doPasswordsMatch = userAccountValidator.doPasswordsMatch(passwordTextField?.text ?? "", updatedText, confirmPasswordTextField: confirmPasswordTextField, confirmPasswordLabel: confirmPasswordLabel)
         default:
             break
         }
         enableRegistrationButton()
+        
+        return true
+                
+    }
+  
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

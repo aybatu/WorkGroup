@@ -11,7 +11,7 @@ class EditUserAccountListViewController: UIViewController, UITableViewDelegate, 
     
     @IBOutlet weak var employeeListTableView: UITableView!
     
-    let emailList: [String] = ["employee1@company.com", "employee2@company.com", "employee3@company.com", "manager1@company.com"]
+    var userAccounts: Set<UserAccount> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +21,19 @@ class EditUserAccountListViewController: UIViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return emailList.count
+        return userAccounts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Admin.editEmployeeAccountListCellIdentifier, for: indexPath)
-        
-        cell.textLabel?.text = emailList[indexPath.row]
-        
-        return cell
+           
+           let userAccountArray = Array(userAccounts)
+           if indexPath.row < userAccountArray.count {
+               let userAccount = userAccountArray[indexPath.row]
+               cell.textLabel?.text = userAccount.emailAddress
+           }
+           
+           return cell
     }
     
     

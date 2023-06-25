@@ -12,7 +12,7 @@ class RegisteredCompany: Comparable {
     private static var nextRegistrationNumber = 1
     private var _registrationNumber: Int
     private var _userAccounts: [UserAccount]
-    
+    private var _ownerAccount: UserAccount
     var registrationNumber: String {
         return String(_registrationNumber)
     }
@@ -20,11 +20,14 @@ class RegisteredCompany: Comparable {
     var userAccounts: [UserAccount] {
         return _userAccounts
     }
-    
+    var ownerAccount: UserAccount {
+        return _ownerAccount
+    }
     let companyName: String
     
-    init(companyName: String) {
+    init(companyName: String, ownerAccount: UserAccount) {
         self.companyName = companyName
+        self._ownerAccount = ownerAccount
         self._registrationNumber = RegisteredCompany.nextRegistrationNumber
         self._userAccounts = []
         RegisteredCompany.nextRegistrationNumber += 1
@@ -41,10 +44,10 @@ class RegisteredCompany: Comparable {
     }
     
     static func < (lhs: RegisteredCompany, rhs: RegisteredCompany) -> Bool {
-        return lhs.registrationNumber < rhs.registrationNumber
-    }
-    
-    static func == (lhs: RegisteredCompany, rhs: RegisteredCompany) -> Bool {
-        return lhs.registrationNumber == rhs.registrationNumber
-    }
+          return lhs._registrationNumber < rhs._registrationNumber
+      }
+      
+      static func == (lhs: RegisteredCompany, rhs: RegisteredCompany) -> Bool {
+          return lhs._registrationNumber == rhs._registrationNumber
+      }
 }

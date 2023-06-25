@@ -9,9 +9,12 @@ import UIKit
 
 class CreateCompanyAccountFailViewController: UIViewController {
 
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    var errorMessage: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        errorMessageLabel.text = errorMessage
         navigationItem.hidesBackButton = true
     }
     

@@ -9,6 +9,12 @@ import UIKit
 
 class EditUserAccountDetailsViewController: UIViewController {
     private var isAccountChanged = true
+    var userAccount: UserAccount?
+    
+    @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmEmailTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,4 +53,15 @@ class EditUserAccountDetailsViewController: UIViewController {
         }
     }
     
+}
+
+extension EditUserAccountDetailsViewController {
+    private func editUserAcount(completion: @escaping() -> Void) {
+        
+    }
+    
+    private func setUserAccountDetails() {
+        guard let userAccountSafe = userAccount else {return}
+        
+    }
 }

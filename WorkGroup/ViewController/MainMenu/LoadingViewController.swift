@@ -1,9 +1,7 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-    var registrationNumber: String?
-    var emailAddress: String?
-    var password: String?
+   
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
@@ -18,7 +16,7 @@ class LoadingViewController: UIViewController {
         
         // Add the activity indicator to the view
         view.addSubview(activityIndicator)
-
+        navigationController?.isNavigationBarHidden = true
    
     }
     

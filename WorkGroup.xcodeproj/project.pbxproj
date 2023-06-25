@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B1296A92A43F10400866159 /* RegisteredCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1296A82A43F10400866159 /* RegisteredCompany.swift */; };
 		1B1800D72A437F18003E67AF /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1800D62A437F18003E67AF /* DataBase.swift */; };
+		1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */; };
 		1B38432B2A43316400421371 /* RoutingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3843292A43305F00421371 /* RoutingTest.swift */; };
 		1B3CDE6B2A3B8D20003E8744 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA694F92A34BB000098C542 /* LoginViewController.swift */; };
 		1B4705502A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47054F2A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift */; };
@@ -75,6 +76,11 @@
 		1BECD78C2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD78B2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift */; };
 		1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD78D2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift */; };
 		1BECD7902A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD78F2A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift */; };
+		1BF7F6F22A48C2B100BD7D12 /* UserAccountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F6F12A48C2B100BD7D12 /* UserAccountValidator.swift */; };
+		1BF7F6F52A48C8B700BD7D12 /* AccountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F6F42A48C8B700BD7D12 /* AccountValidator.swift */; };
+		1BF7F6F72A48C91600BD7D12 /* CompanyAccountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F6F62A48C91600BD7D12 /* CompanyAccountValidator.swift */; };
+		1BF7F6F92A48D72A00BD7D12 /* EmployeeListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F6F82A48D72A00BD7D12 /* EmployeeListTableCell.swift */; };
+		1BF7F6FE2A48D7E700BD7D12 /* EmployeeListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF7F6FD2A48D7E700BD7D12 /* EmployeeListTableCell.xib */; };
 		1BFD036F2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */; };
 		1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +105,7 @@
 /* Begin PBXFileReference section */
 		1B1296A82A43F10400866159 /* RegisteredCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCompany.swift; sourceTree = "<group>"; };
 		1B1800D62A437F18003E67AF /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationResult.swift; sourceTree = "<group>"; };
 		1B3843292A43305F00421371 /* RoutingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingTest.swift; sourceTree = "<group>"; };
 		1B47054F2A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainMenuViewController.swift; sourceTree = "<group>"; };
 		1B4705512A3BA2210013D9C9 /* CreateUserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserAccountViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +176,11 @@
 		1BECD78B2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditEmployeeListViewController.swift; sourceTree = "<group>"; };
 		1BECD78D2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditEmployeeListFailViewController.swift; sourceTree = "<group>"; };
 		1BECD78F2A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditEmployeeListSuccessViewController.swift; sourceTree = "<group>"; };
+		1BF7F6F12A48C2B100BD7D12 /* UserAccountValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountValidator.swift; sourceTree = "<group>"; };
+		1BF7F6F42A48C8B700BD7D12 /* AccountValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountValidator.swift; sourceTree = "<group>"; };
+		1BF7F6F62A48C91600BD7D12 /* CompanyAccountValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAccountValidator.swift; sourceTree = "<group>"; };
+		1BF7F6F82A48D72A00BD7D12 /* EmployeeListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListTableCell.swift; sourceTree = "<group>"; };
+		1BF7F6FD2A48D7E700BD7D12 /* EmployeeListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeListTableCell.xib; sourceTree = "<group>"; };
 		1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskSuccessfulViewController.swift; sourceTree = "<group>"; };
 		1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskFailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +224,7 @@
 				1B1296A82A43F10400866159 /* RegisteredCompany.swift */,
 				1BE466C82A43C6280073973F /* UserAccount.swift */,
 				1B7782B02A448C9100CC6013 /* AccountTypes.swift */,
+				1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */,
 			);
 			path = AppEntities;
 			sourceTree = "<group>";
@@ -328,7 +341,6 @@
 				1BE466C12A43BA2D0073973F /* SupportFiles */,
 				1BBE94E32A2FCBAA0053A264 /* Model */,
 				1BBE94B92A2F501D0053A264 /* Info.plist */,
-				1BBE94E22A2FC4520053A264 /* Utilities */,
 				1BBE94E12A2FC3FB0053A264 /* Assets */,
 				1BBE94E02A2FC3CD0053A264 /* App */,
 				1BBE94DF2A2FC3B80053A264 /* DataBase */,
@@ -359,6 +371,7 @@
 		1BBE94DD2A2FC3850053A264 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1BF7F6F32A48C89A00BD7D12 /* Validator */,
 				1BA694FE2A3515630098C542 /* Employee */,
 				1BA694FD2A35155B0098C542 /* Admin */,
 				1BA694FC2A3515390098C542 /* Manager */,
@@ -370,6 +383,7 @@
 		1BBE94DE2A2FC39A0053A264 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1BF7F6FA2A48D73400BD7D12 /* EmployeeListTableCell */,
 				1BBE94B62A2F501D0053A264 /* LaunchScreen.storyboard */,
 				1BBE94AE2A2F501C0053A264 /* Main.storyboard */,
 			);
@@ -399,14 +413,6 @@
 				1BBE94B42A2F501D0053A264 /* Assets.xcassets */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		1BBE94E22A2FC4520053A264 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		1BBE94E32A2FCBAA0053A264 /* Model */ = {
@@ -517,6 +523,7 @@
 		1BE466C12A43BA2D0073973F /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -572,6 +579,25 @@
 				1BECD78F2A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift */,
 			);
 			path = EditEmployeeList;
+			sourceTree = "<group>";
+		};
+		1BF7F6F32A48C89A00BD7D12 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				1BF7F6F12A48C2B100BD7D12 /* UserAccountValidator.swift */,
+				1BF7F6F42A48C8B700BD7D12 /* AccountValidator.swift */,
+				1BF7F6F62A48C91600BD7D12 /* CompanyAccountValidator.swift */,
+			);
+			path = Validator;
+			sourceTree = "<group>";
+		};
+		1BF7F6FA2A48D73400BD7D12 /* EmployeeListTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				1BF7F6F82A48D72A00BD7D12 /* EmployeeListTableCell.swift */,
+				1BF7F6FD2A48D7E700BD7D12 /* EmployeeListTableCell.xib */,
+			);
+			path = EmployeeListTableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -680,6 +706,7 @@
 			files = (
 				1BBE94B82A2F501D0053A264 /* LaunchScreen.storyboard in Resources */,
 				1BBE94B52A2F501D0053A264 /* Assets.xcassets in Resources */,
+				1BF7F6FE2A48D7E700BD7D12 /* EmployeeListTableCell.xib in Resources */,
 				1BBE94B02A2F501C0053A264 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -722,11 +749,13 @@
 				1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */,
 				1BECD77E2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift in Sources */,
 				1B7879C22A3A66BA00CC17E1 /* CreatProjectFailViewController.swift in Sources */,
+				1BF7F6F72A48C91600BD7D12 /* CompanyAccountValidator.swift in Sources */,
 				1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */,
 				1BD49D362A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift in Sources */,
 				1B7879C42A3A66FD00CC17E1 /* ProjectDetailsChangeSuccessfulViewController.swift in Sources */,
 				1BE466C92A43C6280073973F /* UserAccount.swift in Sources */,
 				1BECD7902A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift in Sources */,
+				1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */,
 				1B47055A2A3BA2A20013D9C9 /* EditUserAccountDetailsViewController.swift in Sources */,
 				1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */,
 				1BECD77C2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift in Sources */,
@@ -739,7 +768,9 @@
 				1B4705582A3BA2680013D9C9 /* EditUserAccountListViewController.swift in Sources */,
 				1BECD77A2A3B31D7006889CA /* MeetingScheduleViewController.swift in Sources */,
 				1BECD7832A3B330C006889CA /* MeetingEditListEViewController.swift in Sources */,
+				1BF7F6F22A48C2B100BD7D12 /* UserAccountValidator.swift in Sources */,
 				1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */,
+				1BF7F6F92A48D72A00BD7D12 /* EmployeeListTableCell.swift in Sources */,
 				1B4705542A3BA2320013D9C9 /* CreateUserAccountSuccessViewController.swift in Sources */,
 				1BD49D3C2A3D37C300E0AA41 /* Reachability.swift in Sources */,
 				1BBE94AD2A2F501C0053A264 /* LunchScreenViewController.swift in Sources */,
@@ -755,6 +786,7 @@
 				1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */,
 				1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */,
 				1B7879B92A3A534400CC17E1 /* ProjectDetailsEditViewController.swift in Sources */,
+				1BF7F6F52A48C8B700BD7D12 /* AccountValidator.swift in Sources */,
 				1BECD7892A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift in Sources */,
 				1B4705502A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift in Sources */,
 				1B1800D72A437F18003E67AF /* DataBase.swift in Sources */,

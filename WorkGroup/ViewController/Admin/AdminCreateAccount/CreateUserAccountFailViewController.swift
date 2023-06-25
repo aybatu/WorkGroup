@@ -9,10 +9,15 @@ import UIKit
 
 class CreateUserAccountFailViewController: UIViewController {
 
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    var errorMessage: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.hidesBackButton = true
+        if let errorMessage = errorMessage {
+            errorMessageLabel.text = errorMessage
+        }
     }
     
 

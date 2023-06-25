@@ -33,6 +33,7 @@ struct Constant {
             static let editUserAccountToSuccess = "EditUserAccountToSuccess"
             static let accountListToAccountEdit = "AccountListToAccountEdit"
             static let mainMenuToCreateAccount = "AdminMainMenuToCreateAccount"
+            static let mainMenuToEditAccounts = "AdminMainMenuToEditAccounts"
            
         }
         struct Manager {
@@ -92,6 +93,9 @@ struct Constant {
         struct Login {
             static let userNamePassInvalid = "Invalid username or password."
             static let companyRegisterNoInvalid = "Invalid company registration number."
+        }
+        struct CreateAccount {
+            static let isAccountExist = "email address is already registered in the system. Please try another email address or check if it is correct."
         }
     }
 }

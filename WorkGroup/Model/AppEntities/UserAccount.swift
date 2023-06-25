@@ -7,9 +7,9 @@
 
 import Foundation
 
-class UserAccount: Comparable {
+class UserAccount: Comparable, Hashable {
     let accountType: AccountTypes
-    let emailAddress: String
+    var emailAddress: String
     let userFirstName: String
     let userLastName: String
     let password: String
@@ -21,6 +21,12 @@ class UserAccount: Comparable {
         self.userLastName = userLastName
         self.password = password
     }
+    
+    func hash(into hasher: inout Hasher) {
+       
+        hasher.combine(emailAddress)
+    }
+    
     
     // Compare based on email address
     static func < (lhs: UserAccount, rhs: UserAccount) -> Bool {
