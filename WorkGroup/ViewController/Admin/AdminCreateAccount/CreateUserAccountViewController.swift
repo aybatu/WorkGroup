@@ -7,11 +7,8 @@
 
 import UIKit
 
-class CellClass: UITableViewCell {
-    // Custom cell class
-}
-
 class CreateUserAccountViewController: UIViewController {
+    private var tapGesture: UITapGestureRecognizer!
     @IBOutlet private weak var employeeNameTextField: UITextField!
     @IBOutlet private weak var employeeNameLabel: UILabel!
     @IBOutlet private weak var employeeSurnameLabel: UILabel!
@@ -28,6 +25,9 @@ class CreateUserAccountViewController: UIViewController {
     @IBOutlet private weak var confirmEmailAddressLabel: UILabel!
     
     var userAccounts: Set<UserAccount> = []
+    private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
+    
+    
     private var isAccountCreated = true
     private var tableView = UITableView()
     private var textFields: [UITextField] = []
@@ -42,17 +42,37 @@ class CreateUserAccountViewController: UIViewController {
     private var accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createUserAccButton.isEnabled = false
-        setupTextFields()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
-       
-        
+        setupTextFields()
+        tableView.register(UserAccountTypeCell.self, forCellReuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.userAccountTypeCellIdentifier)
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+        tableView.removeFromSuperview()
+        
+       }
+    
+    private func setupTapGesture() {
+           tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+           tapGesture?.cancelsTouchesInView = false
+           view.addGestureRecognizer(tapGesture!)
+       }
+    
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
+            // Dismiss the dropdown menu
+        tableView.removeFromSuperview()
+
+            // Dismiss the keyboard
+            view.endEditing(true)
+
+        }
     
     private func setAccountTypes() {
         accountTypes.append(contentsOf: AccountTypes.allCases)
@@ -77,7 +97,7 @@ class CreateUserAccountViewController: UIViewController {
             let loadingViewController = LoadingViewController()
             let newUser = UserAccount(accountType: accountType, emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
             let search = Search<RegisteredCompany>()
-            let companies = TemporaryDatabase.registeredCompanies
+            let companies = TemporaryDatabase.registeredCompanies.sorted()
             loadingViewController.modalPresentationStyle = .fullScreen
             present(loadingViewController, animated: false)
             
@@ -117,18 +137,12 @@ class CreateUserAccountViewController: UIViewController {
     }
     
     private func showDropdownMenu() {
-        guard selectAccountTypeButton.superview is UIStackView else {return}
-        guard let buttonStackViewFrame = selectAccountTypeButton.superview as? UIStackView else { return }
-        let dropDownFrame = buttonStackViewFrame.convert(selectAccountTypeButton.frame, to: view)
-        tableView.frame = CGRect(x: dropDownFrame.minX, y: dropDownFrame.maxY, width: dropDownFrame.width, height: 0)
-        self.view.addSubview(tableView)
-        tableView.layer.cornerRadius = 5
-        tableView.reloadData()
-        
-        UIView.animate(withDuration: 0.5) {
-            let menuHeight = CGFloat(self.accountTypes.count * 42)
-            let buttonBottomY = dropDownFrame.maxY
-            self.tableView.frame = CGRect(x: dropDownFrame.minX, y: buttonBottomY, width: dropDownFrame.width, height: menuHeight)
+       
+        accountTypeDropDownMenu.showDropdownMenu(from: selectAccountTypeButton, with: accountTypes, tableView: tableView) { [weak self] (selectedAccountType) in
+            
+            self?.accountType = selectedAccountType
+            self?.selectAccountTypeButton.setTitle(selectedAccountType.rawValue, for: .normal)
+            self?.enableRegistrationButton()
         }
         
     }
@@ -164,7 +178,7 @@ class CreateUserAccountViewController: UIViewController {
 extension CreateUserAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {return true}
-      
+        
         let userAccountValidator = UserAccountValidator()
         switch textField {
         case employeeNameTextField:
@@ -173,10 +187,12 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
             isSurnameValid = userAccountValidator.validateSurname(updatedText, employeeSurnameTextField: employeeSurnameTextField, employeeSurnameLabel: employeeSurnameLabel)
         case emailAddressTextField:
             isEmailValid = userAccountValidator.validateEmail(updatedText, emailAddressTextField: emailAddressTextField, emailAddressLabel: emailAddressLabel)
+            doEmailsMatch = userAccountValidator.doEmailsMatch(updatedText, confirmEmailAddressTextField.text ?? "", confirmEmailAddressTextField: confirmEmailAddressTextField, confirmEmailAddressLabel: confirmEmailAddressLabel)
         case confirmEmailAddressTextField:
             doEmailsMatch = userAccountValidator.doEmailsMatch(emailAddressTextField?.text ?? "", updatedText, confirmEmailAddressTextField: confirmEmailAddressTextField, confirmEmailAddressLabel: confirmEmailAddressLabel)
         case passwordTextField:
             isPasswordValid = userAccountValidator.validatePassword(updatedText, passwordTextField: passwordTextField, passwordLabel: passwordLabel)
+            doPasswordsMatch = userAccountValidator.doPasswordsMatch(updatedText, confirmPasswordTextField.text ?? "", confirmPasswordTextField: confirmPasswordTextField, confirmPasswordLabel: confirmPasswordLabel)
         case confirmPasswordTextField:
             doPasswordsMatch = userAccountValidator.doPasswordsMatch(passwordTextField?.text ?? "", updatedText, confirmPasswordTextField: confirmPasswordTextField, confirmPasswordLabel: confirmPasswordLabel)
         default:
@@ -185,9 +201,9 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
         enableRegistrationButton()
         
         return true
-                
+        
     }
-  
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -195,22 +211,28 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
 }
 
 extension CreateUserAccountViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = accountTypes[indexPath.row].rawValue
-        
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      
         return accountTypes.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        accountType = accountTypes[indexPath.row]
-        selectAccountTypeButton.setTitle(accountType?.rawValue, for: .normal)
-        tableView.removeFromSuperview()
-        enableRegistrationButton()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.DropDownMenu.userAccountTypeCellIdentifier) as? UserAccountTypeCell ?? UserAccountTypeCell(style: .default, reuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.userAccountTypeCellIdentifier)
+        cell.textLabel?.text = accountTypes[indexPath.row].rawValue
+        return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedAccountType = accountTypes[indexPath.row]
+        accountType = selectedAccountType
+        selectAccountTypeButton.setTitle(selectedAccountType.rawValue, for: .normal)
+ 
+        tableView.removeFromSuperview()
+        enableRegistrationButton()
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 42
+    }
 }

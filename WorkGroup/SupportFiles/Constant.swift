@@ -61,7 +61,8 @@ struct Constant {
     }
     struct TableCellIdentifier {
         struct Admin {
-            static let editEmployeeAccountListCellIdentifier = "EditEmployeeAccountCell"
+            static let editUserListCellIdentifier = "EmployeeListTableViewCellIdentifier"
+            static let editUserListCellNib = "EmployeeListTableCell"
         }
         struct Employee {
             static let employeeTaskLisCellIdentifier = "EmployeeTaskListCell"
@@ -76,6 +77,10 @@ struct Constant {
             static let editMeetingEmployeeListCellIdentifier = "EditMeetingEmployeeListCell"
             static let employeeListForPerformanceReportCellIdentifier = "EmployeePerformanceGraphListManagerCell"
             static let employeePerformanceDateCellIdentifier = "EmployeePerformanceDateCell"
+        }
+        
+        struct DropDownMenu {
+            static let userAccountTypeCellIdentifier = "UserAccountTypeCell"
         }
     }
     

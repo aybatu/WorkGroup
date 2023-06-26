@@ -9,10 +9,14 @@ import UIKit
 
 class EditUserAccountFailViewController: UIViewController {
 
+    @IBOutlet weak var editFailMessageLabel: UILabel!
+    var failMessage: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let failMessage = failMessage {
+            editFailMessageLabel.text = failMessage
+        }
     }
     
 

@@ -10,6 +10,8 @@
 		1B1296A92A43F10400866159 /* RegisteredCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1296A82A43F10400866159 /* RegisteredCompany.swift */; };
 		1B1800D72A437F18003E67AF /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1800D62A437F18003E67AF /* DataBase.swift */; };
 		1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */; };
+		1B277E532A49A36300D6BCAF /* EditAccountResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B277E522A49A36300D6BCAF /* EditAccountResult.swift */; };
+		1B277E562A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */; };
 		1B38432B2A43316400421371 /* RoutingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3843292A43305F00421371 /* RoutingTest.swift */; };
 		1B3CDE6B2A3B8D20003E8744 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA694F92A34BB000098C542 /* LoginViewController.swift */; };
 		1B4705502A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47054F2A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift */; };
@@ -37,7 +39,6 @@
 		1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94AA2A2F501C0053A264 /* SceneDelegate.swift */; };
 		1BBE94AD2A2F501C0053A264 /* LunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94AC2A2F501C0053A264 /* LunchScreenViewController.swift */; };
 		1BBE94B02A2F501C0053A264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE94AE2A2F501C0053A264 /* Main.storyboard */; };
-		1BBE94B32A2F501C0053A264 /* WorkGroup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94B12A2F501C0053A264 /* WorkGroup.xcdatamodeld */; };
 		1BBE94B52A2F501D0053A264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE94B42A2F501D0053A264 /* Assets.xcassets */; };
 		1BBE94B82A2F501D0053A264 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE94B62A2F501D0053A264 /* LaunchScreen.storyboard */; };
 		1BBE94C32A2F501E0053A264 /* WorkGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94C22A2F501E0053A264 /* WorkGroupTests.swift */; };
@@ -81,6 +82,7 @@
 		1BF7F6F72A48C91600BD7D12 /* CompanyAccountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F6F62A48C91600BD7D12 /* CompanyAccountValidator.swift */; };
 		1BF7F6F92A48D72A00BD7D12 /* EmployeeListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F6F82A48D72A00BD7D12 /* EmployeeListTableCell.swift */; };
 		1BF7F6FE2A48D7E700BD7D12 /* EmployeeListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF7F6FD2A48D7E700BD7D12 /* EmployeeListTableCell.xib */; };
+		1BF7F7012A48DCF600BD7D12 /* UserAccountTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF7F7002A48DCF600BD7D12 /* UserAccountTypeCell.swift */; };
 		1BFD036F2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */; };
 		1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +108,8 @@
 		1B1296A82A43F10400866159 /* RegisteredCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCompany.swift; sourceTree = "<group>"; };
 		1B1800D62A437F18003E67AF /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationResult.swift; sourceTree = "<group>"; };
+		1B277E522A49A36300D6BCAF /* EditAccountResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountResult.swift; sourceTree = "<group>"; };
+		1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountTypeDropDownMenu.swift; sourceTree = "<group>"; };
 		1B3843292A43305F00421371 /* RoutingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingTest.swift; sourceTree = "<group>"; };
 		1B47054F2A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainMenuViewController.swift; sourceTree = "<group>"; };
 		1B4705512A3BA2210013D9C9 /* CreateUserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserAccountViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +138,6 @@
 		1BBE94AA2A2F501C0053A264 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1BBE94AC2A2F501C0053A264 /* LunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchScreenViewController.swift; sourceTree = "<group>"; };
 		1BBE94AF2A2F501C0053A264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1BBE94B22A2F501C0053A264 /* WorkGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkGroup.xcdatamodel; sourceTree = "<group>"; };
 		1BBE94B42A2F501D0053A264 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BBE94B72A2F501D0053A264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BBE94B92A2F501D0053A264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 		1BF7F6F62A48C91600BD7D12 /* CompanyAccountValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAccountValidator.swift; sourceTree = "<group>"; };
 		1BF7F6F82A48D72A00BD7D12 /* EmployeeListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListTableCell.swift; sourceTree = "<group>"; };
 		1BF7F6FD2A48D7E700BD7D12 /* EmployeeListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeListTableCell.xib; sourceTree = "<group>"; };
+		1BF7F7002A48DCF600BD7D12 /* UserAccountTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountTypeCell.swift; sourceTree = "<group>"; };
 		1BFD036E2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskSuccessfulViewController.swift; sourceTree = "<group>"; };
 		1BFD03702A41C418007DBC75 /* ProjectAddTaskFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskFailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,9 +228,25 @@
 				1B1296A82A43F10400866159 /* RegisteredCompany.swift */,
 				1BE466C82A43C6280073973F /* UserAccount.swift */,
 				1B7782B02A448C9100CC6013 /* AccountTypes.swift */,
-				1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */,
 			);
 			path = AppEntities;
+			sourceTree = "<group>";
+		};
+		1B277E512A49A34E00D6BCAF /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */,
+				1B277E522A49A36300D6BCAF /* EditAccountResult.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		1B277E542A49AF0700D6BCAF /* DropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */,
+			);
+			path = DropDownMenu;
 			sourceTree = "<group>";
 		};
 		1B7879B62A3A526600CC17E1 /* EditProject */ = {
@@ -265,7 +285,6 @@
 		1BA694FB2A3515250098C542 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
-				1BD49D342A3D276E00E0AA41 /* RegisterCompany */,
 				1BA694F92A34BB000098C542 /* LoginViewController.swift */,
 				1BBE94DB2A2FACC10053A264 /* MainMenuViewController.swift */,
 				1BBE94AC2A2F501C0053A264 /* LunchScreenViewController.swift */,
@@ -371,7 +390,7 @@
 		1BBE94DD2A2FC3850053A264 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1BF7F6F32A48C89A00BD7D12 /* Validator */,
+				1BD49D342A3D276E00E0AA41 /* RegisterCompany */,
 				1BA694FE2A3515630098C542 /* Employee */,
 				1BA694FD2A35155B0098C542 /* Admin */,
 				1BA694FC2A3515390098C542 /* Manager */,
@@ -383,6 +402,8 @@
 		1BBE94DE2A2FC39A0053A264 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B277E542A49AF0700D6BCAF /* DropDownMenu */,
+				1BF7F6FF2A48DCDB00BD7D12 /* UserAccountTypeCell */,
 				1BF7F6FA2A48D73400BD7D12 /* EmployeeListTableCell */,
 				1BBE94B62A2F501D0053A264 /* LaunchScreen.storyboard */,
 				1BBE94AE2A2F501C0053A264 /* Main.storyboard */,
@@ -393,7 +414,6 @@
 		1BBE94DF2A2FC3B80053A264 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				1BBE94B12A2F501C0053A264 /* WorkGroup.xcdatamodeld */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -418,6 +438,8 @@
 		1BBE94E32A2FCBAA0053A264 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1B277E512A49A34E00D6BCAF /* Result */,
+				1BF7F6F32A48C89A00BD7D12 /* Validator */,
 				1B1800D52A437CD7003E67AF /* AppEntities */,
 				1B1800D42A437CBF003E67AF /* NetworkMonitor */,
 				1B1800D62A437F18003E67AF /* DataBase.swift */,
@@ -600,6 +622,14 @@
 			path = EmployeeListTableCell;
 			sourceTree = "<group>";
 		};
+		1BF7F6FF2A48DCDB00BD7D12 /* UserAccountTypeCell */ = {
+			isa = PBXGroup;
+			children = (
+				1BF7F7002A48DCF600BD7D12 /* UserAccountTypeCell.swift */,
+			);
+			path = UserAccountTypeCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -736,6 +766,7 @@
 				1BECD78C2A3B36BA006889CA /* MeetingEditEmployeeListViewController.swift in Sources */,
 				1BD49D382A3D27C500E0AA41 /* CreateCompanyAccountSuccessViewController.swift in Sources */,
 				1BCA43EB2A3CED9600A2ED59 /* EmployeeAssignedTaskListViewController.swift in Sources */,
+				1B277E532A49A36300D6BCAF /* EditAccountResult.swift in Sources */,
 				1B7879BB2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift in Sources */,
 				1B7879C02A3A668000CC17E1 /* CreatProjectSuccessfulViewController.swift in Sources */,
 				1BCA43F42A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift in Sources */,
@@ -753,6 +784,7 @@
 				1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */,
 				1BD49D362A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift in Sources */,
 				1B7879C42A3A66FD00CC17E1 /* ProjectDetailsChangeSuccessfulViewController.swift in Sources */,
+				1BF7F7012A48DCF600BD7D12 /* UserAccountTypeCell.swift in Sources */,
 				1BE466C92A43C6280073973F /* UserAccount.swift in Sources */,
 				1BECD7902A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift in Sources */,
 				1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */,
@@ -778,7 +810,6 @@
 				1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */,
 				1BECD7872A3B3384006889CA /* MeetingEditDetailsFailViewController.swift in Sources */,
 				1BCA43E32A3CE9B100A2ED59 /* EmployeeMainMenuViewController.swift in Sources */,
-				1BBE94B32A2F501C0053A264 /* WorkGroup.xcdatamodeld in Sources */,
 				1B7879B52A3A520E00CC17E1 /* ProjectListEdit.swift in Sources */,
 				1BECD7852A3B3321006889CA /* MeetingEditDetailsViewController.swift in Sources */,
 				1BE466C02A43B6F30073973F /* LoadingViewController.swift in Sources */,
@@ -796,6 +827,7 @@
 				1BCA43F62A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift in Sources */,
 				1B7879C62A3A673500CC17E1 /* ProjectDetailsChangeFailViewController.swift in Sources */,
 				1B7782B12A448C9100CC6013 /* AccountTypes.swift in Sources */,
+				1B277E562A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift in Sources */,
 				1B7879C82A3A687700CC17E1 /* ProjectEditTaskDetailViewController.swift in Sources */,
 				1BEC96902A3F4EB300D0AFE9 /* Constant.swift in Sources */,
 				1BCA43E62A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift in Sources */,
@@ -1142,19 +1174,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		1BBE94B12A2F501C0053A264 /* WorkGroup.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				1BBE94B22A2F501C0053A264 /* WorkGroup.xcdatamodel */,
-			);
-			currentVersion = 1BBE94B22A2F501C0053A264 /* WorkGroup.xcdatamodel */;
-			path = WorkGroup.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1BBE949D2A2F501C0053A264 /* Project object */;
 }

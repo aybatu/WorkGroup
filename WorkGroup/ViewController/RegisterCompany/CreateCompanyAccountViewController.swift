@@ -126,10 +126,12 @@ extension CreateCompanyAccountViewController: UITextFieldDelegate {
             isCompany = companyAccountValidator.checkForCompanyName(updatedText, companyNameTextField: companyNameTextField, companyNameLabel: companyNameLabel)
         case emailAddressTextField:
             isEmailValid = companyAccountValidator.validateEmail(updatedText, emailAddressTextField: emailAddressTextField, emailAddressLabel: emailAddressLabel)
+            isEmailMatch = companyAccountValidator.doEmailsMatch(updatedText, emailAddressConfirmTextField.text ?? "", confirmEmailAddressTextField: emailAddressConfirmTextField, confirmEmailAddressLabel: confirmEmailAddressLabel)
         case emailAddressConfirmTextField:
             isEmailMatch = companyAccountValidator.doEmailsMatch(emailAddressTextField.text ?? "", updatedText, confirmEmailAddressTextField: emailAddressConfirmTextField, confirmEmailAddressLabel: confirmEmailAddressLabel)
         case passwordTextField:
             isPasswordValid = companyAccountValidator.validatePassword(updatedText, passwordTextField: passwordTextField, passwordLabel: passwordLabel)
+            isPasswordMatch = companyAccountValidator.doPasswordsMatch(updatedText, confirmPasswordTextField.text ?? "", confirmPasswordTextField: confirmPasswordTextField, confirmPasswordLabel: confirmPasswordLabel)
         case confirmPasswordTextField:
             isPasswordMatch = companyAccountValidator.doPasswordsMatch(passwordTextField.text ?? "", updatedText, confirmPasswordTextField: confirmPasswordTextField, confirmPasswordLabel: confirmPasswordLabel)
         default:
@@ -144,6 +146,7 @@ extension CreateCompanyAccountViewController: UITextFieldDelegate {
     
    
 }
+
 
 extension CreateCompanyAccountViewController {
     func createUserAccount(completion: @escaping(AccountCreationResult) ->Void) {
