@@ -38,7 +38,7 @@ class CreateUserAccountViewController: UIViewController {
     private var isPasswordValid = false
     private var doPasswordsMatch = false
     private var isAccountExist = false
-    var companyRegistrationNo: String?
+    var company: RegisteredCompany?
     private var accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
     
@@ -89,21 +89,20 @@ class CreateUserAccountViewController: UIViewController {
               let emailAddress = emailAddressTextField.text,
               let password = passwordTextField.text,
               let accountType = accountType,
-              let registerNo = companyRegistrationNo else {
+              let company = company else {
             return
         }
         
         if isEmailValid && doEmailsMatch && isPasswordValid && doPasswordsMatch && isNameValid && isSurnameValid {
             let loadingViewController = LoadingViewController()
             let newUser = UserAccount(accountType: accountType, emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
-            let search = Search<RegisteredCompany>()
-            let companies = TemporaryDatabase.registeredCompanies.sorted()
+            
             loadingViewController.modalPresentationStyle = .fullScreen
             present(loadingViewController, animated: false)
             
             
             loadingViewController.dismiss(animated: false) {
-                if let company = search.binarySearch(companies, target: registerNo, keyPath: \.registrationNumber) {
+                
                     let (inserted, _) = self.userAccounts.insert(newUser)
                     if inserted {
                         company.addUserAccount(newUser)
@@ -113,7 +112,7 @@ class CreateUserAccountViewController: UIViewController {
                         self.isAccountCreated = false
                         self.isAccountExist = true
                     }
-                }
+                
                 
                 if self.isAccountCreated {
                     self.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)

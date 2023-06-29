@@ -8,7 +8,7 @@
 import UIKit
 
 class EmployeeMainMenuViewController: UIViewController {
-    var companyRegistrationNumber: String?
+    var company: RegisteredCompany?
     
     override func viewDidLoad() {
         super.viewDidLoad()

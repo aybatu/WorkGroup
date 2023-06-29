@@ -27,6 +27,7 @@ struct Constant {
         }
         
         struct Admin {
+            
             static let createAccountToFail = "CreateUserAccountToFail"
             static let createAccountToSuccess = "CreateUserAccountToSuccess"
             static let editUserAccountToFail = "EditUserAccountToFail"
@@ -37,10 +38,29 @@ struct Constant {
            
         }
         struct Manager {
-            static let addTaskToSuccess = "AddTaskManagerToSuccess"
-            static let addTaskToFail = "AddTaskManagerToFail"
-            static let createProjectToSuccess = "CreateProjectToSuccess"
-            static let createProjectToFail = "CreateProjectToFail"
+            struct MainMenu {
+                static let managerMenuToCreateProject = "ManagerViewToCreateProject"
+                static let managerViewToProjectList = "ManagerViewToProjectList"
+                static let managerViewToScheduleMeeting = "ManagerViewToScheduleMeeting"
+                static let managerViewToMeetingList = "ManagerViewToMeetingList"
+                static let managerViewToEmployeePerformanceList = "ManagerViewToEmployeePerformanceList"
+            }
+            struct Project {
+                static let projectDetailsToTaskView = "ProjectDetailsToTaskView"
+                
+                struct CreateProject {
+                    
+                     static let createProjectToSuccess = "CreateProjectToSuccess"
+                     static let createProjectToFail = "CreateProjectToFail"
+                }
+                
+                struct Task {
+                    static let addTaskToSuccess = "AddTaskManagerToSuccess"
+                    static let addTaskToFail = "AddTaskManagerToFail"
+                }
+            }
+            
+          
             static let projectListToProjectDetails = "ProjectListToEditProjectDetails"
             static let projectDetailSaveToFail = "ProjectDetailsChangeToFail"
             static let projectDetailSaveToSuccess = "ProjectDetailsChangeToSuccess"
@@ -70,6 +90,7 @@ struct Constant {
             static let employeePerformanceDateListCellIdentifier = "EmployeePerformanceDateListCell"
         }
         struct Manager {
+           
             static let editProjectListCellIdentifier = "EditProjectCell"
             static let taskListCellIdentifier = "EditTaskCellManager"
             static let meetingEmployeListCellIdentifier = "AddEmployeeCell"
@@ -81,6 +102,7 @@ struct Constant {
         
         struct DropDownMenu {
             static let userAccountTypeCellIdentifier = "UserAccountTypeCell"
+            static let employeeListDropDownMenuForTaskCellIdentifier = "employeeListDropDownMenuForTaskCellIdentifier"
         }
     }
     

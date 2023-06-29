@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GkE-FR-Xla">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -1096,7 +1097,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Dispay Edit Projects"/>
                                         <connections>
-                                            <segue destination="vtg-ZN-KyU" kind="show" identifier="ManagerViewToProject" id="hmz-s3-CQo"/>
+                                            <segue destination="vtg-ZN-KyU" kind="show" identifier="ManagerViewToProjectList" id="hmz-s3-CQo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mA-bi-9uk">
@@ -1118,7 +1119,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Edit Display Meetings"/>
                                         <connections>
-                                            <segue destination="h5w-YP-k6J" kind="show" identifier="ManagerViewToMeetings" id="G6U-hT-8FF"/>
+                                            <segue destination="h5w-YP-k6J" kind="show" identifier="ManagerViewToMeetingList" id="G6U-hT-8FF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEd-gc-VNu">
@@ -1129,7 +1130,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Employee Performance Reports"/>
                                         <connections>
-                                            <segue destination="CEv-Vf-fN0" kind="show" identifier="ManagerViewToPerformance" id="1sh-GK-BJQ"/>
+                                            <segue destination="CEv-Vf-fN0" kind="show" identifier="ManagerViewToEmployeePerformanceList" id="1sh-GK-BJQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1450,7 +1451,7 @@
         <!--CreateProjectManagerView-->
         <scene sceneID="bpy-bb-QT8">
             <objects>
-                <viewController storyboardIdentifier="CreateProjectManager" title="CreateProjectManagerView" id="w0A-Do-jWa" customClass="CreateProjectViewController" customModule="WorkGroup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateProjectManager" title="CreateProjectManagerView" id="w0A-Do-jWa" customClass="ProjectDetailsViewController" customModule="WorkGroup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2iZ-l5-bOH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1501,37 +1502,40 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="NAz-YJ-fki">
-                                        <rect key="frame" x="0.0" y="294.66666666666669" width="353" height="183"/>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="NAz-YJ-fki">
+                                        <rect key="frame" x="0.0" y="308.33333333333331" width="353" height="155.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tua-p2-3Nx">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="70"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HV-3g-ANy">
-                                                        <rect key="frame" x="0.0" y="0.0" width="18" height="70"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Start date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HV-3g-ANy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="70"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8zG-sH-6NA">
-                                                        <rect key="frame" x="18" y="0.0" width="335" height="70"/>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="8zG-sH-6NA">
+                                                        <rect key="frame" x="80" y="0.0" width="273" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="piq-s4-cTF"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="3Xt-YG-3W6"/>
+                                                        </connections>
                                                     </datePicker>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmb-11-NWM">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uWO-aL-n4j">
                                                 <rect key="frame" x="0.0" y="70" width="353" height="70"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finish date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHV-f6-pMg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="18" height="70"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Finish date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHV-f6-pMg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="70"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zmw-a8-cIO">
-                                                        <rect key="frame" x="18" y="0.0" width="335" height="70"/>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="zmw-a8-cIO">
+                                                        <rect key="frame" x="92.333333333333343" y="0.0" width="260.66666666666663" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="2Gh-ao-WU7"/>
                                                         </constraints>
@@ -1539,7 +1543,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project start and deadline date must be provided." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJG-gn-7fw">
-                                                <rect key="frame" x="0.0" y="167.33333333333331" width="353" height="15.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="140.00000000000006" width="353" height="15.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1557,7 +1561,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Project Tasks"/>
                                                 <connections>
-                                                    <segue destination="nIC-v0-XH1" kind="show" id="sYM-wc-iN9"/>
+                                                    <segue destination="nIC-v0-XH1" kind="show" identifier="ProjectDetailsToTaskView" id="sYM-wc-iN9"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrr-Cd-YTy">
@@ -1590,9 +1594,11 @@
                     <navigationItem key="navigationItem" id="gPg-jg-lzL"/>
                     <connections>
                         <outlet property="createProjectNavBar" destination="gPg-jg-lzL" id="Kfr-4L-qPQ"/>
+                        <outlet property="endDatePicker" destination="zmw-a8-cIO" id="Aod-p2-DTz"/>
                         <outlet property="projectDescriptionTextField" destination="vXP-C9-0si" id="llV-6h-qls"/>
                         <outlet property="projectTasksButton" destination="PoV-D8-ETf" id="8af-nI-yiL"/>
                         <outlet property="projectTitleTextField" destination="dFB-kv-5bY" id="QjI-dh-3xV"/>
+                        <outlet property="startDatePicker" destination="8zG-sH-6NA" id="3h8-uF-vTO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ez5-nI-mea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2417,54 +2423,40 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Cgn-OY-mxX">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="170"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WG2-qr-aq4">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WG2-qr-aq4" userLabel="Select Employee Tapped">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="30"/>
-                                                                <menu key="menu" id="VvQ-2X-ZJh">
-                                                                    <children>
-                                                                        <command title="Choose an employee" id="8TF-l2-HDY"/>
-                                                                    </children>
-                                                                </menu>
-                                                                <state key="normal" title="Button"/>
+                                                                <state key="normal" title="Assign an Employee"/>
+                                                                <connections>
+                                                                    <action selector="selectEmployeeTapped:" destination="nIC-v0-XH1" eventType="touchUpInside" id="fKs-Uz-SXP"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-FM-6Cu">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-FM-6Cu" userLabel="Select Employee Tapped">
                                                                 <rect key="frame" x="0.0" y="35" width="353" height="30"/>
-                                                                <menu key="menu" id="0UJ-ki-BSR">
-                                                                    <children>
-                                                                        <command title="Choose an employee" id="Bzo-M1-YO2"/>
-                                                                        <command title="Item 2" id="fnT-se-brO"/>
-                                                                    </children>
-                                                                </menu>
-                                                                <state key="normal" title="Button"/>
+                                                                <state key="normal" title="Assign an Employee"/>
+                                                                <connections>
+                                                                    <action selector="selectEmployeeTapped:" destination="nIC-v0-XH1" eventType="touchUpInside" id="gbg-kJ-sPZ"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ms1-mi-ZDR">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ms1-mi-ZDR" userLabel="Select Employee Tapped">
                                                                 <rect key="frame" x="0.0" y="70" width="353" height="30"/>
-                                                                <menu key="menu" id="LJn-r9-m8g">
-                                                                    <children>
-                                                                        <command title="Choose an employee" id="xTC-ue-YBW"/>
-                                                                        <command title="Item 2" id="eHv-UM-12K"/>
-                                                                    </children>
-                                                                </menu>
-                                                                <state key="normal" title="Button"/>
+                                                                <state key="normal" title="Assign an Employee"/>
+                                                                <connections>
+                                                                    <action selector="selectEmployeeTapped:" destination="nIC-v0-XH1" eventType="touchUpInside" id="bqm-ub-KOn"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FqT-Vz-QGG">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FqT-Vz-QGG" userLabel="Select Employee Tapped">
                                                                 <rect key="frame" x="0.0" y="104.99999999999994" width="353" height="30"/>
-                                                                <menu key="menu" id="gVU-i6-Vwp">
-                                                                    <children>
-                                                                        <command title="Choose an employee" id="idy-4z-STU"/>
-                                                                        <command title="Item 2" id="USF-Q2-F30"/>
-                                                                    </children>
-                                                                </menu>
-                                                                <state key="normal" title="Button"/>
+                                                                <state key="normal" title="Assign an Employee"/>
+                                                                <connections>
+                                                                    <action selector="selectEmployeeTapped:" destination="nIC-v0-XH1" eventType="touchUpInside" id="pJI-lL-s6f"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFP-H0-tCV">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFP-H0-tCV" userLabel="Select Employee Tapped">
                                                                 <rect key="frame" x="0.0" y="139.99999999999994" width="353" height="30"/>
-                                                                <menu key="menu" id="zrO-0S-BWs">
-                                                                    <children>
-                                                                        <command title="Choose an employee" id="1H2-XU-u23"/>
-                                                                        <command title="Item 2" id="fwj-qm-eJF"/>
-                                                                    </children>
-                                                                </menu>
-                                                                <state key="normal" title="Button"/>
+                                                                <state key="normal" title="Assign an Employee"/>
+                                                                <connections>
+                                                                    <action selector="selectEmployeeTapped:" destination="nIC-v0-XH1" eventType="touchUpInside" id="486-rX-3u0"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -2519,8 +2511,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="Bpk-P5-2nO"/>
                     <connections>
+                        <outlet property="fifthEmployeeButton" destination="LFP-H0-tCV" id="bYc-6J-rJD"/>
+                        <outlet property="firstEmployeeButton" destination="WG2-qr-aq4" id="jmb-Xl-wEK"/>
+                        <outlet property="fourthEmployeeButton" destination="FqT-Vz-QGG" id="na0-95-VsP"/>
+                        <outlet property="secondEmployeeButton" destination="7pl-FM-6Cu" id="Ezq-WS-9fD"/>
+                        <outlet property="taskDescriptionTextField" destination="Fi7-8v-Pdv" id="jBN-Rz-4BI"/>
+                        <outlet property="taskNameTextField" destination="224-zi-bEL" id="YHG-FB-lZ9"/>
+                        <outlet property="thirdEmployeeButton" destination="Ms1-mi-ZDR" id="XRq-5x-fOC"/>
                         <segue destination="3qN-3G-ktX" kind="show" identifier="AddTaskManagerToFail" id="5N6-4i-t7a"/>
-                        <segue destination="eHY-AM-BRe" kind="show" identifier="AddTaskManagerToFail" id="dtX-Jc-1ey"/>
+                        <segue destination="eHY-AM-BRe" kind="show" identifier="CreateProjectToFail" id="dtX-Jc-1ey"/>
                         <segue destination="wgk-ta-gbi" kind="show" identifier="AddTaskManagerToSuccess" id="CWA-YA-tL1"/>
                         <segue destination="1GP-hq-2eW" kind="show" identifier="CreateProjectToSuccess" id="B38-R3-MJT"/>
                     </connections>
@@ -2589,16 +2588,16 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cVS-yO-e0v">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="170"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YXI-gP-sUg">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXI-gP-sUg">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="30"/>
                                                         <menu key="menu" id="kuY-lP-JI0">
                                                             <children>
                                                                 <command title="Choose an employee" id="QB3-br-cbP"/>
                                                             </children>
                                                         </menu>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Assign an Employee"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-xf-S9X">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-xf-S9X">
                                                         <rect key="frame" x="0.0" y="35.000000000000057" width="353" height="30"/>
                                                         <menu key="menu" id="bNx-fi-fOr">
                                                             <children>
@@ -2606,9 +2605,9 @@
                                                                 <command title="Item 2" id="eFt-Sl-pJD"/>
                                                             </children>
                                                         </menu>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Assign an Employee"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Reg-Sg-nfs">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Reg-Sg-nfs">
                                                         <rect key="frame" x="0.0" y="70.000000000000057" width="353" height="30"/>
                                                         <menu key="menu" id="1bU-3U-Aph">
                                                             <children>
@@ -2616,9 +2615,9 @@
                                                                 <command title="Item 2" id="gnX-BX-REJ"/>
                                                             </children>
                                                         </menu>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Assign an Employee"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k6F-tK-8Kx">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6F-tK-8Kx">
                                                         <rect key="frame" x="0.0" y="105.00000000000006" width="353" height="30"/>
                                                         <menu key="menu" id="Fs8-Qy-j3M">
                                                             <children>
@@ -2626,9 +2625,9 @@
                                                                 <command title="Item 2" id="Xni-24-aFw"/>
                                                             </children>
                                                         </menu>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Assign an Employee"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDk-Pa-GJM">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDk-Pa-GJM">
                                                         <rect key="frame" x="0.0" y="140.00000000000006" width="353" height="30"/>
                                                         <menu key="menu" id="vPX-Ow-e9i">
                                                             <children>
@@ -2636,7 +2635,7 @@
                                                                 <command title="Item 2" id="0oY-oi-xNe"/>
                                                             </children>
                                                         </menu>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Assign an Employee"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -3110,6 +3109,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cfv-A4-9AS"/>
+                    <connections>
+                        <outlet property="taskErrorTextField" destination="Oj8-DH-EvA" id="VyQ-oT-gog"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJs-Uf-qYa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3199,6 +3201,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kZo-QC-8Fe"/>
+                    <connections>
+                        <outlet property="createProjectErrorMessageTextField" destination="C2V-IF-AIF" id="y4p-2V-rOr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smR-kg-dOZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

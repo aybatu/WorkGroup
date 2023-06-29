@@ -64,24 +64,30 @@ class LoginViewController: UIViewController {
             if let navController = segue.destination as? UINavigationController,
                let adminViewController = navController.topViewController as? AdminMainMenuViewController {
                 if let registerNo = companyRegistrationNumberTextField.text {
-                    adminViewController.companyRegistrationNumber = registerNo
-                    
+                    if let company = isCompany(registerNo: registerNo) {
+                        adminViewController.company = company
+                        
+                    }
                 }
             }
         } else if segue.identifier == Constant.Segue.Login.loginToManager {
             if let navController = segue.destination as? UINavigationController,
                let managerViewController = navController.topViewController as? ManagerAccountMenuViewController {
                 if let registerNo = companyRegistrationNumberTextField.text {
-                    managerViewController.companyRegistrationNumber = registerNo
-                    
+                    if let company = isCompany(registerNo: registerNo) {
+                        managerViewController.company = company
+                        
+                    }
                 }
             }
         } else if segue.identifier == Constant.Segue.Login.loginToEmployee {
             if let navController = segue.destination as? UINavigationController,
                let employeeViewController = navController.topViewController as? EmployeeMainMenuViewController {
                 if let registerNo = companyRegistrationNumberTextField.text {
-                    employeeViewController.companyRegistrationNumber = registerNo
-                    
+                    if let company = isCompany(registerNo: registerNo) {
+                        employeeViewController.company = company
+                        
+                    }
                 }
             }
         }
@@ -94,9 +100,7 @@ extension LoginViewController {
            let password = loginPasswordTextField.text,
            let registerNumber = companyRegistrationNumberTextField.text {
             
-            let registeredCompanies = TemporaryDatabase.registeredCompanies
-            let searchRegisteredCompany = Search<RegisteredCompany>()
-            let foundCompany = searchRegisteredCompany.binarySearch(registeredCompanies, target: registerNumber, keyPath: \.registrationNumber)
+            let foundCompany = isCompany(registerNo: registerNumber)
             
             if foundCompany == nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -107,27 +111,29 @@ extension LoginViewController {
                 }
             } else {
                 let searchUserAccount = Search<UserAccount>()
-                let foundUserAccount = searchUserAccount.binarySearch(foundCompany!.userAccounts, target: email, keyPath: \.emailAddress)
+                if let userAccounts = foundCompany?.userAccounts.sorted() {
+                let foundUserAccount = searchUserAccount.binarySearch(userAccounts, target: email, keyPath: \.emailAddress)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    var isValidUser = false
-                    var accountType: AccountTypes?
-                    let isValidCompany = true
-                    if let userAccount = foundUserAccount, userAccount.password == password {
-                        isValidUser = true
-                        
-                        
-                        switch userAccount.accountType {
-                        case .ADMIN:
-                            accountType = .ADMIN
-                        case .MANAGER:
-                            accountType = .MANAGER
-                        case .EMPLOYEE:
-                            accountType = .EMPLOYEE
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        var isValidUser = false
+                        var accountType: AccountTypes?
+                        let isValidCompany = true
+                        if let userAccount = foundUserAccount, userAccount.password == password {
+                            isValidUser = true
+                            
+                            
+                            switch userAccount.accountType {
+                            case .ADMIN:
+                                accountType = .ADMIN
+                            case .MANAGER:
+                                accountType = .MANAGER
+                            case .EMPLOYEE:
+                                accountType = .EMPLOYEE
+                            }
                         }
+                        
+                        completion(isValidUser, isValidCompany, accountType)
                     }
-                    
-                    completion(isValidUser, isValidCompany, accountType)
                 }
             }
         }
@@ -137,5 +143,11 @@ extension LoginViewController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func isCompany(registerNo: String) ->RegisteredCompany? {
+        let registeredCompanies = TemporaryDatabase.registeredCompanies
+        let searchRegisteredCompany = Search<RegisteredCompany>()
+        return searchRegisteredCompany.binarySearch(registeredCompanies, target: registerNo, keyPath: \.registrationNumber)
     }
 }

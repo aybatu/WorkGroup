@@ -13,6 +13,8 @@ class UserAccount: Comparable, Hashable {
     private var _userFirstName: String
     private var _userLastName: String
     private var _password: String
+    private var _userTasks: Set<Task>
+    private var _employeeTaskCapacity = 3
     
     var accountType: AccountTypes {
         return _accountType
@@ -29,6 +31,12 @@ class UserAccount: Comparable, Hashable {
     var password: String {
         return _password
     }
+    var employeeTaskCapacity: Int {
+        return _employeeTaskCapacity
+    }
+    var userTasks: Set<Task> {
+        return _userTasks
+    }
     
     init(accountType: AccountTypes, emailAddress: String, userFirstName: String, userLastName: String, password: String) {
         self._accountType = accountType
@@ -36,6 +44,7 @@ class UserAccount: Comparable, Hashable {
         self._userFirstName = userFirstName
         self._userLastName = userLastName
         self._password = password
+        self._userTasks = []
     }
     
     func hash(into hasher: inout Hasher) {
@@ -57,6 +66,17 @@ class UserAccount: Comparable, Hashable {
     }
     func changeAccountType(newAccountType: AccountTypes) {
         _accountType = newAccountType
+    }
+    func checkEmployeeAvailablity(completion: @escaping(AssignNewTaskToEmployee) -> Void) {
+        if _userTasks.count < _employeeTaskCapacity {
+            completion(.available)
+        } else {
+            completion(.unavailable(message: "Employee already assigned for three different tasks. Please choose another emplyee."))
+        }
+    }
+    
+    func assignTask(task: Task) {
+        _userTasks.insert(task)
     }
     // Compare based on email address
     static func < (lhs: UserAccount, rhs: UserAccount) -> Bool {

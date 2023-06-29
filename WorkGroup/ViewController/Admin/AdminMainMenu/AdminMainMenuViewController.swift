@@ -9,7 +9,7 @@ import UIKit
 
 class AdminMainMenuViewController: UIViewController {
     
-    var companyRegistrationNumber: String?
+    var company: RegisteredCompany?
     private var userAccounts: Set<UserAccount> = []
     
     override func viewDidLoad() {
@@ -66,7 +66,7 @@ class AdminMainMenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constant.Segue.Admin.mainMenuToCreateAccount {
             if let createAccountVC = segue.destination as? CreateUserAccountViewController {
-                createAccountVC.companyRegistrationNo = companyRegistrationNumber
+                createAccountVC.company = company
                 createAccountVC.userAccounts = self.userAccounts
             }
         } else if segue.identifier == Constant.Segue.Admin.mainMenuToEditAccounts {
@@ -77,13 +77,11 @@ class AdminMainMenuViewController: UIViewController {
     }
     
     private func getEmployeeList(completion: @escaping (Set<UserAccount>) -> Void) {
-        let search = Search<RegisteredCompany>()
         
-        if let companyRegistrationNumber = companyRegistrationNumber {
-            let company = search.binarySearch(TemporaryDatabase.registeredCompanies, target: companyRegistrationNumber, keyPath: \.registrationNumber)
-            if let companySafe = company {
+        if let company = company {
+            
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    let userAccounts = companySafe.userAccounts
+                    let userAccounts = company.userAccounts
                     var userAccountsSet: Set<UserAccount> = []
                     for userAccount in userAccounts {
                         userAccountsSet.insert(userAccount)
@@ -92,11 +90,9 @@ class AdminMainMenuViewController: UIViewController {
                 }
                 
             } else {
-                print("Company could not found in database. Please check your company if registered in the system.")
+                print("Error, could not fetch company. Please try again.")
             }
-        } else {
-            print("Error, could not fetch company registration number. Please try again.")
-        }
+       
         
         
     }

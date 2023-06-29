@@ -13,7 +13,7 @@ class EditUserAccountFailViewController: UIViewController {
     var failMessage: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.hidesBackButton = true
         if let failMessage = failMessage {
             editFailMessageLabel.text = failMessage
         }

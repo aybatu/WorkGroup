@@ -10,7 +10,7 @@ import UIKit
 class ManagerAccountMenuViewController: UIViewController {
     
     @IBOutlet weak var managerMenuNavBar: UINavigationItem!
-    var companyRegistrationNumber: String?
+    var company: RegisteredCompany?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,22 @@ class ManagerAccountMenuViewController: UIViewController {
         })
         confirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(confirmationAlert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.Segue.Manager.MainMenu.managerMenuToCreateProject {
+            if let createProjectVC = segue.destination as? ProjectDetailsViewController {
+                if let company = self.company {
+                    createProjectVC.company = company
+                }
+            }
+        }
+        
+        if segue.identifier == Constant.Segue.Manager.MainMenu.managerViewToProjectList {
+            if let projectListVC = segue.destination as? ProjectListEdit {
+                projectListVC.company = company
+            }
+        }
     }
     
     func logout() {

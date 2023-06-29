@@ -129,9 +129,9 @@ class EditUserAccountDetailsViewController: UIViewController{
     @IBAction func saveChangesButton(_ sender: UIButton) {
         let loadingViewController = LoadingViewController()
         loadingViewController.modalPresentationStyle = .fullScreen
-        present(loadingViewController, animated: true)
+        present(loadingViewController, animated: false)
         
-        loadingViewController.dismiss(animated: true) {
+        loadingViewController.dismiss(animated: false) {
             self.editUserAccountChanges { isEdited in
                 switch isEdited {
                 case .success:
