@@ -14,6 +14,14 @@ class ProjectAddTaskDetailViewController: UIViewController {
     @IBOutlet weak var fourthEmployeeButton: UIButton!
     @IBOutlet weak var fifthEmployeeButton: UIButton!
     
+    @IBOutlet weak var taskEndDatePicker: UIDatePicker!
+    @IBOutlet weak var taskStartDatePicker: UIDatePicker!
+    private let taskEndDateLimiter = -1
+    private let assignableTaskMinimumDayLimit = 1
+    
+    private var employeeArray: [UserAccount?] = []
+    
+    private var tapGesture: UITapGestureRecognizer!
     var projectDetails: [String: Any?]?
     var company: RegisteredCompany?
     private var assignedUserList: Set<UserAccount> = []
@@ -37,11 +45,73 @@ class ProjectAddTaskDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        setupTapGesture()
+        setUpDatePicker()
+        loadUserAccount()
         tableView.register(EmployeeListDropDownMenuCell.self, forCellReuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.employeeListDropDownMenuForTaskCellIdentifier)
-        navigationController?.title = "Task Details"
+        navigationController?.title = "TASK DETAILS"
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.removeFromSuperview()
+        
+    }
+    
+    private func setupTapGesture() {
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture?.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture!)
+    }
+    
+    private func setUpDatePicker() {
+        // Set the minimum and maximum dates for the startDatePicker
+        if let projectStartDate = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectStartDate], let projectEndDate = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectEndDate] {
+            let availableDayCountBeforeEndDate = Calendar.current.date(byAdding: .day, value: taskEndDateLimiter, to: projectEndDate as! Date)
+            taskStartDatePicker.minimumDate = projectStartDate as? Date
+            taskStartDatePicker.maximumDate = availableDayCountBeforeEndDate
+            
+            
+            
+            
+            // Set the minimum and maximum dates for the endDatePicker
+            taskEndDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: assignableTaskMinimumDayLimit, to: taskStartDatePicker.date)
+            taskEndDatePicker.maximumDate = projectEndDate as? Date
+        }
+    }
+    
+    @IBAction func startDatePicker(_ sender: UIDatePicker) {
+        
+        if let projectEndDate = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectEndDate] {
+            // Set the minimum and maximum dates for the endDatePicker
+            taskEndDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: assignableTaskMinimumDayLimit, to: taskStartDatePicker.date)
+            taskEndDatePicker.maximumDate = projectEndDate as? Date
+        }
+        
+    }
+    
+    private func loadUserAccount() {
+        if let companySafe = company {
+            employeeArray = Array(companySafe.userAccounts)
+            employeeArray.sort { (account1, account2) -> Bool in
+                let name1 = "\(account1?.userFirstName ?? "") \(account1?.userLastName ?? "")"
+                let name2 = "\(account2?.userFirstName ?? "") \(account2?.userLastName ?? "")"
+                return name1 < name2
+            }
+        }
+        employeeArray.insert(nil, at: 0)
+        print(employeeArray)
+    }
+    
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
+        // Dismiss the dropdown menu
+        tableView.removeFromSuperview()
+        
+        // Dismiss the keyboard
+        view.endEditing(true)
+        
+    }
     
     @IBAction func selectEmployeeTapped(_ sender: UIButton) {
         showDropDownMenu(sender: sender)
@@ -57,10 +127,10 @@ class ProjectAddTaskDetailViewController: UIViewController {
                 switch result {
                 case .success:
                     self?.assignedUserList.removeAll()
-                    self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.Task.addTaskToSuccess, sender: self)
+                    self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.CreateProject.CreateTask.addTaskToSuccess, sender: self)
                 case .failure(let error):
                     self?.addTaskFailWithError = error
-                    self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.Task.addTaskToFail, sender: self)
+                    self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.CreateProject.CreateTask.addTaskToFail, sender: self)
                 }
             }
         }
@@ -86,7 +156,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constant.Segue.Manager.Project.Task.addTaskToFail {
+        if segue.identifier == Constant.Segue.Manager.Project.CreateProject.CreateTask.addTaskToFail {
             if let addTaskFailVC = segue.destination as? ProjectAddTaskFailViewController {
                 addTaskFailVC.errorMessage = addTaskFailWithError
             }
@@ -111,7 +181,8 @@ class ProjectAddTaskDetailViewController: UIViewController {
             completion(.failure(message: "Task name and description must be filled. Please try again."))
             return
         }
-        
+        let startDate = taskStartDatePicker.date
+        let endDate = taskEndDatePicker.date
         if taskName == "" || taskDescription == "" {
             completion(.failure(message: "Task name and description must be filled. Please try again."))
             return
@@ -122,7 +193,8 @@ class ProjectAddTaskDetailViewController: UIViewController {
             return
         }
         
-        let newTask = Task(name: taskName, description: taskDescription, assignedEmployees: assignedUserList)
+        let newTask = Task(title: taskName, description: taskDescription, assignedEmployees: assignedUserList, taskStartDate: startDate, taskEndDate: endDate)
+        
         let (inserted, _) = taskSet.insert(newTask)
         
         if !inserted {
@@ -139,10 +211,10 @@ class ProjectAddTaskDetailViewController: UIViewController {
     }
     
     private func createProject(completion: @escaping (CreateProjectResult) -> Void) {
-        guard let projectName = projectDetails?["ProjectTitle"] as? String,
-              let projectDescription = projectDetails?["ProjectDescription"] as? String,
-              let projectStartDate = projectDetails?["StartDate"] as? Date,
-              let projectEndDate = projectDetails?["EndDate"] as? Date else {
+        guard let projectTitle = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectTitle] as? String,
+              let projectDescription = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectDescription] as? String,
+              let projectStartDate = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectStartDate] as? Date,
+              let projectEndDate = projectDetails?[Constant.Dictionary.ProjectDetailsDictionary.projectEndDate] as? Date else {
             completion(.failure(message: "Some of the project fields are empty. Please check and try again."))
             return
         }
@@ -152,7 +224,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
             
         } else {
             
-            let newProject = Project(name: projectName, description: projectDescription, tasks: taskSet, startDate: projectStartDate, finishDate: projectEndDate)
+            let newProject = Project(title: projectTitle, description: projectDescription, tasks: taskSet, startDate: projectStartDate, finishDate: projectEndDate)
             
             if let company = company {
                 company.addProject(project: newProject) { isProjectAdded in
@@ -167,38 +239,76 @@ class ProjectAddTaskDetailViewController: UIViewController {
     }
     
     private func resetButtonTitles() {
-           firstEmployeeButton.setTitle("Select Employee", for: .normal)
-           secondEmployeeButton.setTitle("Select Employee", for: .normal)
-           thirdEmployeeButton.setTitle("Select Employee", for: .normal)
-           fourthEmployeeButton.setTitle("Select Employee", for: .normal)
-           fifthEmployeeButton.setTitle("Select Employee", for: .normal)
-       }
+        firstEmployeeButton.setTitle("Assign an Employee", for: .normal)
+        secondEmployeeButton.setTitle("Assign an Employee", for: .normal)
+        thirdEmployeeButton.setTitle("Assign an Employee", for: .normal)
+        fourthEmployeeButton.setTitle("Assign an Employee", for: .normal)
+        fifthEmployeeButton.setTitle("Assign an Employee", for: .normal)
+    }
 }
 
 extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return company?.userAccounts.count ?? 1
+        return employeeArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.DropDownMenu.employeeListDropDownMenuForTaskCellIdentifier, for: indexPath) as? EmployeeListDropDownMenuCell ?? EmployeeListDropDownMenuCell(style: .default, reuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.employeeListDropDownMenuForTaskCellIdentifier)
         
-        if let userAccount = company?.userAccounts[indexPath.row] {
+        if let userAccount = employeeArray[indexPath.row] {
             cell.textLabel?.text = "\(userAccount.userFirstName) \(userAccount.userLastName)"
+        } else {
+            cell.textLabel?.text = "Assign an Employee"
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let userAccount = company?.userAccounts[indexPath.row] else {
+        guard let userAccount = employeeArray[indexPath.row] else {
+            
+            if selectedButton?.currentTitle != "Assign an Employee" {
+                let employeeName = selectedButton?.currentTitle
+                let _ = assignedUserList.contains { employee in
+                    if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedUserList.remove(employee)
+                        return true
+                    }
+                    return false
+                }
+            }
+                selectedButton?.setTitle("Assign an Employee", for: .normal)
+            print(assignedUserList)
+            tableView.removeFromSuperview()
+            tableView.deselectRow(at: indexPath, animated: true)
             return
         }
         
         let (inserted, _) = assignedUserList.insert(userAccount)
         
         if !inserted {
+          
             userExistAlert()
+        } else if selectedButton?.currentTitle != "Assign an Employee" {
+            let employeeName = selectedButton?.currentTitle
+            let shouldRemoveEmployee = assignedUserList.contains { employee in
+                if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedUserList.remove(employee)
+                    return true
+                }
+                return false
+            }
+            
+            if shouldRemoveEmployee {
+                userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+                    switch isAvailable {
+                    case .available:
+                        self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
+                    case .unavailable(let error):
+                        self?.employeeIsNotAvailableAlert(message: error)
+                    }
+                }
+            }
+      
         } else {
             userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
                 switch isAvailable {
@@ -208,8 +318,12 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
                     self?.employeeIsNotAvailableAlert(message: error)
                 }
             }
-            
+      
         }
+        
+           
+            
+        
         tableView.removeFromSuperview()
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -217,6 +331,8 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 42
     }
+    
+    
     
     private func userExistAlert() {
         let alertController = UIAlertController(title: "User Exists", message: "The employee is already assigned to the task. Please choose another employee.", preferredStyle: .alert)
@@ -230,5 +346,15 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
         let alertAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(alertAction)
         present(alertController, animated: true)
+    }
+}
+
+extension ProjectAddTaskDetailViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        tableView.removeFromSuperview()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

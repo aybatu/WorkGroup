@@ -78,6 +78,11 @@ class UserAccount: Comparable, Hashable {
     func assignTask(task: Task) {
         _userTasks.insert(task)
     }
+    
+    func removeTask(task: Task) {
+        _userTasks.remove(task)
+    }
+    
     // Compare based on email address
     static func < (lhs: UserAccount, rhs: UserAccount) -> Bool {
         return lhs.emailAddress < rhs.emailAddress

@@ -9,9 +9,15 @@ import UIKit
 
 class ProjectTaskEditFailViewController: UIViewController {
 
+    @IBOutlet weak var errorLabel: UILabel!
+    
+    var errorMsg: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let errorMsgSafe = errorMsg {
+            errorLabel.text = errorMsgSafe
+        }
         navigationItem.hidesBackButton = true
     }
     

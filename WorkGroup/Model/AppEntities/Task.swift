@@ -10,14 +10,16 @@ import Foundation
 class Task: Hashable {
    
     
-    private var _name: String
+    private var _title: String
     private var _description: String
     private var _assignedEmployees: Set<UserAccount>
     private var _taskEmployeeLimit = 5
     private var _isTaskCompleted: Bool
+    private var _taskStartDate: Date
+    private var _taskEndDate: Date
     
-    var name: String {
-        return _name
+    var title: String {
+        return _title
     }
     var description: String {
         return _description
@@ -31,17 +33,25 @@ class Task: Hashable {
     var isTaskCompleted: Bool {
         return _isTaskCompleted
     }
+    var taskStartDate: Date {
+        return _taskStartDate
+    }
+    var taskEndDate: Date {
+        return _taskEndDate
+    }
     
-    init(name: String, description: String, assignedEmployees: Set<UserAccount>) {
-        self._name = name
+    init(title: String, description: String, assignedEmployees: Set<UserAccount>, taskStartDate: Date, taskEndDate: Date) {
+        self._title = title
         self._description = description
         self._assignedEmployees = assignedEmployees
         self._isTaskCompleted = false
+        self._taskStartDate = taskStartDate
+        self._taskEndDate = taskEndDate
     }
     
     func hash(into hasher: inout Hasher) {
        
-        hasher.combine(_name)
+        hasher.combine(_title)
     }
     
     func assignEmployee(employee: UserAccount, completion: @escaping(Bool, Bool, Bool) -> Void) {
@@ -66,14 +76,34 @@ class Task: Hashable {
     }
     
     func completeTask() {
-        self._isTaskCompleted = true
+        _isTaskCompleted = true
+    }
+    
+    func editTaskTitle(title: String) {
+        _title = title
+    }
+    
+    func editTaskDescription(description: String) {
+        _description = description
+    }
+    
+    func editAssignedEmployees(employeeSet: Set<UserAccount>) {
+        _assignedEmployees = employeeSet
+    }
+    
+    func editStartDate(startDate: Date) {
+        _taskStartDate = startDate
+    }
+    
+    func editEndDate(endDate: Date) {
+        _taskEndDate = endDate
     }
     
     func revertTaskCompletion() {
-        self._isTaskCompleted = false
+        _isTaskCompleted = false
     }
     
     static func == (lhs: Task, rhs: Task) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.title == rhs.title
     }
 }

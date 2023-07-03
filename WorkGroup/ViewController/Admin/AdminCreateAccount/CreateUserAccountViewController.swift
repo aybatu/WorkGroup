@@ -49,6 +49,7 @@ class CreateUserAccountViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupTextFields()
+        setupTapGesture()
         tableView.register(UserAccountTypeCell.self, forCellReuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.userAccountTypeCellIdentifier)
         
     }
@@ -58,6 +59,8 @@ class CreateUserAccountViewController: UIViewController {
         tableView.removeFromSuperview()
         
        }
+    
+    
     
     private func setupTapGesture() {
            tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))

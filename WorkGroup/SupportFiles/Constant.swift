@@ -35,7 +35,7 @@ struct Constant {
             static let accountListToAccountEdit = "AccountListToAccountEdit"
             static let mainMenuToCreateAccount = "AdminMainMenuToCreateAccount"
             static let mainMenuToEditAccounts = "AdminMainMenuToEditAccounts"
-           
+            
         }
         struct Manager {
             struct MainMenu {
@@ -46,27 +46,38 @@ struct Constant {
                 static let managerViewToEmployeePerformanceList = "ManagerViewToEmployeePerformanceList"
             }
             struct Project {
-                static let projectDetailsToTaskView = "ProjectDetailsToTaskView"
+                
                 
                 struct CreateProject {
-                    
-                     static let createProjectToSuccess = "CreateProjectToSuccess"
-                     static let createProjectToFail = "CreateProjectToFail"
+                    static let projectDetailsToTaskView = "ProjectDetailsToTaskView"
+                    static let createProjectToSuccess = "CreateProjectToSuccess"
+                    static let createProjectToFail = "CreateProjectToFail"
+                    struct CreateTask {
+                        static let addTaskToSuccess = "AddTaskManagerToSuccess"
+                        static let addTaskToFail = "AddTaskManagerToFail"
+                    }
                 }
                 
-                struct Task {
-                    static let addTaskToSuccess = "AddTaskManagerToSuccess"
-                    static let addTaskToFail = "AddTaskManagerToFail"
+                
+                
+                struct EditProject {
+                    static let projectListToProjectDetails = "ProjectListToEditProjectDetails"
+                    static let projectDetailSaveToFail = "ProjectDetailsChangeToFail"
+                    static let projectDetailSaveToSuccess = "ProjectDetailsChangeToSuccess"
+                    static let editProjectDetailToTaskList = "EditProjectDetailsToTaskList"
+                  
+                    
+                    struct EditTask {
+                        static let taskListToEditTaskDetails = "TaskListToEditTask"
+                        static let editTaskToFail = "EditTaskToFail"
+                        static let editTaskToSuccess = "EditTaskToSuccess"
+                    }
                 }
             }
             
-          
-            static let projectListToProjectDetails = "ProjectListToEditProjectDetails"
-            static let projectDetailSaveToFail = "ProjectDetailsChangeToFail"
-            static let projectDetailSaveToSuccess = "ProjectDetailsChangeToSuccess"
-            static let taskListToEditTaskDetails = "TaskListToEditTask"
-            static let editTaskToFail = "EditTaskToFail"
-            static let editTaskToSuccess = "EditTaskToSuccess"
+            
+            
+            
             static let sendMeetingRequestToFail = "SendMeetingRequestToFail"
             static let sendMeetingRequestTotSuccess = "SendMeetingRequestToSuccess"
             static let editMeetingListToMeetingDetails = "MeetingListViewToEditMeetingManager"
@@ -90,7 +101,7 @@ struct Constant {
             static let employeePerformanceDateListCellIdentifier = "EmployeePerformanceDateListCell"
         }
         struct Manager {
-           
+            
             static let editProjectListCellIdentifier = "EditProjectCell"
             static let taskListCellIdentifier = "EditTaskCellManager"
             static let meetingEmployeListCellIdentifier = "AddEmployeeCell"
@@ -123,6 +134,15 @@ struct Constant {
         }
         struct CreateAccount {
             static let isAccountExist = "email address is already registered in the system. Please try another email address or check if it is correct."
+        }
+    }
+    
+    struct Dictionary {
+        struct ProjectDetailsDictionary {
+            static let projectTitle = "ProjectTitle"
+            static let projectDescription = "ProjectDescription"
+            static let projectStartDate = "StartDate"
+            static let projectEndDate = "EndDate"
         }
     }
 }

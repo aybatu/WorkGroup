@@ -9,9 +9,9 @@ import UIKit
 
 class EmployeeListDropDownMenu {
     private var tableView = UITableView()
-    private var userAccounts: [UserAccount] = []
+    private var userAccounts: [UserAccount?] = []
     
-    func showDropdownMenu(from button: UIButton, with userAccounts: [UserAccount], tableView: UITableView, completion: @escaping (UserAccount) -> Void) {
+    func showDropdownMenu(from button: UIButton, with userAccounts: [UserAccount?], tableView: UITableView, completion: @escaping (UserAccount) -> Void) {
         self.tableView = tableView
         guard button.superview is UIStackView else { return }
         guard let buttonStackViewFrame = button.superview as? UIStackView else { return }
