@@ -13,18 +13,12 @@ class ProjectAddTaskDetailViewController: UIViewController {
     @IBOutlet weak var thirdEmployeeButton: UIButton!
     @IBOutlet weak var fourthEmployeeButton: UIButton!
     @IBOutlet weak var fifthEmployeeButton: UIButton!
-    
+    @IBOutlet weak var taskTitleTextField: UITextField!
+    @IBOutlet weak var taskDescriptionTextView: UITextView!
     @IBOutlet weak var taskEndDatePicker: UIDatePicker!
     @IBOutlet weak var taskStartDatePicker: UIDatePicker!
-    private let taskEndDateLimiter = -1
-    private let assignableTaskMinimumDayLimit = 1
-    
-    private var employeeArray: [UserAccount?] = []
-    
+    private var selectedButton: UIButton?
     private var tapGesture: UITapGestureRecognizer!
-    var projectDetails: [String: Any?]?
-    var company: RegisteredCompany?
-    private var assignedUserList: Set<UserAccount> = []
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -32,22 +26,31 @@ class ProjectAddTaskDetailViewController: UIViewController {
         tableView.register(EmployeeListDropDownMenuCell.self, forCellReuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.employeeListDropDownMenuForTaskCellIdentifier)
         return tableView
     }()
+    
+    private var employeeArray: [UserAccount?] = []
+    private let textViewStyle = TextView()
+    private let textFieldStyle = TextFieldStyle()
+    private var assignedUserList: Set<UserAccount> = []
     private let dropDownMenu = EmployeeListDropDownMenu()
     private var taskSet: Set<Task> = []
+    var company: RegisteredCompany?
+    private  let loadingVC = LoadingViewController()
+    var projectDetails: [String: Any?]?
+
     private var createProjectFailWithError: String = "There was an error while creating project. Please try again."
     private var addTaskFailWithError: String = "There was an error while adding the task. Please try again."
-    private  let loadingVC = LoadingViewController()
+    private let taskEndDateLimiter = -1
+    private let assignableTaskMinimumDayLimit = 1
+  
     
-    @IBOutlet weak var taskNameTextField: UITextField!
-    @IBOutlet weak var taskDescriptionTextField: UITextField!
-    
-    private var selectedButton: UIButton?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTapGesture()
         setUpDatePicker()
         loadUserAccount()
+        setupTextArea() 
         tableView.register(EmployeeListDropDownMenuCell.self, forCellReuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.employeeListDropDownMenuForTaskCellIdentifier)
         navigationController?.title = "TASK DETAILS"
     }
@@ -58,7 +61,11 @@ class ProjectAddTaskDetailViewController: UIViewController {
         tableView.removeFromSuperview()
         
     }
-    
+    private func setupTextArea() {
+        textViewStyle.styleTextView(taskDescriptionTextView)
+        textFieldStyle.styleTextField(taskTitleTextField)
+        taskTitleTextField.delegate = self
+    }
     private func setupTapGesture() {
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         tapGesture?.cancelsTouchesInView = false
@@ -71,9 +78,6 @@ class ProjectAddTaskDetailViewController: UIViewController {
             let availableDayCountBeforeEndDate = Calendar.current.date(byAdding: .day, value: taskEndDateLimiter, to: projectEndDate as! Date)
             taskStartDatePicker.minimumDate = projectStartDate as? Date
             taskStartDatePicker.maximumDate = availableDayCountBeforeEndDate
-            
-            
-            
             
             // Set the minimum and maximum dates for the endDatePicker
             taskEndDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: assignableTaskMinimumDayLimit, to: taskStartDatePicker.date)
@@ -177,7 +181,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
     }
     
     private func addTask(completion: @escaping (AddTaskResult) -> Void) {
-        guard let taskName = taskNameTextField.text, let taskDescription = taskDescriptionTextField.text else {
+        guard let taskName = taskTitleTextField.text, let taskDescription = taskDescriptionTextView.text else {
             completion(.failure(message: "Task name and description must be filled. Please try again."))
             return
         }

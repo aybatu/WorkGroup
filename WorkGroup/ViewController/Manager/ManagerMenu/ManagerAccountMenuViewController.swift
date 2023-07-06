@@ -39,10 +39,14 @@ class ManagerAccountMenuViewController: UIViewController {
                 }
             }
         }
-        
         if segue.identifier == Constant.Segue.Manager.MainMenu.managerViewToProjectList {
             if let projectListVC = segue.destination as? ProjectListEdit {
                 projectListVC.company = company
+            }
+        }
+        if segue.identifier == Constant.Segue.Manager.MainMenu.managerViewToScheduleMeeting {
+            if let scheduleMeetingVC = segue.destination as? MeetingScheduleViewController {
+                scheduleMeetingVC.company = company
             }
         }
     }

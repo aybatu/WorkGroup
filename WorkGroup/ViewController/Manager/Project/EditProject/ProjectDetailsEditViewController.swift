@@ -9,13 +9,16 @@ import UIKit
 
 class ProjectDetailsEditViewController: UIViewController {
     @IBOutlet weak var projectTitleTextField: UITextField!
-    @IBOutlet weak var projectDescriptionTextField: UITextField!
+    
+    @IBOutlet weak var projectDescriptionTextView: UITextView!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
     var project: Project?
     var company: RegisteredCompany?
-    
+    private let loadingVC = LoadingViewController()
+    private let textViewStyle = TextView()
+    private let textFieldStyle = TextFieldStyle()
     private var projectDetails: [String: Any?] = [
         Constant.Dictionary.ProjectDetailsDictionary.projectTitle: nil,
         Constant.Dictionary.ProjectDetailsDictionary.projectDescription: nil,
@@ -23,12 +26,20 @@ class ProjectDetailsEditViewController: UIViewController {
         Constant.Dictionary.ProjectDetailsDictionary.projectEndDate: Date()
     ]
     private var editProjectDetailFailWithError: String?
-    private let loadingVC = LoadingViewController()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateProjectData()
+        setupTextArea()
         navigationItem.title = "PROJECT DETAILS"
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func setupTextArea() {
+        textViewStyle.styleTextView(projectDescriptionTextView)
+        textFieldStyle.styleTextField(projectTitleTextField)
     }
     
     private func updateProjectData() {
@@ -39,7 +50,7 @@ class ProjectDetailsEditViewController: UIViewController {
             let projectEndDate = projectSafe.finishDate
             
             projectTitleTextField.text = projectTitle
-            projectDescriptionTextField.text = projectDescription
+            projectDescriptionTextView.text = projectDescription
             startDatePicker.date = projectStartDate
             endDatePicker.date = projectEndDate
             setUpDatePicker()
@@ -139,7 +150,7 @@ class ProjectDetailsEditViewController: UIViewController {
 extension ProjectDetailsEditViewController {
     private func editProjectDetails(completion: @escaping (EditProjectResult) -> Void) {
         guard let projectTitle = projectTitleTextField.text,
-              let projectDescription = projectDescriptionTextField.text
+              let projectDescription = projectDescriptionTextView.text
         else {
             completion(.failure(message: "Some of the project fields are empty. Please check and try again."))
             return

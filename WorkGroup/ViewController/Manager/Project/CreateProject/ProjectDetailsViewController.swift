@@ -10,7 +10,8 @@ import UIKit
 class ProjectDetailsViewController: UIViewController {
     @IBOutlet weak var projectTasksButton: UIButton!
     @IBOutlet weak var projectTitleTextField: UITextField!
-    @IBOutlet weak var projectDescriptionTextField: UITextField!
+    
+    @IBOutlet weak var projectDescriptionTextView: UITextView!
     
     @IBOutlet weak var createProjectNavBar: UINavigationItem!
     
@@ -18,26 +19,33 @@ class ProjectDetailsViewController: UIViewController {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     
     var company: RegisteredCompany?
+    private let textViewStyle = TextView()
+    private let textFieldStyle = TextFieldStyle()
     private var projectDetails: [String: Any?] = [
         Constant.Dictionary.ProjectDetailsDictionary.projectTitle: nil,
         Constant.Dictionary.ProjectDetailsDictionary.projectDescription: nil,
         Constant.Dictionary.ProjectDetailsDictionary.projectStartDate: Date(),
         Constant.Dictionary.ProjectDetailsDictionary.projectEndDate: Date()
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        projectTitleTextField.delegate = self
-        projectDescriptionTextField.delegate = self
+        createProjectNavBar.title = "PROJECT DETAILS"
         projectTasksButton.isEnabled = false
-        createProjectNavBar.title = "Project Details"
         setUpDatePicker()
+        setupTextArea()
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
         
         
     }
     
+    private func setupTextArea() {
+        projectTitleTextField.delegate = self
+        projectDescriptionTextView.delegate = self
+        textViewStyle.styleTextView(projectDescriptionTextView)
+        textFieldStyle.styleTextField(projectTitleTextField)
+    }
     
     private func setUpDatePicker() {
         
@@ -85,7 +93,7 @@ class ProjectDetailsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let projectTitle = projectTitleTextField.text, let projectDescription = projectDescriptionTextField.text {
+        if let projectTitle = projectTitleTextField.text, let projectDescription = projectDescriptionTextView.text {
             
             let startDate = startDatePicker.date
             let endDate = endDatePicker.date
@@ -110,37 +118,29 @@ class ProjectDetailsViewController: UIViewController {
     
 }
 
-extension ProjectDetailsViewController: UITextFieldDelegate {
+extension ProjectDetailsViewController: UITextFieldDelegate, UITextViewDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let updatedText =  (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {return true}
+        guard let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else { return true }
         var isTitle = projectTitleTextField.text != ""
-        var isDescription = projectDescriptionTextField.text != ""
+        let isDescription = projectDescriptionTextView.text != ""
         
         switch textField {
         case projectTitleTextField:
             isTitle = updatedText != ""
-            
-            enableProjectTaskButton(isTitle: isTitle, isDescription: isDescription)
-        case projectDescriptionTextField:
-            
-            isDescription = updatedText != ""
-            
             enableProjectTaskButton(isTitle: isTitle, isDescription: isDescription)
         default:
             break
         }
         
-        
-        
         return true
-        
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if projectTitleTextField.text?.isEmpty == false && projectDescriptionTextField.text?.isEmpty == false {
-            projectTasksButton.isEnabled = true
-        } else {
-            projectTasksButton.isEnabled = false
-        }
+        updateProjectTaskButtonState()
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        updateProjectTaskButtonState()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -148,5 +148,10 @@ extension ProjectDetailsViewController: UITextFieldDelegate {
         return true
     }
     
+    private func updateProjectTaskButtonState() {
+        let isTitle = projectTitleTextField.text?.isEmpty == false
+        let isDescription = projectDescriptionTextView.text?.isEmpty == false
+        enableProjectTaskButton(isTitle: isTitle, isDescription: isDescription)
+    }
 }
 

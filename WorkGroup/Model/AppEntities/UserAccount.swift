@@ -15,6 +15,8 @@ class UserAccount: Comparable, Hashable {
     private var _password: String
     private var _userTasks: Set<Task>
     private var _employeeTaskCapacity = 3
+    var isSelected = false
+    private var _employeeMeetings: [Meeting]
     
     var accountType: AccountTypes {
         return _accountType
@@ -37,6 +39,9 @@ class UserAccount: Comparable, Hashable {
     var userTasks: Set<Task> {
         return _userTasks
     }
+    var employeeMeetings: [Meeting] {
+        return _employeeMeetings
+    }
     
     init(accountType: AccountTypes, emailAddress: String, userFirstName: String, userLastName: String, password: String) {
         self._accountType = accountType
@@ -45,6 +50,7 @@ class UserAccount: Comparable, Hashable {
         self._userLastName = userLastName
         self._password = password
         self._userTasks = []
+        self._employeeMeetings = []
     }
     
     func hash(into hasher: inout Hasher) {
@@ -82,7 +88,12 @@ class UserAccount: Comparable, Hashable {
     func removeTask(task: Task) {
         _userTasks.remove(task)
     }
-    
+    func addMeeting(meeting: Meeting) {
+        _employeeMeetings.append(meeting)
+    }
+    func removeMeeting(meeting: Meeting) {
+        _employeeMeetings.removeAll { $0.meetingTitle == meeting.meetingTitle }
+    }
     // Compare based on email address
     static func < (lhs: UserAccount, rhs: UserAccount) -> Bool {
         return lhs.emailAddress < rhs.emailAddress

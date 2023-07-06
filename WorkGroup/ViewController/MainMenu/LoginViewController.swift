@@ -17,12 +17,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginEmailTextField: UITextField!
     
     private var companyRegisterNumber: String?
+    private let textFieldStyle = TextFieldStyle()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "LOGIN"
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
+        setupTextFields()
+    }
+    
+    private func setupTextFields() {
+        textFieldStyle.styleTextField(companyRegistrationNumberTextField)
+        textFieldStyle.styleTextField(loginPasswordTextField)
+        textFieldStyle.styleTextField(loginEmailTextField)
     }
     
     @IBAction func login(_ sender: UIButton) {

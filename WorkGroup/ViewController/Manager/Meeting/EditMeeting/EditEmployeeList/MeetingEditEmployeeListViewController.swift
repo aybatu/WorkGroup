@@ -24,8 +24,8 @@ class MeetingEditEmployeeListViewController: UIViewController {
   
      @IBAction func saveChangesButton(_ sender: UIButton) {
          
-         isSave ? performSegue(withIdentifier: Constant.Segue.Manager.editInvitedEmployeeToSuccess, sender: self) :
-             performSegue(withIdentifier: Constant.Segue.Manager.editInvitedEmployeeToFail, sender: self)
+//         isSave ? performSegue(withIdentifier: Constant.Segue.Manager.editInvitedEmployeeToSuccess, sender: self) :
+//             performSegue(withIdentifier: Constant.Segue.Manager.editInvitedEmployeeToFail, sender: self)
  
      }
      

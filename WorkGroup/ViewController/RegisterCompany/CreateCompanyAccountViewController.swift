@@ -37,19 +37,27 @@ class CreateCompanyAccountViewController: UIViewController {
     
     private var registeredCompany: RegisteredCompany?
     private var isErrorWithMessage: String?
+    private let textFieldStyle = TextFieldStyle()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCompanyButton.isEnabled = false
         setupTextFields()
 
-        textFields = [companyNameTextField, firstNameTextField, surnameTextField, emailAddressTextField, emailAddressConfirmTextField, passwordTextField, confirmPasswordTextField]
+        setupTextFields()
         
         navigationController?.title = "COMPANY REGISTRATION"
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
         view.addGestureRecognizer(tapGesture)
     }
     
+    private func setupTextFields() {
+        textFields = [companyNameTextField, firstNameTextField, surnameTextField, emailAddressTextField, emailAddressConfirmTextField, passwordTextField, confirmPasswordTextField]
+        for textField in textFields {
+            textField.delegate = self
+            textFieldStyle.styleTextField(textField)
+        }
+    }
     
     
     @IBAction func registerCompanyButton(_ sender: UIButton) {
@@ -85,12 +93,7 @@ class CreateCompanyAccountViewController: UIViewController {
     }
     
     
-    private func setupTextFields() {
-        let textFields = [companyNameTextField, emailAddressTextField, emailAddressConfirmTextField, passwordTextField, confirmPasswordTextField, firstNameTextField, surnameTextField]
-        for textField in textFields {
-            textField?.delegate = self
-        }
-    }
+    
     
     private func enableRegistrationButton() {
         registerCompanyButton.isEnabled = isCompany && isEmailMatch && isEmailValid && isPasswordValid && isPasswordMatch && isFirstname && isSurname

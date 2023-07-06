@@ -12,6 +12,8 @@ class ProjectEditTaskDetailViewController: UIViewController {
     var task: Task?
     var project: Project?
     var company: RegisteredCompany?
+    private let textViewStyle = TextView()
+    private let textFieldStyle = TextFieldStyle()
     private var assignedEmployees: Set<UserAccount> = []
     private var employeeArr: [UserAccount?] = []
     private let dropDownMenu = EmployeeListDropDownMenu()
@@ -25,20 +27,17 @@ class ProjectEditTaskDetailViewController: UIViewController {
     }()
     
     @IBOutlet weak var taskTitleTextField: UITextField!
-    @IBOutlet weak var taskDescriptionTextField: UITextField!
-    
+    @IBOutlet weak var taskDescriptionTextView: UITextView!
     @IBOutlet weak var firstEmployeeButton: UIButton!
     @IBOutlet weak var secondEmployeeButton: UIButton!
     @IBOutlet weak var thirdEmployeeButton: UIButton!
     @IBOutlet weak var fourthEmployeeButton: UIButton!
     @IBOutlet weak var fifthEmployeeButton: UIButton!
-    
-    private var selectedButton: UIButton?
-    
     @IBOutlet weak var taskEndDatePicker: UIDatePicker!
     @IBOutlet weak var taskStartDatePicker: UIDatePicker!
     
     private var tapGesture: UITapGestureRecognizer!
+    private var selectedButton: UIButton?
     
     private var taskEndDateLimiter = -1
     private var assignableTaskMinimumDayLimit = 1
@@ -46,6 +45,7 @@ class ProjectEditTaskDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(EmployeeListDropDownMenuCell.self, forCellReuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.employeeListDropDownMenuForTaskCellIdentifier)
+        styleTextArea()
         setUpTextFields()
         setupTapGesture()
         setUpButtonTitle()
@@ -76,11 +76,15 @@ class ProjectEditTaskDetailViewController: UIViewController {
         view.endEditing(true)
         
     }
+    private func styleTextArea() {
+        textViewStyle.styleTextView(taskDescriptionTextView)
+        textFieldStyle.styleTextField(taskTitleTextField)
+    }
     
     private func setUpTextFields() {
         if let task = task {
             taskTitleTextField.text = task.title
-            taskDescriptionTextField.text = task.description
+            taskDescriptionTextView.text = task.description
         }
     }
     private func loadData() {
@@ -295,7 +299,7 @@ extension ProjectEditTaskDetailViewController: UITableViewDelegate, UITableViewD
 extension ProjectEditTaskDetailViewController {
     
     private func editTask(completion: @escaping (AddTaskResult) -> Void) {
-        guard let taskTitle = taskTitleTextField.text, let taskDescription = taskDescriptionTextField.text else {
+        guard let taskTitle = taskTitleTextField.text, let taskDescription = taskDescriptionTextView.text else {
             completion(.failure(message: "Task name and description must be filled. Please try again."))
             return
         }

@@ -41,7 +41,7 @@ class CreateUserAccountViewController: UIViewController {
     var company: RegisteredCompany?
     private var accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
-    
+    private var textFieldStyle = TextFieldStyle()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,10 @@ class CreateUserAccountViewController: UIViewController {
     
     private func setupTextFields() {
         textFields = [employeeNameTextField, employeeSurnameTextField, emailAddressTextField, confirmEmailAddressTextField, passwordTextField, confirmPasswordTextField]
-        textFields.forEach { $0.delegate = self }
+        for textField in textFields {
+            textField.delegate = self
+            textFieldStyle.styleTextField(textField)
+        }
     }
     
     @IBAction private func createUserAccButtonTapped(_ sender: UIButton) {

@@ -35,7 +35,8 @@ class EditUserAccountDetailsViewController: UIViewController{
     private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     private let accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
-    
+    private let textFieldStyle = TextFieldStyle()
+    private var textFields: [UITextField] = []
     
     private var isNameValid = false
     private var isLastNameValid = false
@@ -79,8 +80,12 @@ class EditUserAccountDetailsViewController: UIViewController{
         }
     
     private func setupTextFields() {
-        let textFields = [nameTextField, lastNameTextField,emailTextField, emailConfirmTextField, passwordTextField, passwordConfirmTextField]
-        textFields.forEach {$0?.delegate = self}
+        textFields = [nameTextField, lastNameTextField,emailTextField, emailConfirmTextField, passwordTextField, passwordConfirmTextField]
+        
+        for textField in textFields {
+            textField.delegate = self
+            textFieldStyle.styleTextField(textField)
+        }
     }
     
     private func addUserCurrentInfoUpdateView() {

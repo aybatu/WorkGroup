@@ -12,6 +12,11 @@
 		1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */; };
 		1B277E532A49A36300D6BCAF /* EditAccountResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B277E522A49A36300D6BCAF /* EditAccountResult.swift */; };
 		1B277E562A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */; };
+		1B344B002A5417E40010F997 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B344AFF2A5417E40010F997 /* Meeting.swift */; };
+		1B344B022A5595C60010F997 /* InviteMeetingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B344B012A5595C60010F997 /* InviteMeetingResult.swift */; };
+		1B344B042A5596640010F997 /* MeetingInviteValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B344B032A5596640010F997 /* MeetingInviteValidator.swift */; };
+		1B344B062A55F13B0010F997 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B344B052A55F13B0010F997 /* TextView.swift */; };
+		1B344B0A2A55FECF0010F997 /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B344B092A55FECF0010F997 /* TextFieldStyle.swift */; };
 		1B3CDE6B2A3B8D20003E8744 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA694F92A34BB000098C542 /* LoginViewController.swift */; };
 		1B45EA4B2A4B5AFF00216F02 /* TextFieldAccountValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B45EA4A2A4B5AFF00216F02 /* TextFieldAccountValidatorView.swift */; };
 		1B45EA4D2A4B60EB00216F02 /* TextFieldCompanyValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B45EA4C2A4B60EB00216F02 /* TextFieldCompanyValidatorView.swift */; };
@@ -118,6 +123,11 @@
 		1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationResult.swift; sourceTree = "<group>"; };
 		1B277E522A49A36300D6BCAF /* EditAccountResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountResult.swift; sourceTree = "<group>"; };
 		1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountTypeDropDownMenu.swift; sourceTree = "<group>"; };
+		1B344AFF2A5417E40010F997 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		1B344B012A5595C60010F997 /* InviteMeetingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMeetingResult.swift; sourceTree = "<group>"; };
+		1B344B032A5596640010F997 /* MeetingInviteValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingInviteValidator.swift; sourceTree = "<group>"; };
+		1B344B052A55F13B0010F997 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		1B344B092A55FECF0010F997 /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
 		1B45EA4A2A4B5AFF00216F02 /* TextFieldAccountValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAccountValidatorView.swift; sourceTree = "<group>"; };
 		1B45EA4C2A4B60EB00216F02 /* TextFieldCompanyValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCompanyValidatorView.swift; sourceTree = "<group>"; };
 		1B45EA4E2A4C515600216F02 /* EmployeeListDropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListDropDownMenu.swift; sourceTree = "<group>"; };
@@ -247,6 +257,7 @@
 				1B7782B02A448C9100CC6013 /* AccountTypes.swift */,
 				1B4BBDA52A4A779D008BF6A7 /* Project.swift */,
 				1B4BBDA72A4A7806008BF6A7 /* Task.swift */,
+				1B344AFF2A5417E40010F997 /* Meeting.swift */,
 			);
 			path = AppEntities;
 			sourceTree = "<group>";
@@ -260,6 +271,7 @@
 				1BD24C352A4CFFAA001E2F70 /* AddTaskResult.swift */,
 				1BD24C372A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift */,
 				1BECF2622A52F4C70050A615 /* EditProjectResult.swift */,
+				1B344B012A5595C60010F997 /* InviteMeetingResult.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -272,6 +284,22 @@
 				1B45EA4E2A4C515600216F02 /* EmployeeListDropDownMenu.swift */,
 			);
 			path = DropDownMenu;
+			sourceTree = "<group>";
+		};
+		1B344B072A55F1440010F997 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				1B344B052A55F13B0010F997 /* TextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
+		1B344B082A55FEB70010F997 /* TextFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				1B344B092A55FECF0010F997 /* TextFieldStyle.swift */,
+			);
+			path = TextFieldView;
 			sourceTree = "<group>";
 		};
 		1B45EA492A4B5A9100216F02 /* TextFieldLabelValidator */ = {
@@ -460,6 +488,8 @@
 		1BBE94DE2A2FC39A0053A264 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B344B082A55FEB70010F997 /* TextFieldView */,
+				1B344B072A55F1440010F997 /* TextView */,
 				1B45EA492A4B5A9100216F02 /* TextFieldLabelValidator */,
 				1B277E542A49AF0700D6BCAF /* DropDownMenu */,
 				1BF7F6FF2A48DCDB00BD7D12 /* UserAccountTypeCell */,
@@ -659,6 +689,7 @@
 				1BF7F6F12A48C2B100BD7D12 /* UserAccountValidator.swift */,
 				1BF7F6F42A48C8B700BD7D12 /* AccountValidator.swift */,
 				1BF7F6F62A48C91600BD7D12 /* CompanyAccountValidator.swift */,
+				1B344B032A5596640010F997 /* MeetingInviteValidator.swift */,
 			);
 			path = Validator;
 			sourceTree = "<group>";
@@ -829,6 +860,7 @@
 				1BCA43E82A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift in Sources */,
 				1B45EA4D2A4B60EB00216F02 /* TextFieldCompanyValidatorView.swift in Sources */,
 				1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */,
+				1B344B0A2A55FECF0010F997 /* TextFieldStyle.swift in Sources */,
 				1B4BBDA82A4A7806008BF6A7 /* Task.swift in Sources */,
 				1B45EA4F2A4C515600216F02 /* EmployeeListDropDownMenu.swift in Sources */,
 				1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */,
@@ -856,12 +888,14 @@
 				1B45EA522A4C53EC00216F02 /* EmployeeListDropDownMenuCell.swift in Sources */,
 				1BA695002A3515B40098C542 /* ManagerAccountMenuViewController.swift in Sources */,
 				1B4705582A3BA2680013D9C9 /* EditUserAccountListViewController.swift in Sources */,
+				1B344B062A55F13B0010F997 /* TextView.swift in Sources */,
 				1BECD77A2A3B31D7006889CA /* MeetingScheduleViewController.swift in Sources */,
 				1BECD7832A3B330C006889CA /* MeetingEditListEViewController.swift in Sources */,
 				1BF7F6F22A48C2B100BD7D12 /* UserAccountValidator.swift in Sources */,
 				1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */,
 				1BF7F6F92A48D72A00BD7D12 /* EmployeeListTableCell.swift in Sources */,
 				1B4705542A3BA2320013D9C9 /* CreateUserAccountSuccessViewController.swift in Sources */,
+				1B344B042A5596640010F997 /* MeetingInviteValidator.swift in Sources */,
 				1BD49D3C2A3D37C300E0AA41 /* Reachability.swift in Sources */,
 				1BBE94AD2A2F501C0053A264 /* LunchScreenViewController.swift in Sources */,
 				1BBE94A92A2F501C0053A264 /* AppDelegate.swift in Sources */,
@@ -875,6 +909,7 @@
 				1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */,
 				1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */,
 				1BD24C382A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift in Sources */,
+				1B344B002A5417E40010F997 /* Meeting.swift in Sources */,
 				1B7879B92A3A534400CC17E1 /* ProjectDetailsEditViewController.swift in Sources */,
 				1BF7F6F52A48C8B700BD7D12 /* AccountValidator.swift in Sources */,
 				1BECD7892A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift in Sources */,
@@ -887,6 +922,7 @@
 				1B7879C62A3A673500CC17E1 /* ProjectDetailsChangeFailViewController.swift in Sources */,
 				1B7782B12A448C9100CC6013 /* AccountTypes.swift in Sources */,
 				1B277E562A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift in Sources */,
+				1B344B022A5595C60010F997 /* InviteMeetingResult.swift in Sources */,
 				1B7879C82A3A687700CC17E1 /* ProjectEditTaskDetailViewController.swift in Sources */,
 				1BEC96902A3F4EB300D0AFE9 /* Constant.swift in Sources */,
 				1BCA43E62A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift in Sources */,
@@ -1066,7 +1102,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1096,7 +1131,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
