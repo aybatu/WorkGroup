@@ -223,7 +223,7 @@ extension ProjectEditTaskDetailViewController: UITableViewDelegate, UITableViewD
                 }
             }
                 selectedButton?.setTitle("Assign an Employee", for: .normal)
-            print(assignedEmployees)
+     
             tableView.removeFromSuperview()
             tableView.deselectRow(at: indexPath, animated: true)
             return
@@ -232,7 +232,7 @@ extension ProjectEditTaskDetailViewController: UITableViewDelegate, UITableViewD
         let (inserted, _) = assignedEmployees.insert(userAccount)
         
         if !inserted {
-            print(assignedEmployees)
+          
             userExistAlert()
         } else if selectedButton?.currentTitle != "Assign an Employee" {
             let employeeName = selectedButton?.currentTitle
@@ -253,7 +253,7 @@ extension ProjectEditTaskDetailViewController: UITableViewDelegate, UITableViewD
                     }
                 }
             }
-            print(assignedEmployees)
+ 
         } else {
             userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
                 switch isAvailable {
@@ -263,7 +263,7 @@ extension ProjectEditTaskDetailViewController: UITableViewDelegate, UITableViewD
                     self?.employeeIsNotAvailableAlert(message: error)
                 }
             }
-            print(assignedEmployees)
+
         }
         
            

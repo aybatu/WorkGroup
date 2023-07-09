@@ -14,6 +14,8 @@ class RegisteredCompany: Comparable {
     private var _userAccounts: [UserAccount]
     private var _ownerAccount: UserAccount
     private var _projects: Set<Project> = []
+    private var _meetingList: Set<Meeting> = []
+    
     var registrationNumber: String {
         return String(_registrationNumber)
     }
@@ -26,6 +28,9 @@ class RegisteredCompany: Comparable {
     }
     var projects: Set<Project> {
         return _projects
+    }
+    var meetings: Set<Meeting> {
+        return _meetingList
     }
     let companyName: String
     
@@ -51,6 +56,9 @@ class RegisteredCompany: Comparable {
         let (inserted, _) = _projects.insert(project)
         
         completion(inserted)
+    }
+    func addMeeting(meeting: Meeting) {
+        _meetingList.insert(meeting)
     }
     
     static func < (lhs: RegisteredCompany, rhs: RegisteredCompany) -> Bool {

@@ -49,6 +49,11 @@ class ManagerAccountMenuViewController: UIViewController {
                 scheduleMeetingVC.company = company
             }
         }
+        if segue.identifier == Constant.Segue.Manager.MainMenu.managerViewToMeetingList {
+            if let meetingListVC = segue.destination as? MeetingEditListViewController {
+                meetingListVC.company = company
+            }
+        }
     }
     
     func logout() {

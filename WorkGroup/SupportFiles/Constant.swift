@@ -80,15 +80,16 @@ struct Constant {
             struct Meeting {
                 struct ScheduleMeeting {
                     static let meetingDetailsToEmployeeList = "MeetingDetailsToEmployeeList"
+                    static let sendMeetingRequestToFail = "SendMeetingRequestToFail"
+                    static let sendMeetingRequestTotSuccess = "SendMeetingRequestToSuccess"
                 }
-                
-                static let sendMeetingRequestToFail = "SendMeetingRequestToFail"
-                static let sendMeetingRequestTotSuccess = "SendMeetingRequestToSuccess"
-                static let editMeetingListToMeetingDetails = "MeetingListViewToEditMeetingManager"
-                static let meetingEditSaveToFail = "MeetingSaveChangesToFail"
-                static let meetingEditSaveToSuccess = "MeetingSaveChangesToSuccess"
-                static let editInvitedEmployeeToFail = "MeetingEditInvitedEmployeeToFail"
-                static let editInvitedEmployeeToSuccess = "MeetingEditInvitedEmployeeToSuccess"
+                struct EditMeeting {
+                    static let editDetailsToInviteEmployee = "EditMeetingDetailsToInvitedEmployeeList"
+                    static let editMeetingListToMeetingDetails = "MeetingListViewToEditMeetingManager"
+                    static let editInvitedEmployeeToFail = "MeetingEditInvitedEmployeeToFail"
+                    static let editInvitedEmployeeToSuccess = "MeetingEditInvitedEmployeeToSuccess"
+                }
+              
             }
             
            
@@ -157,6 +158,7 @@ struct Constant {
             static let meetingDate = "MeetingDate"
             static let meetingStartTime = "MeetingStartTime"
             static let meetindEndTime = "MeetingEndTime"
+            static let invitedEmployeeList = "InvitedEmployeeList"
         }
     }
 }

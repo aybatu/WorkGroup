@@ -15,7 +15,7 @@ class Meeting: Hashable {
     private var _meetingEndTime: Date
     private var _meetingTitle: String
     private var _meetingDescription: String
-    private var _invitedEmployeeList: Set<UserAccount>
+
     
     var meetingDate: Date {
         return _meetingDate
@@ -32,17 +32,15 @@ class Meeting: Hashable {
     var meetingDescription: String {
         return _meetingDescription
     }
-    var invitedEmployeeList: Set<UserAccount> {
-        return _invitedEmployeeList
-    }
+  
     
-    init(_meetingDate: Date, _meetingStartTime: Date, _meetingEndTime: Date, _meetingTitle: String, _meetingDescription: String, _invitedEmployeeList: Set<UserAccount>) {
+    init(_meetingDate: Date, _meetingStartTime: Date, _meetingEndTime: Date, _meetingTitle: String, _meetingDescription: String) {
         self._meetingDate = _meetingDate
         self._meetingStartTime = _meetingStartTime
         self._meetingEndTime = _meetingEndTime
         self._meetingTitle = _meetingTitle
         self._meetingDescription = _meetingDescription
-        self._invitedEmployeeList = _invitedEmployeeList
+     
     }
     
     func hash(into hasher: inout Hasher) {
@@ -64,9 +62,7 @@ class Meeting: Hashable {
     func editMeetingDescription(meetingDescription: String) {
         _meetingDescription = meetingDescription
     }
-    func editInvitedEmployeeList(invitedEmployeeList: Set<UserAccount>) {
-        _invitedEmployeeList = invitedEmployeeList
-    }
+    
     
     static func == (lhs: Meeting, rhs: Meeting) -> Bool {
         return lhs._meetingTitle == rhs._meetingTitle

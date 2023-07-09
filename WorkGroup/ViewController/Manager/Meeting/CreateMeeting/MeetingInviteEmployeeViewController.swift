@@ -14,7 +14,7 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     @IBOutlet weak var employeeListTableView: UITableView!
     
     var employeeList: [UserAccount] = []
-    
+    private var meeting: Meeting?
     var company: RegisteredCompany?
     private var failWithError: String?
     
@@ -36,13 +36,40 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
         if let companySafe = company {
             employeeList = companySafe.userAccounts
         }
+        createMeeting()
         employeeSearchBar.delegate = self
         employeeListTableView.allowsMultipleSelection = true
         employeeListTableView.delegate = self
         employeeListTableView.dataSource = self
-        
         navigationItem.title = "Employee List"
     }
+    override func viewWillAppear(_ animated: Bool) {
+        for employee in employeeList {
+            if let meetingSafe = meeting {
+                if employee.employeeMeetings.contains(meetingSafe) {
+                    selectedEmployeeList.append(employee)
+                }
+            }
+        }
+        employeeListTableView.reloadData()
+    }
+    
+    private func createMeeting() {
+        guard let meetingTitle = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetingTitle] as? String,
+              let meetingDescription = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetindDescription] as? String,
+              let meetingDate = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetingDate] as? Date,
+              let meetingStartTime = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetingStartTime] as? Date,
+              let meetingEndTime = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetindEndTime] as? Date
+        else {
+            return
+        }
+        
+        meeting = Meeting(_meetingDate: meetingDate, _meetingStartTime: meetingStartTime, _meetingEndTime: meetingEndTime, _meetingTitle: meetingTitle, _meetingDescription: meetingDescription)
+        
+        employeeListTableView.reloadData()
+        
+    }
+    
     
     @IBAction func sendMeetingInviteButton(_ sender: UIButton) {
         let loadingVC = LoadingViewController()
@@ -50,36 +77,29 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
         
         present(loadingVC, animated: false)
         
-        guard let meetingTitle = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetingTitle] as? String,
-              let meetingDescription = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetindDescription] as? String,
-              let meetingDate = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetingDate] as? Date,
-              let meetingStartTime = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetingStartTime] as? Date,
-              let meetingEndTime = meetingDetails[Constant.Dictionary.MeetingDetailsDictionary.meetindEndTime] as? Date
-        else {
-            performSegue(withIdentifier: Constant.Segue.Manager.Meeting.sendMeetingRequestToFail, sender: self)
-            return
-        }
+        
         if selectedEmployeeList.count > 0 {
-            let selecteEmployeeSet = Set(selectedEmployeeList)
-            let newMeeting = Meeting(_meetingDate: meetingDate, _meetingStartTime: meetingStartTime, _meetingEndTime: meetingEndTime, _meetingTitle: meetingTitle, _meetingDescription: meetingDescription, _invitedEmployeeList: selecteEmployeeSet)
+            guard let meetingSafe = meeting else {
+                performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.sendMeetingRequestToFail, sender: self)
+                return
+            }
+            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                
-                for employee in self!.selectedEmployeeList {
-                    employee.addMeeting(meeting: newMeeting)
-                    employee.isSelected = false
-                   
+                if let companySafe = self?.company {
+                    companySafe.addMeeting(meeting: meetingSafe)
                     
                 }
+                
             }
             loadingVC.dismiss(animated: false) { [weak self] in
-                
-                self?.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.sendMeetingRequestTotSuccess, sender: self)
-        }
-        
-        
+                self?.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.sendMeetingRequestTotSuccess, sender: self)
+            }
         } else {
-            showAlert("At least an employee should be invited to create a meeting.")
+            loadingVC.dismiss(animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.showAlert("At least an employee should be invited to create a meeting.")
+            }
         }
         
     }
@@ -97,8 +117,19 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     }
     
     private func performDiscard() {
+        if let meetingSafe = meeting {
+            for employee in selectedEmployeeList {
+                if employee.employeeMeetings.contains(meetingSafe) {
+                    employee.removeMeeting(meeting: meetingSafe)
+                }
+            }
+        }
+        
         guard let navigationController = self.navigationController else {return}
-        navigationController.popToRootViewController(animated: true)
+        DispatchQueue.main.async {
+            navigationController.popToRootViewController(animated: true)
+        }
+        
     }
     
     
@@ -115,6 +146,7 @@ extension MeetingInviteEmployeeViewController {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = employeeListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.meetingEmployeListCellIdentifier, for: indexPath)
+        guard let meetingSafe = meeting else {return cell}
         
         let employee: UserAccount
         if isSearching {
@@ -125,7 +157,7 @@ extension MeetingInviteEmployeeViewController {
         
         cell.textLabel?.text = "\(employee.userFirstName) \(employee.userLastName)"
         
-        if employee.isSelected {
+        if employee.employeeMeetings.contains(meetingSafe) {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -134,6 +166,7 @@ extension MeetingInviteEmployeeViewController {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let meetingSafe = meeting else {return}
         let employee: UserAccount
         if isSearching {
             employee = filteredEmployeeList[indexPath.row]
@@ -147,39 +180,52 @@ extension MeetingInviteEmployeeViewController {
             return
         }
         
-        if employee.isSelected == false {
+        if !employee.employeeMeetings.contains(meetingSafe) {
             meetingInviteValidator.isEmployeeAvailable(meetingDate: meetingDate, meetingStartTime: meetingStartTime, employee: employee) { [weak self] result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success:
                         
-                        employee.isSelected = true
-                        self?.selectedEmployeeList.append(employee)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            tableView.reloadData()
-                            tableView.deselectRow(at: indexPath, animated: true)
-                        }
                         
+                        self?.selectedEmployeeList.append(employee)
+                        employee.addMeeting(meeting: meetingSafe)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            tableView.reloadData()
+                            
+                        }
+                        tableView.deselectRow(at: indexPath, animated: true)
                     case .employeeIsNotAvailable(let errorMsg):
                         tableView.deselectRow(at: indexPath, animated: true)
                         self?.showAlert(errorMsg)
-                      
+                        
                     case .thereIsNoBreakTime(let errorMsg):
                         tableView.deselectRow(at: indexPath, animated: true)
                         self?.showAlert(errorMsg)
                         
+                        
                     }
                 }
             }
+        } else if employee.employeeMeetings.contains(meetingSafe) && !selectedEmployeeList.contains(employee){
+            employee.removeMeeting(meeting: meetingSafe)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                tableView.reloadData()
+                
+            }
             
+            tableView.deselectRow(at: indexPath, animated: true)
         } else {
             if let index = selectedEmployeeList.firstIndex(of: employee) {
                 selectedEmployeeList.remove(at: index)
-                employee.isSelected = false
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                employee.removeMeeting(meeting: meetingSafe)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     tableView.reloadData()
-                    tableView.deselectRow(at: indexPath, animated: true)
+                    
                 }
+                
+                tableView.deselectRow(at: indexPath, animated: true)
+                
             }
         }
         

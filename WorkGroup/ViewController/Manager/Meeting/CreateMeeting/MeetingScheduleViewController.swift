@@ -31,35 +31,40 @@ class MeetingScheduleViewController: UIViewController {
         super.viewDidLoad()
         setupMeetingDate()
         styleTextArea()
-     
+        
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
     }
-   
+    
     private func styleTextArea() {
         textViewStyle.styleTextView(meetingDescriptionTextView)
         textFieldStyle.styleTextField(meetingTitleTextField)
     }
     private func setupMeetingDate() {
         let currentDate = Date()
-        let hour = Calendar.current.component(.hour, from: currentDate)
-        
-           meetingDatePicker.minimumDate = currentDate
-           let oneMonthFromNow = Calendar.current.date(byAdding: .month, value: 1, to: currentDate)
-           meetingDatePicker.maximumDate = oneMonthFromNow
-           
-           if Calendar.current.isDateInToday(currentDate) && hour > 8 {
-               meetingStartTimePicker.minimumDate = Calendar.current.date(bySetting: .minute, value: 10, of: currentDate)
-           } else {
-               meetingStartTimePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: meetingDatePicker.date)
-           }
-           meetingStartTimePicker.maximumDate = Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: meetingDatePicker.date)
-           
-           meetingEndTimePicker.minimumDate = Calendar.current.date(byAdding: .minute, value: 30, to: meetingStartTimePicker.date)
-           meetingEndTimePicker.maximumDate = Calendar.current.date(byAdding: .hour, value: 3, to: meetingStartTimePicker.date)
-       
-    }
+        let calendar = Calendar.current
 
+        if let oneDayAfterCurrentDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+            meetingDatePicker.minimumDate = calendar.startOfDay(for: oneDayAfterCurrentDate)
+        }
+       
+        let oneMonthFromNow = Calendar.current.date(byAdding: .month, value: 1, to: currentDate)
+        meetingDatePicker.maximumDate = oneMonthFromNow
+        
+        let selectedDate = meetingDatePicker.date
+        
+      
+        meetingStartTimePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: selectedDate)
+        
+        meetingStartTimePicker.maximumDate = Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: selectedDate)
+        
+        meetingEndTimePicker.minimumDate = Calendar.current.date(byAdding: .minute, value: 30, to: meetingStartTimePicker.date)
+        meetingEndTimePicker.maximumDate = Calendar.current.date(byAdding: .hour, value: 3, to: meetingStartTimePicker.date)
+    }
+    @IBAction func meetingDatePicker(_ sender: UIDatePicker) {
+        setupMeetingDate()
+    }
+    
     @IBAction func meetingStartTimePicker(_ sender: UIDatePicker) {
         meetingEndTimePicker.minimumDate = Calendar.current.date(byAdding: .minute, value: 30, to: meetingStartTimePicker.date)
         meetingEndTimePicker.maximumDate = Calendar.current.date(byAdding: .hour, value: 3, to: meetingStartTimePicker.date)
@@ -67,17 +72,22 @@ class MeetingScheduleViewController: UIViewController {
     
     @IBAction func inviteEmployeesButton(_ sender: UIButton) {
         if meetingTitleTextField.text?.isEmpty ?? true || meetingDescriptionTextView.text.isEmpty {
-            showAlert()
+            showAlert(title: "Empty Sections", message: "Please fill meeting title and description to porceed.")
         } else {
-            if let meetingTitle = meetingTitleTextField.text, let meetingDescription = meetingDescriptionTextView.text {
-                
-                meetingDetails = [Constant.Dictionary.MeetingDetailsDictionary.meetingTitle: meetingTitle,
-                Constant.Dictionary.MeetingDetailsDictionary.meetindDescription: meetingDescription,
-                Constant.Dictionary.MeetingDetailsDictionary.meetingDate: meetingDatePicker.date,
-                Constant.Dictionary.MeetingDetailsDictionary.meetingStartTime: meetingStartTimePicker.date,
-                Constant.Dictionary.MeetingDetailsDictionary.meetindEndTime: meetingEndTimePicker.date]
-                
-                performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.meetingDetailsToEmployeeList, sender: self)
+            
+            if let meetingTitle = meetingTitleTextField.text, let meetingDescription = meetingDescriptionTextView.text, let companySafe = company {
+                let isMeetingExist = companySafe.meetings.contains { $0.meetingTitle == meetingTitle}
+                if isMeetingExist {
+                   showAlert(title: "Fail", message: "There is a meeting already registered with the same title. Please change the title and try again.")
+                } else {
+                    meetingDetails = [Constant.Dictionary.MeetingDetailsDictionary.meetingTitle: meetingTitle,
+                                      Constant.Dictionary.MeetingDetailsDictionary.meetindDescription: meetingDescription,
+                                      Constant.Dictionary.MeetingDetailsDictionary.meetingDate: meetingDatePicker.date,
+                                      Constant.Dictionary.MeetingDetailsDictionary.meetingStartTime: meetingStartTimePicker.date,
+                                      Constant.Dictionary.MeetingDetailsDictionary.meetindEndTime: meetingEndTimePicker.date]
+                    
+                    performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.meetingDetailsToEmployeeList, sender: self)
+                }
             }
         }
     }
@@ -91,8 +101,8 @@ class MeetingScheduleViewController: UIViewController {
         }
     }
     
-    private func showAlert() {
-        let alertController = UIAlertController(title: "Empty Sections", message: "Please fill meeting title and description to porceed.", preferredStyle: .alert)
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let dismissAction = UIAlertAction(title: "Okay", style: .default)
         

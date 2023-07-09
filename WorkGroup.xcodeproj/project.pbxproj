@@ -82,7 +82,7 @@
 		1BECD77C2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD77B2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift */; };
 		1BECD77E2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD77D2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift */; };
 		1BECD7802A3B3291006889CA /* MeetingCreateFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD77F2A3B3291006889CA /* MeetingCreateFailViewController.swift */; };
-		1BECD7832A3B330C006889CA /* MeetingEditListEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7822A3B330C006889CA /* MeetingEditListEViewController.swift */; };
+		1BECD7832A3B330C006889CA /* MeetingEditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7822A3B330C006889CA /* MeetingEditListViewController.swift */; };
 		1BECD7852A3B3321006889CA /* MeetingEditDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7842A3B3321006889CA /* MeetingEditDetailsViewController.swift */; };
 		1BECD7872A3B3384006889CA /* MeetingEditDetailsFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7862A3B3384006889CA /* MeetingEditDetailsFailViewController.swift */; };
 		1BECD7892A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7882A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift */; };
@@ -197,7 +197,7 @@
 		1BECD77B2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingInviteEmployeeViewController.swift; sourceTree = "<group>"; };
 		1BECD77D2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreateSuccessfulViewController.swift; sourceTree = "<group>"; };
 		1BECD77F2A3B3291006889CA /* MeetingCreateFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreateFailViewController.swift; sourceTree = "<group>"; };
-		1BECD7822A3B330C006889CA /* MeetingEditListEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditListEViewController.swift; sourceTree = "<group>"; };
+		1BECD7822A3B330C006889CA /* MeetingEditListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditListViewController.swift; sourceTree = "<group>"; };
 		1BECD7842A3B3321006889CA /* MeetingEditDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditDetailsViewController.swift; sourceTree = "<group>"; };
 		1BECD7862A3B3384006889CA /* MeetingEditDetailsFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditDetailsFailViewController.swift; sourceTree = "<group>"; };
 		1BECD7882A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEditDetailsSuccessfulViewController.swift; sourceTree = "<group>"; };
@@ -665,7 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				1BECD78A2A3B34FF006889CA /* EditEmployeeList */,
-				1BECD7822A3B330C006889CA /* MeetingEditListEViewController.swift */,
+				1BECD7822A3B330C006889CA /* MeetingEditListViewController.swift */,
 				1BECD7842A3B3321006889CA /* MeetingEditDetailsViewController.swift */,
 				1BECD7862A3B3384006889CA /* MeetingEditDetailsFailViewController.swift */,
 				1BECD7882A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift */,
@@ -890,7 +890,7 @@
 				1B4705582A3BA2680013D9C9 /* EditUserAccountListViewController.swift in Sources */,
 				1B344B062A55F13B0010F997 /* TextView.swift in Sources */,
 				1BECD77A2A3B31D7006889CA /* MeetingScheduleViewController.swift in Sources */,
-				1BECD7832A3B330C006889CA /* MeetingEditListEViewController.swift in Sources */,
+				1BECD7832A3B330C006889CA /* MeetingEditListViewController.swift in Sources */,
 				1BF7F6F22A48C2B100BD7D12 /* UserAccountValidator.swift in Sources */,
 				1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */,
 				1BF7F6F92A48D72A00BD7D12 /* EmployeeListTableCell.swift in Sources */,

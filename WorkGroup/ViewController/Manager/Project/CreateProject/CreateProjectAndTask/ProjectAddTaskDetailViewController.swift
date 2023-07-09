@@ -105,7 +105,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
             }
         }
         employeeArray.insert(nil, at: 0)
-        print(employeeArray)
+     
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
@@ -125,7 +125,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
     
     @IBAction func addTaskButton(_ sender: UIButton) {
         loadingVC.modalPresentationStyle = .fullScreen
-        
+        resetTextFields()
         loadingVC.dismiss(animated: false) { [weak self] in
             self?.addTask {[weak self] result in
                 switch result {
@@ -159,6 +159,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
             }
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constant.Segue.Manager.Project.CreateProject.CreateTask.addTaskToFail {
             if let addTaskFailVC = segue.destination as? ProjectAddTaskFailViewController {
@@ -249,6 +250,11 @@ class ProjectAddTaskDetailViewController: UIViewController {
         fourthEmployeeButton.setTitle("Assign an Employee", for: .normal)
         fifthEmployeeButton.setTitle("Assign an Employee", for: .normal)
     }
+    
+    private func resetTextFields() {
+        taskTitleTextField.text = ""
+        taskDescriptionTextView.text = ""
+    }
 }
 
 extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -282,7 +288,7 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
                 }
             }
                 selectedButton?.setTitle("Assign an Employee", for: .normal)
-            print(assignedUserList)
+ 
             tableView.removeFromSuperview()
             tableView.deselectRow(at: indexPath, animated: true)
             return

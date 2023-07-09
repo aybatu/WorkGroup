@@ -15,7 +15,6 @@ class UserAccount: Comparable, Hashable {
     private var _password: String
     private var _userTasks: Set<Task>
     private var _employeeTaskCapacity = 3
-    var isSelected = false
     private var _employeeMeetings: [Meeting]
     
     var accountType: AccountTypes {

@@ -106,19 +106,19 @@ class CreateUserAccountViewController: UIViewController {
             loadingViewController.modalPresentationStyle = .fullScreen
             present(loadingViewController, animated: false)
             
-            
+            let (inserted, _) = self.userAccounts.insert(newUser)
+            if inserted {
+                company.addUserAccount(newUser)
+                self.isAccountCreated = true
+                self.isAccountExist = false
+            } else {
+                self.isAccountCreated = false
+                self.isAccountExist = true
+            }
+           
+            clearTextFields()
+        
             loadingViewController.dismiss(animated: false) {
-                
-                    let (inserted, _) = self.userAccounts.insert(newUser)
-                    if inserted {
-                        company.addUserAccount(newUser)
-                        self.isAccountCreated = true
-                        self.isAccountExist = false
-                    } else {
-                        self.isAccountCreated = false
-                        self.isAccountExist = true
-                    }
-                
                 
                 if self.isAccountCreated {
                     self.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)
@@ -212,6 +212,12 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    private func clearTextFields() {
+        for textField in textFields {
+            textField.text = ""
+        }
     }
 }
 

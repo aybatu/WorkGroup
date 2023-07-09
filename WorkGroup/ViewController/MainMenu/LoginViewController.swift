@@ -78,7 +78,8 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
-        } else if segue.identifier == Constant.Segue.Login.loginToManager {
+        }
+        if segue.identifier == Constant.Segue.Login.loginToManager {
             if let navController = segue.destination as? UINavigationController,
                let managerViewController = navController.topViewController as? ManagerAccountMenuViewController {
                 if let registerNo = companyRegistrationNumberTextField.text {
@@ -88,12 +89,13 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
-        } else if segue.identifier == Constant.Segue.Login.loginToEmployee {
+        }
+        if segue.identifier == Constant.Segue.Login.loginToEmployee {
             if let navController = segue.destination as? UINavigationController,
                let employeeViewController = navController.topViewController as? EmployeeMainMenuViewController {
                 if let registerNo = companyRegistrationNumberTextField.text {
                     if let company = isCompany(registerNo: registerNo) {
-                        employeeViewController.company = company
+                        employeeViewController.userAccount = company.userAccounts.first(where: {$0.emailAddress == loginEmailTextField.text})
                         
                     }
                 }
