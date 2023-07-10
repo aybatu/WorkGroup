@@ -215,8 +215,16 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
     }
     
     private func clearTextFields() {
+       isNameValid = false
+      isSurnameValid = false
+        isEmailValid = false
+        doEmailsMatch = false
+        isPasswordValid = false
+       doPasswordsMatch = false
+         isAccountExist = false
         for textField in textFields {
             textField.text = ""
+            textFieldStyle.styleTextField(textField)
         }
     }
 }

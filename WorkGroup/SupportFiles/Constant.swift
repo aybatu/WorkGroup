@@ -19,10 +19,20 @@ struct Constant {
             static let loginToEmployee = "LoginViewToEmployee"
         }
         struct Employee {
-            static let taskDetailToSuccess = "TaskDetailsViewToMarkCompleteSuccess"
-            static let taskDetailToFail = "TaskDetailsViewToMarkCompleteFail"
-            static let taskListToTaskDetails = "TaskListEmployeeToTaskDetails"
-            static let meetingListToMeetingDetails = "EmployeeMeetingListViewToDetails"
+            struct MainMenu {
+                static let employeeMenuToTasks = "EmployeeViewToTasks"
+                static let employeeMenuToMeetings = "EmployeeMenuToMeetings"
+            }
+            struct AssignedTask {
+                static let taskListToTaskDetails = "TaskListEmployeeToTaskDetails"
+                static let taskDetailToSuccess = "TaskDetailsViewToMarkCompleteSuccess"
+                static let taskDetailToFail = "TaskDetailsViewToMarkCompleteFail"
+            }
+            struct Meeting {
+                static let meetingListToMeetingDetails = "EmployeeMeetingListViewToDetails"
+            }
+           
+   
             static let employeeDateListToPerformanceGraph = "DateToPerformanceGraphEmployee"
         }
         

@@ -14,6 +14,7 @@ class EmployeeMainMenuViewController: UIViewController {
         super.viewDidLoad()
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
+     
         navigationItem.rightBarButtonItem = logoutButton
     }
     
@@ -26,6 +27,19 @@ class EmployeeMainMenuViewController: UIViewController {
         })
         confirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(confirmationAlert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.Segue.Employee.MainMenu.employeeMenuToTasks {
+            if let taskListVC = segue.destination as? EmployeeAssignedTaskListViewController {
+                taskListVC.employee = userAccount
+            }
+        }
+        if segue.identifier == Constant.Segue.Employee.MainMenu.employeeMenuToMeetings {
+            if let meetingListVC = segue.destination as? EmployeeMeetingListViewController {
+                meetingListVC.employee = userAccount
+            }
+        }
     }
     
     func logout() {

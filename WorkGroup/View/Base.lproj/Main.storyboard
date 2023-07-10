@@ -1914,7 +1914,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Assigned Tasks"/>
                                         <connections>
-                                            <segue destination="UH9-6c-Z9u" kind="show" identifier="EmployeeViewToProjects" id="z58-V1-ErU"/>
+                                            <segue destination="UH9-6c-Z9u" kind="show" identifier="EmployeeViewToTasks" id="z58-V1-ErU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEc-Fb-mta">
@@ -1925,7 +1925,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Meetings"/>
                                         <connections>
-                                            <segue destination="hdW-xf-Wl9" kind="show" identifier="EmployeeViewToMeetings" id="xXL-B5-82j"/>
+                                            <segue destination="hdW-xf-Wl9" kind="show" identifier="EmployeeMenuToMeetings" id="xXL-B5-82j"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUr-Qi-Kzd">
@@ -2088,6 +2088,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="3bJ-Gt-4eo"/>
                     <connections>
+                        <outlet property="taskDescriptionTextLabel" destination="CFm-OU-R8n" id="z3v-A7-kOe"/>
+                        <outlet property="taskEndDateTextLabel" destination="SgN-Sp-Duf" id="b6s-au-WKu"/>
+                        <outlet property="taskStartDateTextLabel" destination="gH3-9K-TTX" id="SPQ-L9-WFI"/>
+                        <outlet property="taskTitleTextLabel" destination="BSy-6f-KXk" id="u7Z-99-Uce"/>
                         <segue destination="PFc-9u-Pa8" kind="show" identifier="TaskDetailsViewToMarkCompleteFail" id="0aK-vi-m8Q"/>
                         <segue destination="iuz-Cn-2kG" kind="show" identifier="TaskDetailsViewToMarkCompleteSuccess" id="TOY-gi-e5U"/>
                     </connections>
@@ -2129,7 +2133,6 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Main Menu"/>
                                         <connections>
-                                            <action selector="mainMenu:" destination="hdW-xf-Wl9" eventType="touchUpInside" id="rtT-Z9-yjw"/>
                                             <action selector="mainMenuButton:" destination="hdW-xf-Wl9" eventType="touchUpInside" id="ptq-JU-EH6"/>
                                         </connections>
                                     </button>
@@ -3683,16 +3686,16 @@
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="388" height="70"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Ly-Il-PpY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="70"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="115" height="70"/>
                                                         <subviews>
                                                             <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="FKa-Ex-sKp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="55.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="115" height="55.666666666666664"/>
                                                                 <connections>
                                                                     <action selector="meetingStartTimePicker:" destination="JxX-GH-byx" eventType="valueChanged" id="6Ql-Yt-elg"/>
                                                                 </connections>
                                                             </datePicker>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7m-wt-1tu">
-                                                                <rect key="frame" x="0.0" y="55.666666666666629" width="108.33333333333333" height="14.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="55.666666666666629" width="115" height="14.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4600,7 +4603,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QrG-jn-DQJ">
-                                <rect key="frame" x="20" y="362" width="388" height="192.33333333333337"/>
+                                <rect key="frame" x="20" y="346.66666666666669" width="388" height="222.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="y3O-w6-9az">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="111.66666666666667"/>
@@ -4621,16 +4624,22 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A4a-67-XeB">
-                                        <rect key="frame" x="0.0" y="141.66666666666669" width="388" height="50.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="141.66666666666663" width="388" height="81"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task start date: 15/05/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rP-M9-yVf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting Date: 15/05/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk1-0O-pkk">
                                                 <rect key="frame" x="0.0" y="0.0" width="388" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task deadline: 15/06/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fo-yy-pSF">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting start time: 15:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rP-M9-yVf">
                                                 <rect key="frame" x="0.0" y="30.333333333333314" width="388" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting end time: 15:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fo-yy-pSF">
+                                                <rect key="frame" x="0.0" y="60.666666666666693" width="388" height="20.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -4649,6 +4658,13 @@
                             <constraint firstItem="QrG-jn-DQJ" firstAttribute="leading" secondItem="rgI-2H-fRU" secondAttribute="leading" constant="20" id="yMG-Er-0fT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="meetingDateLabel" destination="Kk1-0O-pkk" id="M89-Kv-EgY"/>
+                        <outlet property="meetingDescriptionLabel" destination="fRH-0p-l8m" id="Tva-eE-tqu"/>
+                        <outlet property="meetingEndDateLabel" destination="4fo-yy-pSF" id="quj-kQ-RFt"/>
+                        <outlet property="meetingStartDateLabel" destination="8rP-M9-yVf" id="EsQ-pF-Sev"/>
+                        <outlet property="meetingTitleLabel" destination="j3V-OD-cyY" id="6H1-Tl-hD2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5z-T7-299" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

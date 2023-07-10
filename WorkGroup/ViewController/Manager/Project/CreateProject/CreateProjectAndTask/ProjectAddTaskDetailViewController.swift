@@ -125,13 +125,15 @@ class ProjectAddTaskDetailViewController: UIViewController {
     
     @IBAction func addTaskButton(_ sender: UIButton) {
         loadingVC.modalPresentationStyle = .fullScreen
-        resetTextFields()
+     
         loadingVC.dismiss(animated: false) { [weak self] in
             self?.addTask {[weak self] result in
                 switch result {
                 case .success:
                     self?.assignedUserList.removeAll()
+                    self?.resetTextFields()
                     self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.CreateProject.CreateTask.addTaskToSuccess, sender: self)
+                   
                 case .failure(let error):
                     self?.addTaskFailWithError = error
                     self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.CreateProject.CreateTask.addTaskToFail, sender: self)
