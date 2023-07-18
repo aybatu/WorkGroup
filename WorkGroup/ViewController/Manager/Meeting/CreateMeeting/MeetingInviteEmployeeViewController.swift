@@ -13,15 +13,15 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     @IBOutlet weak var employeeSearchBar: UISearchBar!
     @IBOutlet weak var employeeListTableView: UITableView!
     
-    var employeeList: [UserAccount] = []
+    var employeeList: [Employee] = []
     private var meeting: Meeting?
-    var company: RegisteredCompany?
+    var company: Company?
     private var failWithError: String?
     
     let meetingInviteValidator = MeetingInviteValidator()
     
-    private var selectedEmployeeList: [UserAccount] = []
-    private var filteredEmployeeList: [UserAccount] = []
+    private var selectedEmployeeList: [Employee] = []
+    private var filteredEmployeeList: [Employee] = []
     private var isSearching: Bool = false
     var meetingDetails: [String: Any?] = [
         Constant.Dictionary.MeetingDetailsDictionary.meetingTitle: nil,
@@ -34,7 +34,7 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         if let companySafe = company {
-            employeeList = companySafe.userAccounts
+            employeeList = Array(companySafe.employeeAccounts)
         }
         createMeeting()
         employeeSearchBar.delegate = self
@@ -64,7 +64,7 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
             return
         }
         
-        meeting = Meeting(_meetingDate: meetingDate, _meetingStartTime: meetingStartTime, _meetingEndTime: meetingEndTime, _meetingTitle: meetingTitle, _meetingDescription: meetingDescription)
+        meeting = Meeting(meetingDate: meetingDate, meetingStartTime: meetingStartTime, meetingEndTime: meetingEndTime, meetingTitle: meetingTitle, meetingDescription: meetingDescription)
         
         employeeListTableView.reloadData()
         
@@ -87,7 +87,7 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 if let companySafe = self?.company {
-                    companySafe.addMeeting(meeting: meetingSafe)
+                    companySafe.addMeeting(meetingSafe)
                     
                 }
                 
@@ -148,7 +148,7 @@ extension MeetingInviteEmployeeViewController {
         let cell = employeeListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.meetingEmployeListCellIdentifier, for: indexPath)
         guard let meetingSafe = meeting else {return cell}
         
-        let employee: UserAccount
+        let employee: Employee
         if isSearching {
             employee = filteredEmployeeList[indexPath.row]
         } else {
@@ -167,7 +167,7 @@ extension MeetingInviteEmployeeViewController {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let meetingSafe = meeting else {return}
-        let employee: UserAccount
+        let employee: Employee
         if isSearching {
             employee = filteredEmployeeList[indexPath.row]
         } else {

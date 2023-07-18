@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Project: Comparable, Hashable {
- 
+class Project: Comparable, Hashable, Codable {
+    
     private var _title: String
     private var _description: String
     private var _tasks: Set<Task>
@@ -73,4 +73,31 @@ class Project: Comparable, Hashable {
         return lhs._title < rhs._title
     }
     
+    // MARK: - Codable
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case description
+        case tasks
+        case startDate
+        case finishDate
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(_title, forKey: .title)
+        try container.encode(_description, forKey: .description)
+        try container.encode(_tasks, forKey: .tasks)
+        try container.encode(_startDate, forKey: .startDate)
+        try container.encode(_finishDate, forKey: .finishDate)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        _title = try container.decode(String.self, forKey: .title)
+        _description = try container.decode(String.self, forKey: .description)
+        _tasks = try container.decode(Set<Task>.self, forKey: .tasks)
+        _startDate = try container.decode(Date.self, forKey: .startDate)
+        _finishDate = try container.decode(Date.self, forKey: .finishDate)
+    }
 }

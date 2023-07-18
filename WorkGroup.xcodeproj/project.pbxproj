@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B1296A92A43F10400866159 /* RegisteredCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1296A82A43F10400866159 /* RegisteredCompany.swift */; };
+		1B1296A92A43F10400866159 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1296A82A43F10400866159 /* Company.swift */; };
 		1B1800D72A437F18003E67AF /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1800D62A437F18003E67AF /* DataBase.swift */; };
 		1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */; };
+		1B25B0092A647B3F008BCE0F /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B25B0082A647B3F008BCE0F /* Manager.swift */; };
+		1B25B00D2A65B710008BCE0F /* CompanyCreateAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B25B00C2A65B710008BCE0F /* CompanyCreateAccountService.swift */; };
+		1B25B00F2A65E30E008BCE0F /* UserAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B25B00E2A65E30E008BCE0F /* UserAccountRequest.swift */; };
 		1B277E532A49A36300D6BCAF /* EditAccountResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B277E522A49A36300D6BCAF /* EditAccountResult.swift */; };
 		1B277E562A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */; };
 		1B344B002A5417E40010F997 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B344AFF2A5417E40010F997 /* Meeting.swift */; };
@@ -32,6 +35,8 @@
 		1B47055E2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47055D2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift */; };
 		1B4BBDA62A4A779D008BF6A7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4BBDA52A4A779D008BF6A7 /* Project.swift */; };
 		1B4BBDA82A4A7806008BF6A7 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4BBDA72A4A7806008BF6A7 /* Task.swift */; };
+		1B555E042A630362000307FD /* UserValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B555E032A630362000307FD /* UserValidationService.swift */; };
+		1B555E062A6305F9000307FD /* CompanyValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B555E052A6305F9000307FD /* CompanyValidationService.swift */; };
 		1B7782B12A448C9100CC6013 /* AccountTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7782B02A448C9100CC6013 /* AccountTypes.swift */; };
 		1B7879B52A3A520E00CC17E1 /* ProjectListEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7879B42A3A520E00CC17E1 /* ProjectListEdit.swift */; };
 		1B7879B92A3A534400CC17E1 /* ProjectDetailsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7879B82A3A534400CC17E1 /* ProjectDetailsEditViewController.swift */; };
@@ -76,6 +81,10 @@
 		1BE466C02A43B6F30073973F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466BF2A43B6F30073973F /* LoadingViewController.swift */; };
 		1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466C62A43C3DE0073973F /* BinarySearch.swift */; };
 		1BE466C92A43C6280073973F /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466C82A43C6280073973F /* UserAccount.swift */; };
+		1BEB29B82A5F8BB5001EE469 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB29B72A5F8BB5001EE469 /* RegistrationService.swift */; };
+		1BEB29BA2A5F8E4B001EE469 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB29B92A5F8E4B001EE469 /* Employee.swift */; };
+		1BEB29BE2A5F9060001EE469 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB29BD2A5F9060001EE469 /* Admin.swift */; };
+		1BEB29C22A5FC605001EE469 /* CrateOwnerAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB29C12A5FC605001EE469 /* CrateOwnerAccount.swift */; };
 		1BEC96902A3F4EB300D0AFE9 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */; };
 		1BECD7762A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7752A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift */; };
 		1BECD77A2A3B31D7006889CA /* MeetingScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BECD7792A3B31D7006889CA /* MeetingScheduleViewController.swift */; };
@@ -118,9 +127,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B1296A82A43F10400866159 /* RegisteredCompany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCompany.swift; sourceTree = "<group>"; };
+		1B1296A82A43F10400866159 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		1B1800D62A437F18003E67AF /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		1B1B3EF62A479CFE0001D191 /* AccountCreationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationResult.swift; sourceTree = "<group>"; };
+		1B25B0082A647B3F008BCE0F /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		1B25B00C2A65B710008BCE0F /* CompanyCreateAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCreateAccountService.swift; sourceTree = "<group>"; };
+		1B25B00E2A65E30E008BCE0F /* UserAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountRequest.swift; sourceTree = "<group>"; };
 		1B277E522A49A36300D6BCAF /* EditAccountResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountResult.swift; sourceTree = "<group>"; };
 		1B277E552A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountTypeDropDownMenu.swift; sourceTree = "<group>"; };
 		1B344AFF2A5417E40010F997 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
@@ -142,6 +154,8 @@
 		1B47055D2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserAccountFailViewController.swift; sourceTree = "<group>"; };
 		1B4BBDA52A4A779D008BF6A7 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		1B4BBDA72A4A7806008BF6A7 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		1B555E032A630362000307FD /* UserValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserValidationService.swift; sourceTree = "<group>"; };
+		1B555E052A6305F9000307FD /* CompanyValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyValidationService.swift; sourceTree = "<group>"; };
 		1B7782B02A448C9100CC6013 /* AccountTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypes.swift; sourceTree = "<group>"; };
 		1B7879B42A3A520E00CC17E1 /* ProjectListEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListEdit.swift; sourceTree = "<group>"; };
 		1B7879B82A3A534400CC17E1 /* ProjectDetailsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsEditViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +205,10 @@
 		1BE466BF2A43B6F30073973F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		1BE466C62A43C3DE0073973F /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		1BE466C82A43C6280073973F /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		1BEB29B72A5F8BB5001EE469 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		1BEB29B92A5F8E4B001EE469 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		1BEB29BD2A5F9060001EE469 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
+		1BEB29C12A5FC605001EE469 /* CrateOwnerAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrateOwnerAccount.swift; sourceTree = "<group>"; };
 		1BEC968F2A3F4EB300D0AFE9 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		1BECD7752A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddTaskDetailViewController.swift; sourceTree = "<group>"; };
 		1BECD7792A3B31D7006889CA /* MeetingScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingScheduleViewController.swift; sourceTree = "<group>"; };
@@ -252,12 +270,15 @@
 		1B1800D52A437CD7003E67AF /* AppEntities */ = {
 			isa = PBXGroup;
 			children = (
-				1B1296A82A43F10400866159 /* RegisteredCompany.swift */,
+				1B1296A82A43F10400866159 /* Company.swift */,
 				1BE466C82A43C6280073973F /* UserAccount.swift */,
 				1B7782B02A448C9100CC6013 /* AccountTypes.swift */,
 				1B4BBDA52A4A779D008BF6A7 /* Project.swift */,
 				1B4BBDA72A4A7806008BF6A7 /* Task.swift */,
 				1B344AFF2A5417E40010F997 /* Meeting.swift */,
+				1BEB29B92A5F8E4B001EE469 /* Employee.swift */,
+				1BEB29BD2A5F9060001EE469 /* Admin.swift */,
+				1B25B0082A647B3F008BCE0F /* Manager.swift */,
 			);
 			path = AppEntities;
 			sourceTree = "<group>";
@@ -331,6 +352,12 @@
 			isa = PBXGroup;
 			children = (
 				1B1800D62A437F18003E67AF /* DataBase.swift */,
+				1BEB29B72A5F8BB5001EE469 /* RegistrationService.swift */,
+				1BEB29C12A5FC605001EE469 /* CrateOwnerAccount.swift */,
+				1B555E032A630362000307FD /* UserValidationService.swift */,
+				1B555E052A6305F9000307FD /* CompanyValidationService.swift */,
+				1B25B00C2A65B710008BCE0F /* CompanyCreateAccountService.swift */,
+				1B25B00E2A65E30E008BCE0F /* UserAccountRequest.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -851,23 +878,29 @@
 				1B7879BB2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift in Sources */,
 				1B7879C02A3A668000CC17E1 /* CreatProjectSuccessfulViewController.swift in Sources */,
 				1BCA43F42A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift in Sources */,
-				1B1296A92A43F10400866159 /* RegisteredCompany.swift in Sources */,
+				1B555E042A630362000307FD /* UserValidationService.swift in Sources */,
+				1B1296A92A43F10400866159 /* Company.swift in Sources */,
 				1BECD7762A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift in Sources */,
 				1BCA43F02A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift in Sources */,
 				1B7879CA2A3A68A300CC17E1 /* ProjectTaskEditSuccessfulViewController.swift in Sources */,
 				1BBE94DC2A2FACC10053A264 /* MainMenuViewController.swift in Sources */,
 				1BECF2632A52F4C70050A615 /* EditProjectResult.swift in Sources */,
+				1BEB29BE2A5F9060001EE469 /* Admin.swift in Sources */,
 				1BCA43E82A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift in Sources */,
 				1B45EA4D2A4B60EB00216F02 /* TextFieldCompanyValidatorView.swift in Sources */,
 				1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */,
+				1B25B00F2A65E30E008BCE0F /* UserAccountRequest.swift in Sources */,
 				1B344B0A2A55FECF0010F997 /* TextFieldStyle.swift in Sources */,
 				1B4BBDA82A4A7806008BF6A7 /* Task.swift in Sources */,
 				1B45EA4F2A4C515600216F02 /* EmployeeListDropDownMenu.swift in Sources */,
+				1B25B0092A647B3F008BCE0F /* Manager.swift in Sources */,
 				1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */,
 				1BECD77E2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift in Sources */,
 				1B7879C22A3A66BA00CC17E1 /* CreatProjectFailViewController.swift in Sources */,
+				1B555E062A6305F9000307FD /* CompanyValidationService.swift in Sources */,
 				1BF7F6F72A48C91600BD7D12 /* CompanyAccountValidator.swift in Sources */,
 				1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */,
+				1BEB29B82A5F8BB5001EE469 /* RegistrationService.swift in Sources */,
 				1BD49D362A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift in Sources */,
 				1B7879C42A3A66FD00CC17E1 /* ProjectDetailsChangeSuccessfulViewController.swift in Sources */,
 				1BF7F7012A48DCF600BD7D12 /* UserAccountTypeCell.swift in Sources */,
@@ -891,6 +924,7 @@
 				1B344B062A55F13B0010F997 /* TextView.swift in Sources */,
 				1BECD77A2A3B31D7006889CA /* MeetingScheduleViewController.swift in Sources */,
 				1BECD7832A3B330C006889CA /* MeetingEditListViewController.swift in Sources */,
+				1BEB29C22A5FC605001EE469 /* CrateOwnerAccount.swift in Sources */,
 				1BF7F6F22A48C2B100BD7D12 /* UserAccountValidator.swift in Sources */,
 				1BECD78E2A3B36FE006889CA /* MeetingEditEmployeeListFailViewController.swift in Sources */,
 				1BF7F6F92A48D72A00BD7D12 /* EmployeeListTableCell.swift in Sources */,
@@ -899,6 +933,8 @@
 				1BD49D3C2A3D37C300E0AA41 /* Reachability.swift in Sources */,
 				1BBE94AD2A2F501C0053A264 /* LunchScreenViewController.swift in Sources */,
 				1BBE94A92A2F501C0053A264 /* AppDelegate.swift in Sources */,
+				1BEB29BA2A5F8E4B001EE469 /* Employee.swift in Sources */,
+				1B25B00D2A65B710008BCE0F /* CompanyCreateAccountService.swift in Sources */,
 				1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */,
 				1BECD7872A3B3384006889CA /* MeetingEditDetailsFailViewController.swift in Sources */,
 				1BCA43E32A3CE9B100A2ED59 /* EmployeeMainMenuViewController.swift in Sources */,

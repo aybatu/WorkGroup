@@ -11,7 +11,7 @@ class MeetingEditListViewController: UIViewController {
 
     @IBOutlet weak var editMeetingListTableView: UITableView!
     var meetingList: [Meeting] = []
-    var company: RegisteredCompany?
+    var company: Company?
     private var selectedMeeting: Meeting?
     override func viewDidLoad() {
         super.viewDidLoad()

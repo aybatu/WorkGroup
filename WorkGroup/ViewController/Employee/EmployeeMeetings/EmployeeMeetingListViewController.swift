@@ -10,7 +10,7 @@ import UIKit
 class EmployeeMeetingListViewController: UIViewController {
     
     @IBOutlet weak var meetingListTableView: UITableView!
-    var employee: UserAccount?
+    var employee: Employee?
     private var meetingList: [Meeting] = []
     private var selectedMeeting: Meeting?
     override func viewDidLoad() {

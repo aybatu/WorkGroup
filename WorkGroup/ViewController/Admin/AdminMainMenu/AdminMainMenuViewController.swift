@@ -9,8 +9,8 @@ import UIKit
 
 class AdminMainMenuViewController: UIViewController {
     
-    var company: RegisteredCompany?
-    private var userAccounts: Set<UserAccount> = []
+    var company: Company?
+    private var userAccounts: Set<Employee> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,13 +76,13 @@ class AdminMainMenuViewController: UIViewController {
         }
     }
     
-    private func getEmployeeList(completion: @escaping (Set<UserAccount>) -> Void) {
+    private func getEmployeeList(completion: @escaping (Set<Employee>) -> Void) {
         
         if let company = company {
             
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    let userAccounts = company.userAccounts
-                    var userAccountsSet: Set<UserAccount> = []
+                    let userAccounts = company.employeeAccounts
+                    var userAccountsSet: Set<Employee> = []
                     for userAccount in userAccounts {
                         userAccountsSet.insert(userAccount)
                     }

@@ -24,11 +24,11 @@ class CreateUserAccountViewController: UIViewController {
     @IBOutlet private weak var createUserAccButton: UIButton!
     @IBOutlet private weak var confirmEmailAddressLabel: UILabel!
     
-    var userAccounts: Set<UserAccount> = []
+    var userAccounts: Set<Employee> = []
     private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     
     
-    private var isAccountCreated = true
+    
     private var tableView = UITableView()
     private var textFields: [UITextField] = []
     private var isNameValid = false
@@ -38,8 +38,8 @@ class CreateUserAccountViewController: UIViewController {
     private var isPasswordValid = false
     private var doPasswordsMatch = false
     private var isAccountExist = false
-    var company: RegisteredCompany?
-    private var accountTypes: [AccountTypes] = AccountTypes.allCases
+    var company: Company?
+    private var accountTypes: [AccountTypes] = AccountTypes.employeeCases
     private var accountType: AccountTypes?
     private var textFieldStyle = TextFieldStyle()
     
@@ -55,30 +55,30 @@ class CreateUserAccountViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-           super.viewWillDisappear(animated)
+        super.viewWillDisappear(animated)
         tableView.removeFromSuperview()
         
-       }
+    }
     
     
     
     private func setupTapGesture() {
-           tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-           tapGesture?.cancelsTouchesInView = false
-           view.addGestureRecognizer(tapGesture!)
-       }
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture?.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture!)
+    }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
-            // Dismiss the dropdown menu
+        // Dismiss the dropdown menu
         tableView.removeFromSuperview()
-
-            // Dismiss the keyboard
-            view.endEditing(true)
-
-        }
+        
+        // Dismiss the keyboard
+        view.endEditing(true)
+        
+    }
     
     private func setAccountTypes() {
-        accountTypes.append(contentsOf: AccountTypes.allCases)
+        accountTypes.append(contentsOf: AccountTypes.employeeCases)
     }
     
     private func setupTextFields() {
@@ -95,37 +95,39 @@ class CreateUserAccountViewController: UIViewController {
               let emailAddress = emailAddressTextField.text,
               let password = passwordTextField.text,
               let accountType = accountType,
-              let company = company else {
+              let companyRegNo = company?.registrationNumber else {
             return
         }
         
         if isEmailValid && doEmailsMatch && isPasswordValid && doPasswordsMatch && isNameValid && isSurnameValid {
             let loadingViewController = LoadingViewController()
-            let newUser = UserAccount(accountType: accountType, emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
-            
-            loadingViewController.modalPresentationStyle = .fullScreen
+            loadingViewController.modalPresentationStyle = .overCurrentContext
             present(loadingViewController, animated: false)
             
-            let (inserted, _) = self.userAccounts.insert(newUser)
-            if inserted {
-                company.addUserAccount(newUser)
-                self.isAccountCreated = true
-                self.isAccountExist = false
-            } else {
-                self.isAccountCreated = false
-                self.isAccountExist = true
-            }
-           
-            clearTextFields()
-        
-            loadingViewController.dismiss(animated: false) {
-                
-                if self.isAccountCreated {
-                    self.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)
-                } else {
-                    self.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToFail, sender: self)
+            
+            let createAccount = CompanyCreateAccountService()
+            let userAccountRequest = UserAccountRequest(accountType: accountType,emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
+            
+            createAccount.createAccount(companyRegistrationNumber: companyRegNo, accountType: accountType.rawValue, request: userAccountRequest) {[weak self] result, error in
+                if let error = error {
+                    print(error)
                 }
+                print(result)
+               
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.clearTextFields()
+                    loadingViewController.dismiss(animated: false) {
+                        
+                        if result {
+                            self?.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)
+                        } else {
+                            self?.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToFail, sender: self)
+                        }
+                    }
+                }
+                
             }
+            
         }
     }
     
@@ -142,7 +144,7 @@ class CreateUserAccountViewController: UIViewController {
     }
     
     private func showDropdownMenu() {
-       
+        
         accountTypeDropDownMenu.showDropdownMenu(from: selectAccountTypeButton, with: accountTypes, tableView: tableView) { [weak self] (selectedAccountType) in
             
             self?.accountType = selectedAccountType
@@ -215,13 +217,13 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
     }
     
     private func clearTextFields() {
-       isNameValid = false
-      isSurnameValid = false
+        isNameValid = false
+        isSurnameValid = false
         isEmailValid = false
         doEmailsMatch = false
         isPasswordValid = false
-       doPasswordsMatch = false
-         isAccountExist = false
+        doPasswordsMatch = false
+        isAccountExist = false
         for textField in textFields {
             textField.text = ""
             textFieldStyle.styleTextField(textField)
@@ -231,7 +233,7 @@ extension CreateUserAccountViewController: UITextFieldDelegate {
 
 extension CreateUserAccountViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
+        
         return accountTypes.count
     }
     
@@ -245,7 +247,7 @@ extension CreateUserAccountViewController: UITableViewDelegate, UITableViewDataS
         let selectedAccountType = accountTypes[indexPath.row]
         accountType = selectedAccountType
         selectAccountTypeButton.setTitle(selectedAccountType.rawValue, for: .normal)
- 
+        
         tableView.removeFromSuperview()
         enableRegistrationButton()
         tableView.deselectRow(at: indexPath, animated: true)

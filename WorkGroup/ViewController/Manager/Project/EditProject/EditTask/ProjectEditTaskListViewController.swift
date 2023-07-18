@@ -10,7 +10,7 @@ import UIKit
 class ProjectEditTaskListViewController: UIViewController{
     var project: Project?
     private var selectedTask: Task?
-    var company: RegisteredCompany?
+    var company: Company?
     
     @IBOutlet weak var taskListTableView: UITableView!
     

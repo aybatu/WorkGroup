@@ -18,7 +18,7 @@ class ProjectDetailsViewController: UIViewController {
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     
-    var company: RegisteredCompany?
+    var company: Company?
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()
     private var projectDetails: [String: Any?] = [

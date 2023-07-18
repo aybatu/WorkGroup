@@ -11,11 +11,11 @@ class ProjectEditTaskDetailViewController: UIViewController {
     
     var task: Task?
     var project: Project?
-    var company: RegisteredCompany?
+    var company: Company?
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()
-    private var assignedEmployees: Set<UserAccount> = []
-    private var employeeArr: [UserAccount?] = []
+    private var assignedEmployees: Set<Employee> = []
+    private var employeeArr: [Employee?] = []
     private let dropDownMenu = EmployeeListDropDownMenu()
     private var errorWithFail: String?
     private lazy var tableView: UITableView = {
@@ -90,7 +90,7 @@ class ProjectEditTaskDetailViewController: UIViewController {
     private func loadData() {
         if let taskSafe = task, let companySafe = company {
             assignedEmployees = taskSafe.assignedEmployees
-            employeeArr = Array(companySafe.userAccounts)
+            employeeArr = Array(companySafe.employeeAccounts)
             employeeArr.insert(nil, at: 0)
         }
     }
@@ -124,14 +124,12 @@ class ProjectEditTaskDetailViewController: UIViewController {
     }
     
     private func setUpDatePickerRanges() {
-        // Set the minimum and maximum dates for the startDatePicker
         if let project = project {
             let availableDayCountBeforeEndDate = Calendar.current.date(byAdding: .day, value: taskEndDateLimiter, to: project.finishDate)
             taskStartDatePicker.minimumDate = project.startDate
             taskStartDatePicker.maximumDate = availableDayCountBeforeEndDate
             
             
-            // Set the minimum and maximum dates for the endDatePicker
             taskEndDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: assignableTaskMinimumDayLimit, to: taskStartDatePicker.date)
             taskEndDatePicker.maximumDate = project.finishDate
         }
@@ -140,7 +138,6 @@ class ProjectEditTaskDetailViewController: UIViewController {
     @IBAction func startDatePicker(_ sender: UIDatePicker) {
         if let project = project {
             let projectEndDate = project.finishDate
-            // Set the minimum and maximum dates for the endDatePicker
             taskEndDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: assignableTaskMinimumDayLimit, to: taskStartDatePicker.date)
             taskEndDatePicker.maximumDate = projectEndDate
         }
@@ -184,7 +181,7 @@ class ProjectEditTaskDetailViewController: UIViewController {
     
     private func showDropDownMenu(sender: UIButton) {
         if let company = company {
-            let userAccountArray = Array(company.userAccounts)
+            let userAccountArray = Array(company.employeeAccounts)
             dropDownMenu.showDropdownMenu(from: sender, with: userAccountArray, tableView: tableView) { userAccount in
                 sender.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
             }

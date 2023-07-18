@@ -27,13 +27,13 @@ class ProjectAddTaskDetailViewController: UIViewController {
         return tableView
     }()
     
-    private var employeeArray: [UserAccount?] = []
+    private var employeeArray: [Employee?] = []
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()
-    private var assignedUserList: Set<UserAccount> = []
+    private var assignedUserList: Set<Employee> = []
     private let dropDownMenu = EmployeeListDropDownMenu()
     private var taskSet: Set<Task> = []
-    var company: RegisteredCompany?
+    var company: Company?
     private  let loadingVC = LoadingViewController()
     var projectDetails: [String: Any?]?
 
@@ -97,7 +97,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
     
     private func loadUserAccount() {
         if let companySafe = company {
-            employeeArray = Array(companySafe.userAccounts)
+            employeeArray = Array(companySafe.employeeAccounts)
             employeeArray.sort { (account1, account2) -> Bool in
                 let name1 = "\(account1?.userFirstName ?? "") \(account1?.userLastName ?? "")"
                 let name2 = "\(account2?.userFirstName ?? "") \(account2?.userLastName ?? "")"
@@ -177,7 +177,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
     
     private func showDropDownMenu(sender: UIButton) {
         if let company = company {
-            dropDownMenu.showDropdownMenu(from: sender, with: company.userAccounts, tableView: tableView) { userAccount in
+            dropDownMenu.showDropdownMenu(from: sender, with: Array(company.employeeAccounts), tableView: tableView) { userAccount in
                 sender.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
             }
         }
@@ -234,7 +234,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
             let newProject = Project(title: projectTitle, description: projectDescription, tasks: taskSet, startDate: projectStartDate, finishDate: projectEndDate)
             
             if let company = company {
-                company.addProject(project: newProject) { isProjectAdded in
+                company.addProject(newProject) { isProjectAdded in
                     if isProjectAdded {
                         completion(.success)
                     } else {

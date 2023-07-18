@@ -35,20 +35,24 @@ class CreateCompanyAccountViewController: UIViewController {
     private var isFirstname = false
     private var isSurname = false
     
-    private var registeredCompany: RegisteredCompany?
-    private var isErrorWithMessage: String?
+    private var registeredCompany: Company?
+    private var isFailWithError: String?
     private let textFieldStyle = TextFieldStyle()
+    private let loadingVC = LoadingViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCompanyButton.isEnabled = false
         setupTextFields()
-
+        
         setupTextFields()
+        loadingVC.modalPresentationStyle = .overCurrentContext
         
         navigationController?.title = "COMPANY REGISTRATION"
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
         view.addGestureRecognizer(tapGesture)
+        loadingVC.modalPresentationStyle = .overCurrentContext
+        
     }
     
     private func setupTextFields() {
@@ -61,19 +65,29 @@ class CreateCompanyAccountViewController: UIViewController {
     
     
     @IBAction func registerCompanyButton(_ sender: UIButton) {
-        
-        createUserAccount { result in
+    
+        registerCompanyWithAdminAccount { result in
             switch result {
             case .success:
-                self.performSegue(withIdentifier: Constant.Segue.RegisterCompany.createAccountToSuccess, sender: self)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.loadingVC.dismiss(animated: false) {
+                        self.performSegue(withIdentifier: Constant.Segue.RegisterCompany.createAccountToSuccess, sender: self)
+                    }
+                }
             case .failure(let errorMessage):
-                self.isErrorWithMessage = errorMessage
-                self.performSegue(withIdentifier: Constant.Segue.RegisterCompany.createAccountToFail, sender: self)
-                
-                
+                self.isFailWithError = errorMessage
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.loadingVC.dismiss(animated: false) {
+                        self.performSegue(withIdentifier: Constant.Segue.RegisterCompany.createAccountToFail, sender: self)
+                    }
+                    
+                }
+                    
             }
         }
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constant.Segue.RegisterCompany.createAccountToSuccess {
@@ -85,7 +99,7 @@ class CreateCompanyAccountViewController: UIViewController {
             }
         } else if segue.identifier == Constant.Segue.RegisterCompany.createAccountToFail {
             if let createAccountFailVC = segue.destination as? CreateCompanyAccountFailViewController {
-                if let errorMessageSafe = isErrorWithMessage {
+                if let errorMessageSafe = isFailWithError {
                     createAccountFailVC.errorMessage = errorMessageSafe
                 }
             }
@@ -96,7 +110,9 @@ class CreateCompanyAccountViewController: UIViewController {
     
     
     private func enableRegistrationButton() {
-        registerCompanyButton.isEnabled = isCompany && isEmailMatch && isEmailValid && isPasswordValid && isPasswordMatch && isFirstname && isSurname
+        DispatchQueue.main.async { [self] in
+            registerCompanyButton.isEnabled = isCompany && isEmailMatch && isEmailValid && isPasswordValid && isPasswordMatch && isFirstname && isSurname
+        }
     }
 }
 
@@ -119,7 +135,7 @@ extension CreateCompanyAccountViewController: UITextFieldDelegate {
             return true
         }
         let companyAccountValidator = CompanyAccountValidator()
-    
+        
         switch textField {
         case firstNameTextField:
             isFirstname = companyAccountValidator.validateName(updatedText, employeeNameTextField: firstNameTextField, employeeNameLabel: firstNameLabel)
@@ -147,12 +163,13 @@ extension CreateCompanyAccountViewController: UITextFieldDelegate {
     }
     
     
-   
+    
 }
 
 
 extension CreateCompanyAccountViewController {
-    func createUserAccount(completion: @escaping(AccountCreationResult) ->Void) {
+    func registerCompanyWithAdminAccount(completion: @escaping(AccountCreationResult) ->Void) {
+        
         guard let emailAddress = emailAddressTextField.text,
               let companyName = companyNameTextField.text,
               let password = passwordTextField.text,
@@ -162,24 +179,28 @@ extension CreateCompanyAccountViewController {
             return
         }
         
-        let search = Search<RegisteredCompany>()
-        let registeredCompanies = TemporaryDatabase.registeredCompanies
-        let sortedCompanyByEmailOfOwner = registeredCompanies.sorted(by: {$0.ownerAccount.emailAddress < $1.ownerAccount.emailAddress})
+        let createdOwnerAccount = Admin(accountType: .ADMIN, emailAddress: emailAddress, userFirstName: firstName, userLastName: surname, password: password)
+        let registeredCompany = Company(companyName: companyName, ownerAccount: createdOwnerAccount)
         
-        if let _ = search.binarySearch(sortedCompanyByEmailOfOwner, target: emailAddress, keyPath: \.ownerAccount.emailAddress) {
-            completion(.failure(message: "An account with this email address already exists."))
-            return
+        self.registeredCompany = registeredCompany
+        
+        loadingVC.setDatabaseAction {
+            let registrationService = RegistrationService()
+            registrationService.register(company: registeredCompany) { result, registrationNo in
+                if result {
+                    if let registrationNoSafe = registrationNo {
+                        registeredCompany.registrationNumber = registrationNoSafe
+                       
+                        completion(.success)
+                    } else {
+                        completion(.failure(message: "The company saved successfully. There is an issue with the company registration number. Please try again."))
+                    }
+                } else {
+                    completion(.failure(message: "There was an error while registering the company. Please check your internet connection and try again."))
+                }
+            }
         }
-        
-        let createdOwnerAccount = UserAccount(accountType: .ADMIN, emailAddress: emailAddress, userFirstName: firstName, userLastName: surname, password: password)
-        self.registeredCompany = RegisteredCompany(companyName: companyName, ownerAccount: createdOwnerAccount)
-        self.registeredCompany?.addUserAccount(createdOwnerAccount)
-        TemporaryDatabase.registeredCompanies.append(registeredCompany!)
-        
-        
-        completion(.success)
-        
+        present(loadingVC, animated: false)
     }
-    
-    
 }
+

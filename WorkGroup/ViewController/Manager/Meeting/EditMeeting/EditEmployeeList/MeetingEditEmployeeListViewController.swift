@@ -11,15 +11,15 @@ class MeetingEditEmployeeListViewController: UIViewController {
     
     @IBOutlet weak var invitedEmployeeListTableView: UITableView!
     
-    private var employeeList: [UserAccount] = []
+    private var employeeList: [Employee] = []
     private let meetingInviteValidator = MeetingInviteValidator()
 
    
    
-    var company: RegisteredCompany?
+    var company: Company?
     var meeting: Meeting?
-    private var selectedEmployeeList: Set<UserAccount> = []
-    private var originalInvitedEmployeeList: Set<UserAccount>?
+    private var selectedEmployeeList: Set<Employee> = []
+    private var originalInvitedEmployeeList: Set<Employee>?
     var meetingDetails: [String: Any?]?
     
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class MeetingEditEmployeeListViewController: UIViewController {
     private func loadData() {
         
         if let companySafe = company {
-            employeeList = companySafe.userAccounts
+            employeeList = Array(companySafe.employeeAccounts)
         }
         if let meetingSafe = meeting {
             for employee in employeeList {
@@ -74,11 +74,11 @@ class MeetingEditEmployeeListViewController: UIViewController {
             
         }
         
-        meetingSafe.editMeetingTitle(meetingTitle: updatedMeetingTitle)
-        meetingSafe.editMeetingDescription(meetingDescription: updatedMeetingDescription)
-        meetingSafe.editMeetingDate(date: updatedMeetingDate)
-        meetingSafe.editMeetingStartTime(startTime: updatedMeetingStartTime)
-        meetingSafe.editMeetingEndTime(endTime: updatedMeetingEndTime)
+        meetingSafe.meetingTitle = updatedMeetingTitle
+        meetingSafe.meetingDescription = updatedMeetingDescription
+        meetingSafe.meetingDate = updatedMeetingDate
+        meetingSafe.meetingStartTime = updatedMeetingStartTime
+        meetingSafe.meetingEndTime = updatedMeetingEndTime
      
         if selectedEmployeeList.count > 0 {
             

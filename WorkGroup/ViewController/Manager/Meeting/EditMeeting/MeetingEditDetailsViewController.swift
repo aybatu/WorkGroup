@@ -18,7 +18,7 @@ class MeetingEditDetailsViewController: UIViewController {
     
     @IBOutlet weak var meetingDatePicker: UIDatePicker!
     
-    var company: RegisteredCompany?
+    var company: Company?
     var meeting: Meeting?
     
     private var isSave = true
@@ -111,7 +111,7 @@ class MeetingEditDetailsViewController: UIViewController {
                 } else {
                     if meeting.meetingDate != meetingDatePicker.date || meeting.meetingStartTime != meetingStartTimePicker.date || meeting.meetingEndTime != meetingEndTimePicker.date {
                  
-                        let resetInvitedUserList: Set<UserAccount> = []
+                        let resetInvitedUserList: Set<Employee> = []
                         meetingDetails =
                         [
                             Constant.Dictionary.MeetingDetailsDictionary.meetingTitle: meetingTitle,

@@ -30,8 +30,8 @@ class EditUserAccountDetailsViewController: UIViewController{
     private var tableView = UITableView()
     private let userAccountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     
-    var userAccount: UserAccount?
-    var userAccountSet: Set<UserAccount>?
+    var userAccount: Employee?
+    var userAccountSet: Set<Employee>?
     private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     private let accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
@@ -213,7 +213,7 @@ extension EditUserAccountDetailsViewController {
                 return
             }
             
-            let search = Search<UserAccount>()
+            let search = Search<Employee>()
             
             if let userAccountSet = userAccountSet, let userAccount = userAccount {
                 let userAccounts = Array(userAccountSet)

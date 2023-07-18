@@ -9,7 +9,7 @@ import UIKit
 
 class ProjectListEdit: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var projectListTable: UITableView!
-    var company: RegisteredCompany?
+    var company: Company?
     private var project: Project?
     override func viewDidLoad() {
         super.viewDidLoad()

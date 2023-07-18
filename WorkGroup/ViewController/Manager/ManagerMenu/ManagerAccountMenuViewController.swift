@@ -10,7 +10,7 @@ import UIKit
 class ManagerAccountMenuViewController: UIViewController {
     
     @IBOutlet weak var managerMenuNavBar: UINavigationItem!
-    var company: RegisteredCompany?
+    var company: Company?
     
     override func viewDidLoad() {
         super.viewDidLoad()

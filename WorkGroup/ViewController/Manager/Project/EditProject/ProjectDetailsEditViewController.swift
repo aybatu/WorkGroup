@@ -15,7 +15,7 @@ class ProjectDetailsEditViewController: UIViewController {
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
     var project: Project?
-    var company: RegisteredCompany?
+    var company: Company?
     private let loadingVC = LoadingViewController()
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()

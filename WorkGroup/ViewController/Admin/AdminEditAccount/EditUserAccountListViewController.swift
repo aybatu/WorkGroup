@@ -11,7 +11,7 @@ class EditUserAccountListViewController: UIViewController {
     
     @IBOutlet weak var employeeListTableView: UITableView!
     
-    var userAccounts: Set<UserAccount> = []
+    var userAccounts: Set<Employee> = []
     var registrationNo: String?
     
     override func viewDidLoad() {
@@ -35,16 +35,17 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Admin.editUserListCellIdentifier, for: indexPath) as! EmployeeListTableCell
-           
-           let userAccountArray = Array(userAccounts)
-           if indexPath.row < userAccountArray.count {
-               let userAccount = userAccountArray[indexPath.row]
-               cell.employeeNameLabel.text = "Name: " + userAccount.userFirstName + " " + userAccount.userLastName
-               cell.employeeEmailAddressLabel.text = "Email: " + userAccount.emailAddress
-               cell.employeeAccountTypeLabel.text = "Permission: " + userAccount.accountType.rawValue
-           }
-           
-           return cell
+        
+        let userAccountArray = Array(userAccounts)
+        if indexPath.row < userAccountArray.count {
+            let userAccount = userAccountArray[indexPath.row]
+            cell.employeeNameLabel.text = "Name: " + userAccount.userFirstName + " " + userAccount.userLastName
+            cell.employeeEmailAddressLabel.text = "Email: " + userAccount.emailAddress
+            cell.employeeAccountTypeLabel.text = "Permission: " + userAccount.accountType.rawValue
+        }
+        
+        
+        return cell
     }
     
     
@@ -53,20 +54,45 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
         performSegue(withIdentifier: Constant.Segue.Admin.accountListToAccountEdit, sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constant.Segue.Admin.accountListToAccountEdit {
-               if let editUserAccountDetailsVC = segue.destination as? EditUserAccountDetailsViewController {
-                   if let selectedIndexPath = employeeListTableView.indexPathForSelectedRow {
-                       
-                       let userAccountArray = Array(userAccounts)
-                       if selectedIndexPath.row < userAccountArray.count {
-                           let selectedUserAccount = userAccountArray[selectedIndexPath.row]
-                          
-                           editUserAccountDetailsVC.userAccount = selectedUserAccount
-                           editUserAccountDetailsVC.userAccountSet = userAccounts
-                       }
-                   }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+               // Handle delete action here
+               let userAccountArray = Array(userAccounts)
+               if indexPath.row < userAccountArray.count {
+                   let deletedUserAccount = userAccountArray[indexPath.row]
+                   
+                   // Perform any necessary deletion operations
+                   
+                   // Remove the deleted user account from the set
+                   userAccounts.remove(deletedUserAccount)
+                   
+                   // Update the table view by deleting the row
+                   tableView.deleteRows(at: [indexPath], with: .automatic)
                }
            }
-       }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.Segue.Admin.accountListToAccountEdit {
+            if let editUserAccountDetailsVC = segue.destination as? EditUserAccountDetailsViewController {
+                if let selectedIndexPath = employeeListTableView.indexPathForSelectedRow {
+                    
+                    let userAccountArray = Array(userAccounts)
+                    if selectedIndexPath.row < userAccountArray.count {
+                        let selectedUserAccount = userAccountArray[selectedIndexPath.row]
+                        
+                        editUserAccountDetailsVC.userAccount = selectedUserAccount
+                        editUserAccountDetailsVC.userAccountSet = userAccounts
+                    }
+                }
+            }
+        }
+    }
 }

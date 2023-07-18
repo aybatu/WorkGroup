@@ -9,7 +9,7 @@ import UIKit
 
 class EmployeeAssignedTaskListViewController: UIViewController {
    
-    var employee: UserAccount?
+    var employee: Employee?
     private var assignedTasks: [Task] = []
     private var selectedTask: Task?
     @IBOutlet weak var taskListTableView: UITableView!

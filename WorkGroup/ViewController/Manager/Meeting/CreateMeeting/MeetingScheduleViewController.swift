@@ -15,7 +15,7 @@ class MeetingScheduleViewController: UIViewController {
     @IBOutlet weak var meetingStartTimePicker: UIDatePicker!
     @IBOutlet weak var inviteEmployeeButton: UIButton!
     
-    var company: RegisteredCompany?
+    var company: Company?
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()
     

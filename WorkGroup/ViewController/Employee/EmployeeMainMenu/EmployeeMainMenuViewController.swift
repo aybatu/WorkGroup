@@ -8,7 +8,7 @@
 import UIKit
 
 class EmployeeMainMenuViewController: UIViewController {
-    var userAccount: UserAccount?
+    var userAccount: Employee?
     
     override func viewDidLoad() {
         super.viewDidLoad()

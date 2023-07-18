@@ -10,7 +10,9 @@ import UIKit
 class LunchScreenViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let loadingLabel = UILabel()
-    private let reachability = Reachability()
+    private lazy var reachability: Reachability? = {
+        return Reachability()
+    }()
     
     
     override func viewDidLoad() {
@@ -49,7 +51,10 @@ class LunchScreenViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        reachability.stopMonitoring()
+        super.viewWillDisappear(animated)
+        if let reachabilitySafe = reachability {
+            reachabilitySafe.stopMonitoring()
+        }
         
     }
     
@@ -67,28 +72,28 @@ class LunchScreenViewController: UIViewController {
 extension LunchScreenViewController {
     
     private func checkInternetConnection() {
-        
-        reachability.connectionStatusChangedHandler = { [weak self] isConnected in
+        if let reachabilitySafe = reachability {
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-                if isConnected {
+            reachabilitySafe.connectionStatusChangedHandler = { [weak self] isConnected in
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
                     
-                    self?.dismiss(animated: false) {
-                        self?.performSegue(withIdentifier: "LoadingToMainMenu", sender: self)
+                    if isConnected {
+                        
+                        self?.dismiss(animated: false) {
+                            self?.performSegue(withIdentifier: "LoadingToMainMenu", sender: self)
+                        }
+                        
+                    } else {
+                        
+                        let alert = UIAlertController(title: "No Internet Connection", message: "Please connect to the internet to continue.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                        
                     }
-                    
-                } else {
-                    
-                    let alert = UIAlertController(title: "No Internet Connection", message: "Please connect to the internet to continue.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
-                    
                 }
             }
-            
+            reachabilitySafe.startMonitoring()
         }
-        
-        
-        reachability.startMonitoring()
     }
 }

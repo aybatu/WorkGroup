@@ -7,64 +7,56 @@
 
 import Foundation
 
-class Meeting: Hashable {
-    
-    
-    private var _meetingDate: Date
-    private var _meetingStartTime: Date
-    private var _meetingEndTime: Date
-    private var _meetingTitle: String
-    private var _meetingDescription: String
+class Meeting: Hashable, Codable {
+     var meetingDate: Date
+     var meetingStartTime: Date
+     var meetingEndTime: Date
+     var meetingTitle: String
+     var meetingDescription: String
 
+    enum CodingKeys: String, CodingKey {
+        case meetingDate
+        case meetingStartTime
+        case meetingEndTime
+        case meetingTitle
+        case meetingDescription
+    }
     
-    var meetingDate: Date {
-        return _meetingDate
-    }
-    var meetingStartTime: Date {
-        return _meetingStartTime
-    }
-    var meetingEndTime: Date {
-        return _meetingEndTime
-    }
-    var meetingTitle: String {
-        return _meetingTitle
-    }
-    var meetingDescription: String {
-        return _meetingDescription
-    }
-  
-    
-    init(_meetingDate: Date, _meetingStartTime: Date, _meetingEndTime: Date, _meetingTitle: String, _meetingDescription: String) {
-        self._meetingDate = _meetingDate
-        self._meetingStartTime = _meetingStartTime
-        self._meetingEndTime = _meetingEndTime
-        self._meetingTitle = _meetingTitle
-        self._meetingDescription = _meetingDescription
-     
+    init(meetingDate: Date, meetingStartTime: Date, meetingEndTime: Date, meetingTitle: String, meetingDescription: String) {
+        self.meetingDate = meetingDate
+        self.meetingStartTime = meetingStartTime
+        self.meetingEndTime = meetingEndTime
+        self.meetingTitle = meetingTitle
+        self.meetingDescription = meetingDescription
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(_meetingTitle)
+        hasher.combine(meetingTitle)
     }
     
-    func editMeetingDate(date: Date) {
-        _meetingDate = date
-    }
-    func editMeetingStartTime(startTime: Date) {
-        _meetingStartTime = startTime
-    }
-    func editMeetingEndTime(endTime: Date) {
-        _meetingEndTime = endTime
-    }
-    func editMeetingTitle(meetingTitle: String) {
-        _meetingTitle = meetingTitle
-    }
-    func editMeetingDescription(meetingDescription: String) {
-        _meetingDescription = meetingDescription
+    // Implement the encode(to:) method to encode the properties
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(meetingDate, forKey: .meetingDate)
+        try container.encode(meetingStartTime, forKey: .meetingStartTime)
+        try container.encode(meetingEndTime, forKey: .meetingEndTime)
+        try container.encode(meetingTitle, forKey: .meetingTitle)
+        try container.encode(meetingDescription, forKey: .meetingDescription)
     }
     
+    // Implement the required initializer (init(from:)) to decode the properties
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        meetingDate = try container.decode(Date.self, forKey: .meetingDate)
+        meetingStartTime = try container.decode(Date.self, forKey: .meetingStartTime)
+        meetingEndTime = try container.decode(Date.self, forKey: .meetingEndTime)
+        meetingTitle = try container.decode(String.self, forKey: .meetingTitle)
+        meetingDescription = try container.decode(String.self, forKey: .meetingDescription)
+    }
+    
+    // Other methods and properties...
     
     static func == (lhs: Meeting, rhs: Meeting) -> Bool {
-        return lhs._meetingTitle == rhs._meetingTitle
+        return lhs.meetingTitle == rhs.meetingTitle
     }
 }
