@@ -168,10 +168,10 @@ extension ProjectDetailsEditViewController {
                 completion(.failure(message: "Project title exists. Please change the title and try again."))
             } else {
                 if let projectSafe = project {
-                    projectSafe.editTitle(title: projectTitle)
-                    projectSafe.editDecription(description: projectDescription)
-                    projectSafe.editStartDate(startDate: startDate)
-                    projectSafe.editEndDate(endDate: endDate)
+                    projectSafe.editTitle(newTitle: projectTitle)
+                    projectSafe.editDecription(newDescription: projectDescription)
+                    projectSafe.editStartDate(newStartDate: startDate)
+                    projectSafe.editEndDate(newEndDate: endDate)
                     completion(.success)
                 } else {
                     completion(.failure(message: "There was an error while saving changes. Please try again."))
@@ -179,10 +179,10 @@ extension ProjectDetailsEditViewController {
             }
         } else {
             if let projectSafe = project {
-                projectSafe.editTitle(title: projectTitle)
-                projectSafe.editDecription(description: projectDescription)
-                projectSafe.editStartDate(startDate: startDate)
-                projectSafe.editEndDate(endDate: endDate)
+                projectSafe.editTitle(newTitle: projectTitle)
+                projectSafe.editDecription(newDescription: projectDescription)
+                projectSafe.editStartDate(newStartDate: startDate)
+                projectSafe.editEndDate(newEndDate: endDate)
                 completion(.success)
             } else {
                 completion(.failure(message: "There was an error while saving changes. Please try again."))

@@ -23,12 +23,11 @@ class CreateUserAccountViewController: UIViewController {
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
     @IBOutlet private weak var createUserAccButton: UIButton!
     @IBOutlet private weak var confirmEmailAddressLabel: UILabel!
-    
-    var userAccounts: Set<Employee> = []
+
     private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
+    var company: Company?
     
-    
-    
+    private var isFailWithError: String?
     private var tableView = UITableView()
     private var textFields: [UITextField] = []
     private var isNameValid = false
@@ -38,7 +37,6 @@ class CreateUserAccountViewController: UIViewController {
     private var isPasswordValid = false
     private var doPasswordsMatch = false
     private var isAccountExist = false
-    var company: Company?
     private var accountTypes: [AccountTypes] = AccountTypes.employeeCases
     private var accountType: AccountTypes?
     private var textFieldStyle = TextFieldStyle()
@@ -95,7 +93,8 @@ class CreateUserAccountViewController: UIViewController {
               let emailAddress = emailAddressTextField.text,
               let password = passwordTextField.text,
               let accountType = accountType,
-              let companyRegNo = company?.registrationNumber else {
+              let company = company,
+              let companyRegistrationNumber = company.registrationNumber else {
             return
         }
         
@@ -108,17 +107,17 @@ class CreateUserAccountViewController: UIViewController {
             let createAccount = CompanyCreateAccountService()
             let userAccountRequest = UserAccountRequest(accountType: accountType,emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
             
-            createAccount.createAccount(companyRegistrationNumber: companyRegNo, accountType: accountType.rawValue, request: userAccountRequest) {[weak self] result, error in
+            createAccount.createAccount(companyRegistrationNumber: companyRegistrationNumber, accountType: accountType.rawValue, request: userAccountRequest) {[weak self] result, error in
                 if let error = error {
-                    print(error)
+                    self?.isFailWithError = error
                 }
-                print(result)
-               
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.clearTextFields()
                     loadingViewController.dismiss(animated: false) {
                         
                         if result {
+                            self?.company?.addUserAccount(userAccountRequest)
                             self?.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToSuccess, sender: self)
                         } else {
                             self?.performSegue(withIdentifier: Constant.Segue.Admin.createAccountToFail, sender: self)
@@ -134,7 +133,7 @@ class CreateUserAccountViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constant.Segue.Admin.createAccountToFail {
             if let failVC = segue.destination as? CreateUserAccountFailViewController {
-                failVC.errorMessage = (emailAddressTextField.text ?? "") + " " + Constant.Warning.CreateAccount.isAccountExist
+                failVC.errorMessage = isFailWithError
             }
         }
     }

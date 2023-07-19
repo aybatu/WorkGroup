@@ -34,7 +34,7 @@ class EmployeeMeetingListViewController: UIViewController {
     }
     private func loadData() {
         if let employeeSafe = employee {
-            meetingList = employeeSafe.employeeMeetings
+            meetingList = employeeSafe.employeeInvitedMeetings
         }
     }
         

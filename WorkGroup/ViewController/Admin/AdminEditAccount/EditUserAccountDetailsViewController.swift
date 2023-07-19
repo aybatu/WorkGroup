@@ -30,8 +30,8 @@ class EditUserAccountDetailsViewController: UIViewController{
     private var tableView = UITableView()
     private let userAccountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     
-    var userAccount: Employee?
-    var userAccountSet: Set<Employee>?
+    var userAccount: (any UserAccount)?
+    var userAccounts: [any UserAccount]?
     private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     private let accountTypes: [AccountTypes] = AccountTypes.allCases
     private var accountType: AccountTypes?
@@ -215,23 +215,16 @@ extension EditUserAccountDetailsViewController {
             
             let search = Search<Employee>()
             
-            if let userAccountSet = userAccountSet, let userAccount = userAccount {
-                let userAccounts = Array(userAccountSet)
-                let sortedUserAccounts = userAccounts.sorted()
+            if let userAccounts = userAccounts, let userAccount = userAccount {
                 
-                if search.binarySearch(sortedUserAccounts, target: email, keyPath: \.emailAddress) != nil && userAccount.emailAddress != email {
-                    completion(.failure(message: "\(email) email address exists. Please try another email address."))
-                    return
-                }
+               
             }
             
             userAccount?.changeName(newName: name)
             userAccount?.changeLastName(newLastName: lastName)
             userAccount?.changeEmail(newEmail: email)
             userAccount?.changePassword(newPassword: password)
-            if let accountType = accountType {
-                userAccount?.changeAccountType(newAccountType: accountType)
-            }
+           
                 
             
             completion(.success)

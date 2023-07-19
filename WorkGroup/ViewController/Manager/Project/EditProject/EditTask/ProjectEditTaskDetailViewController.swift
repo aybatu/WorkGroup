@@ -14,7 +14,7 @@ class ProjectEditTaskDetailViewController: UIViewController {
     var company: Company?
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()
-    private var assignedEmployees: Set<Employee> = []
+    private var assignedEmployees: [Employee] = []
     private var employeeArr: [Employee?] = []
     private let dropDownMenu = EmployeeListDropDownMenu()
     private var errorWithFail: String?
@@ -208,61 +208,61 @@ extension ProjectEditTaskDetailViewController: UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let userAccount = employeeArr[indexPath.row] else {
-            
-            if selectedButton?.currentTitle != "Assign an Employee" {
-                let employeeName = selectedButton?.currentTitle
-                let _ = assignedEmployees.contains { employee in
-                    if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedEmployees.remove(employee)
-                        return true
-                    }
-                    return false
-                }
-            }
-                selectedButton?.setTitle("Assign an Employee", for: .normal)
-     
-            tableView.removeFromSuperview()
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
-        }
-        
-        let (inserted, _) = assignedEmployees.insert(userAccount)
-        
-        if !inserted {
-          
-            userExistAlert()
-        } else if selectedButton?.currentTitle != "Assign an Employee" {
-            let employeeName = selectedButton?.currentTitle
-            let shouldRemoveEmployee = assignedEmployees.contains { employee in
-                if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedEmployees.remove(employee)
-                    return true
-                }
-                return false
-            }
-            
-            if shouldRemoveEmployee {
-                userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
-                    switch isAvailable {
-                    case .available:
-                        self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
-                    case .unavailable(let error):
-                        self?.employeeIsNotAvailableAlert(message: error)
-                    }
-                }
-            }
- 
-        } else {
-            userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
-                switch isAvailable {
-                case .available:
-                    self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
-                case .unavailable(let error):
-                    self?.employeeIsNotAvailableAlert(message: error)
-                }
-            }
-
-        }
-        
+//        guard let userAccount = employeeArr[indexPath.row] else {
+//            
+//            if selectedButton?.currentTitle != "Assign an Employee" {
+//                let employeeName = selectedButton?.currentTitle
+//                let _ = assignedEmployees.contains { employee in
+//                    if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedEmployees.remove(employee)
+//                        return true
+//                    }
+//                    return false
+//                }
+//            }
+//                selectedButton?.setTitle("Assign an Employee", for: .normal)
+//     
+//            tableView.removeFromSuperview()
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            return
+//        }
+//        
+//        let (inserted, _) = assignedEmployees.insert(userAccount)
+//        
+//        if !inserted {
+//          
+//            userExistAlert()
+//        } else if selectedButton?.currentTitle != "Assign an Employee" {
+//            let employeeName = selectedButton?.currentTitle
+//            let shouldRemoveEmployee = assignedEmployees.contains { employee in
+//                if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedEmployees.remove(employee)
+//                    return true
+//                }
+//                return false
+//            }
+//            
+//            if shouldRemoveEmployee {
+//                userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+//                    switch isAvailable {
+//                    case .available:
+//                        self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
+//                    case .unavailable(let error):
+//                        self?.employeeIsNotAvailableAlert(message: error)
+//                    }
+//                }
+//            }
+// 
+//        } else {
+//            userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+//                switch isAvailable {
+//                case .available:
+//                    self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
+//                case .unavailable(let error):
+//                    self?.employeeIsNotAvailableAlert(message: error)
+//                }
+//            }
+//
+//        }
+//        
            
             
         
@@ -322,11 +322,11 @@ extension ProjectEditTaskDetailViewController {
             completion(.failure(message: "The task title exists. Please change the title and try again."))
         } else {
             if let taskSafe = task {
-                taskSafe.editTaskTitle(title: taskTitle)
-                taskSafe.editTaskDescription(description: taskDescription)
+                taskSafe.editTaskTitle(newTitle: taskTitle)
+                taskSafe.editTaskDescription(newDescription: taskDescription)
                 taskSafe.editStartDate(startDate: startDate)
                 taskSafe.editEndDate(endDate: endDate)
-                taskSafe.editAssignedEmployees(employeeSet: assignedEmployees)
+                taskSafe.editAssignedEmployees(employees: assignedEmployees)
                 
                 completion(.success)
             }

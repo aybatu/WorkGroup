@@ -10,7 +10,8 @@ import UIKit
 class AdminMainMenuViewController: UIViewController {
     
     var company: Company?
-    private var userAccounts: Set<Employee> = []
+    private var userAccounts = [any UserAccount]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +22,8 @@ class AdminMainMenuViewController: UIViewController {
     }
     @IBAction func createUserAccountButton(_ sender: UIButton) {
         let loadingVC = LoadingViewController()
-        loadingVC.modalPresentationStyle = .fullScreen
-        present(loadingVC, animated: false)
-        
-        
-        getEmployeeList { userAccountsSet in
-            loadingVC.dismiss(animated: false) {
-                self.userAccounts = userAccountsSet
-                self.performSegue(withIdentifier: Constant.Segue.Admin.mainMenuToCreateAccount, sender: self)
-            }
-        }
-        
+     
+        self.performSegue(withIdentifier: Constant.Segue.Admin.mainMenuToCreateAccount, sender: self)
         
     }
     
@@ -41,9 +33,9 @@ class AdminMainMenuViewController: UIViewController {
         present(loadingVC, animated: false)
         
         
-        getEmployeeList { userAccountsSet in
+        getUserAccountList { userAccounts in
             loadingVC.dismiss(animated: false) {
-                self.userAccounts = userAccountsSet
+                self.userAccounts = userAccounts
                 self.performSegue(withIdentifier: Constant.Segue.Admin.mainMenuToEditAccounts, sender: self)
             }
         }
@@ -67,33 +59,30 @@ class AdminMainMenuViewController: UIViewController {
         if segue.identifier == Constant.Segue.Admin.mainMenuToCreateAccount {
             if let createAccountVC = segue.destination as? CreateUserAccountViewController {
                 createAccountVC.company = company
-                createAccountVC.userAccounts = self.userAccounts
             }
         } else if segue.identifier == Constant.Segue.Admin.mainMenuToEditAccounts {
             if let editAccountsVC = segue.destination as? EditUserAccountListViewController {
-                editAccountsVC.userAccounts = self.userAccounts
+                editAccountsVC.company = company
+                editAccountsVC.userAccounts = userAccounts
             }
         }
     }
     
-    private func getEmployeeList(completion: @escaping (Set<Employee>) -> Void) {
-        
-        if let company = company {
-            
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    let userAccounts = company.employeeAccounts
-                    var userAccountsSet: Set<Employee> = []
-                    for userAccount in userAccounts {
-                        userAccountsSet.insert(userAccount)
-                    }
-                    completion(userAccountsSet)
-                }
-                
-            } else {
-                print("Error, could not fetch company. Please try again.")
-            }
-       
-        
-        
+    private func getUserAccountList(completion: @escaping ([any UserAccount]) -> Void) {
+        var userAccounts = [any UserAccount]()
+           
+           if let company = company {
+               DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                   let employeeAccounts = company.employeeAccounts
+                   let managerAccounts = company.managerAccounts
+                   
+                   userAccounts.append(contentsOf: employeeAccounts)
+                   userAccounts.append(contentsOf: managerAccounts)
+                   
+                   completion(userAccounts)
+               }
+           } else {
+               print("Error: Could not fetch company. Please try again.")
+           }
     }
 }

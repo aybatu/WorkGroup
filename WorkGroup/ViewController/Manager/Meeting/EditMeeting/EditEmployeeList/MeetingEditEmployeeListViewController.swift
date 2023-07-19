@@ -18,8 +18,8 @@ class MeetingEditEmployeeListViewController: UIViewController {
    
     var company: Company?
     var meeting: Meeting?
-    private var selectedEmployeeList: Set<Employee> = []
-    private var originalInvitedEmployeeList: Set<Employee>?
+    private var selectedEmployeeList: [Employee] = []
+    private var originalInvitedEmployeeList: [Employee]?
     var meetingDetails: [String: Any?]?
     
     override func viewDidLoad() {
@@ -40,21 +40,21 @@ class MeetingEditEmployeeListViewController: UIViewController {
     
     private func loadData() {
         
-        if let companySafe = company {
-            employeeList = Array(companySafe.employeeAccounts)
-        }
-        if let meetingSafe = meeting {
-            for employee in employeeList {
-                if employee.employeeMeetings.contains(meetingSafe) {
-                    selectedEmployeeList.insert(employee)
-                }
-            }
-            originalInvitedEmployeeList = selectedEmployeeList
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.invitedEmployeeListTableView.reloadData()
-        }
+//        if let companySafe = company {
+//            employeeList = Array(companySafe.employeeAccounts)
+//        }
+//        if let meetingSafe = meeting {
+//            for employee in employeeList {
+//                if employee.employeeMeetings.contains(meetingSafe) {
+//                    selectedEmployeeList.insert(employee)
+//                }
+//            }
+//            originalInvitedEmployeeList = selectedEmployeeList
+//        }
+//        
+//        DispatchQueue.main.async { [weak self] in
+//            self?.invitedEmployeeListTableView.reloadData()
+//        }
     }
     
     @IBAction func saveChangesButton(_ sender: UIButton) {
@@ -117,7 +117,7 @@ class MeetingEditEmployeeListViewController: UIViewController {
         }
         
         for employee in originalInvitedEmployeeSafe {
-            if !employee.employeeMeetings.contains(meetingSafe) {
+            if !employee.employeeInvitedMeetings.contains(meetingSafe) {
                 employee.addMeeting(meeting: meetingSafe)
             }
         }
@@ -146,7 +146,7 @@ extension MeetingEditEmployeeListViewController: UITableViewDelegate, UITableVie
         
         cell.textLabel?.text = "\(employee.userFirstName) \(employee.userLastName)"
         
-        if employee.employeeMeetings.contains(meetingSafe) {
+        if employee.employeeInvitedMeetings.contains(meetingSafe) {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -166,12 +166,12 @@ extension MeetingEditEmployeeListViewController: UITableViewDelegate, UITableVie
             return
         }
         
-        if !employee.employeeMeetings.contains(meetingSafe) {
+        if !employee.employeeInvitedMeetings.contains(meetingSafe) {
             meetingInviteValidator.isEmployeeAvailable(meetingDate: meetingDate, meetingStartTime: meetingStartTime, employee: employee) { [weak self] result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success:
-                        self?.selectedEmployeeList.insert(employee)
+//                        self?.selectedEmployeeList.insert(employee)
                         employee.addMeeting(meeting: meetingSafe)
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -190,7 +190,7 @@ extension MeetingEditEmployeeListViewController: UITableViewDelegate, UITableVie
                     }
                 }
             }
-        } else if employee.employeeMeetings.contains(meetingSafe) && !selectedEmployeeList.contains(employee){
+        } else if employee.employeeInvitedMeetings.contains(meetingSafe) && !selectedEmployeeList.contains(employee){
             employee.removeMeeting(meeting: meetingSafe)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 tableView.reloadData()

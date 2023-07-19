@@ -111,7 +111,7 @@ class MeetingEditDetailsViewController: UIViewController {
                 } else {
                     if meeting.meetingDate != meetingDatePicker.date || meeting.meetingStartTime != meetingStartTimePicker.date || meeting.meetingEndTime != meetingEndTimePicker.date {
                  
-                        let resetInvitedUserList: Set<Employee> = []
+                        let resetInvitedUserList: [Employee] = []
                         meetingDetails =
                         [
                             Constant.Dictionary.MeetingDetailsDictionary.meetingTitle: meetingTitle,

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol UserAccount: Codable, Comparable, Hashable  {
+protocol UserAccount: Codable, Comparable  {
     var accountType: AccountTypes { get }
     var emailAddress: String { get }
     var userFirstName: String { get }

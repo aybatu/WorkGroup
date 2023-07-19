@@ -9,7 +9,7 @@ import Foundation
 
 struct UserValidationService {
     func validateUser(company: Company?, email: String, password: String, completion: @escaping (Bool, Bool, AccountTypes?) -> Void) {
-        
+  
         if company == nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 let isValidUser = false
@@ -18,24 +18,41 @@ struct UserValidationService {
                 completion(isValidUser, isValidCompany, accountType)
             }
         } else {
-            if company?.ownerAccount.emailAddress == email {
+            if company?.ownerAccount.emailAddress == email  && company?.ownerAccount.password == password{
                 let isValidUser = true
                 let accountType: AccountTypes = .ADMIN
                 let isValidCompany = true
                 completion(isValidUser, isValidCompany, accountType)
             } else {
-                let searchUserAccount = Search<Employee>()
-                if let userAccounts = company?.employeeAccounts.sorted() {
-                    let foundUserAccount = searchUserAccount.binarySearch(userAccounts, target: email, keyPath: \.emailAddress)
+                let searchEmployeeAccount = Search<Employee>()
+                let searchManagerAccounts = Search<Manager>()
+                var foundUserAccount: (any UserAccount)?
+                
+                if let employeeAccounts = company?.employeeAccounts.sorted() {
+                    let employeeAccount = searchEmployeeAccount.binarySearch(employeeAccounts, target: email, keyPath: \.emailAddress)
+                    if let foundEmployeeAccount = employeeAccount {
+                        foundUserAccount = foundEmployeeAccount
+                    }
+                }
+                
+                if let managerAccounts = company?.managerAccounts.sorted() {
+                    let managerAccount = searchManagerAccounts.binarySearch(managerAccounts, target: email, keyPath: \.emailAddress)
+                    if let foundManagerAccount = managerAccount {
+                        foundUserAccount = foundManagerAccount
+                    }
+                    
+                }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         var isValidUser = false
                         var accountType: AccountTypes?
                         let isValidCompany = true
+                       
                         if let userAccount = foundUserAccount, userAccount.password == password {
                             isValidUser = true
-                            
-                            
+                            print(
+                                userAccount.emailAddress
+                            )
                             switch userAccount.accountType {
                             case .ADMIN:
                                 accountType = .ADMIN
@@ -49,7 +66,7 @@ struct UserValidationService {
                         completion(isValidUser, isValidCompany, accountType)
                     }
                 }
-            }
+            
         }
         
     }

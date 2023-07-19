@@ -44,14 +44,14 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
         navigationItem.title = "Employee List"
     }
     override func viewWillAppear(_ animated: Bool) {
-        for employee in employeeList {
-            if let meetingSafe = meeting {
-                if employee.employeeMeetings.contains(meetingSafe) {
-                    selectedEmployeeList.append(employee)
-                }
-            }
-        }
-        employeeListTableView.reloadData()
+//        for employee in employeeList {
+//            if let meetingSafe = meeting {
+//                if employee.employeeMeetings.contains(meetingSafe) {
+//                    selectedEmployeeList.append(employee)
+//                }
+//            }
+//        }
+//        employeeListTableView.reloadData()
     }
     
     private func createMeeting() {
@@ -118,11 +118,11 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     
     private func performDiscard() {
         if let meetingSafe = meeting {
-            for employee in selectedEmployeeList {
-                if employee.employeeMeetings.contains(meetingSafe) {
-                    employee.removeMeeting(meeting: meetingSafe)
-                }
-            }
+//            for employee in selectedEmployeeList {
+//                if employee.employeeMeetings.contains(meetingSafe) {
+//                    employee.removeMeeting(meeting: meetingSafe)
+//                }
+//            }
         }
         
         guard let navigationController = self.navigationController else {return}
@@ -157,7 +157,7 @@ extension MeetingInviteEmployeeViewController {
         
         cell.textLabel?.text = "\(employee.userFirstName) \(employee.userLastName)"
         
-        if employee.employeeMeetings.contains(meetingSafe) {
+        if employee.employeeInvitedMeetings.contains(meetingSafe) {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -180,7 +180,7 @@ extension MeetingInviteEmployeeViewController {
             return
         }
         
-        if !employee.employeeMeetings.contains(meetingSafe) {
+        if !employee.employeeInvitedMeetings.contains(meetingSafe) {
             meetingInviteValidator.isEmployeeAvailable(meetingDate: meetingDate, meetingStartTime: meetingStartTime, employee: employee) { [weak self] result in
                 DispatchQueue.main.async {
                     switch result {
@@ -206,7 +206,7 @@ extension MeetingInviteEmployeeViewController {
                     }
                 }
             }
-        } else if employee.employeeMeetings.contains(meetingSafe) && !selectedEmployeeList.contains(employee){
+        } else if employee.employeeInvitedMeetings.contains(meetingSafe) && !selectedEmployeeList.contains(employee){
             employee.removeMeeting(meeting: meetingSafe)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 tableView.reloadData()

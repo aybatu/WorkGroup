@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Company: Comparable, Codable {
+class Company: Codable {
     
     
     var registrationNumber: String?
@@ -17,9 +17,6 @@ class Company: Comparable, Codable {
     var managerAccounts: [Manager]
     var projects: [Project]
     var meetings: [Meeting]
-    var searchKey: String {
-        return registrationNumber ?? companyName
-    }
     
     enum CodingKeys: String, CodingKey {
         case registrationNumber
@@ -38,42 +35,6 @@ class Company: Comparable, Codable {
         self.projects = []
         self.employeeAccounts = []
         self.managerAccounts = []
-    }
-    
-    // MARK: - User Account Management
-    
-    func addUserAccount(_ employeeAccount: Employee) {
-        employeeAccounts.append(employeeAccount)
-    }
-    
-    func removeUserAccount(_ employeeAccount: Employee) {
-        if let index = employeeAccounts.firstIndex(of: employeeAccount) {
-            employeeAccounts.remove(at: index)
-        }
-    }
-    
-    // MARK: - Project Management
-    
-    func addProject(_ project: Project, completion: @escaping (Bool) -> Void) {
-        
-        projects.append(project)
-        completion(true)
-    }
-    
-    // MARK: - Meeting Management
-    
-    func addMeeting(_ meeting: Meeting) {
-        meetings.append(meeting)
-    }
-    
-    // MARK: - Comparable
-    
-    static func < (lhs: Company, rhs: Company) -> Bool {
-        return lhs.registrationNumber ?? lhs.companyName < rhs.registrationNumber ?? rhs.companyName
-    }
-    
-    static func == (lhs: Company, rhs: Company) -> Bool {
-        return lhs.registrationNumber == rhs.registrationNumber
     }
     
     // MARK: - Decodable
@@ -104,4 +65,47 @@ class Company: Comparable, Codable {
         try container.encode(projects, forKey: .projects)
         try container.encode(meetings, forKey: .meetings)
     }
+    
+    // MARK: - User Account Management
+    
+    func addUserAccount(_ userAccountRequest: UserAccountRequest) {
+        let emailAddress = userAccountRequest.emailAddress
+        let password = userAccountRequest.password
+        let firstName = userAccountRequest.userFirstName
+        let lastName = userAccountRequest.userLastName
+        
+        if userAccountRequest.accountType == AccountTypes.EMPLOYEE {
+            let employeeAccount = Employee(emailAddress: emailAddress, userFirstName: firstName, userLastName: lastName, password: password)
+            employeeAccounts.append(employeeAccount)
+        }
+        
+        if userAccountRequest.accountType == AccountTypes.MANAGER {
+            let managerAccount = Manager(emailAddress: emailAddress, userFirstName: firstName, userLastName: lastName, password: password)
+            managerAccounts.append(managerAccount)
+        }
+        
+    }
+    
+    func removeUserAccount(_ employeeAccount: Employee) {
+        if let index = employeeAccounts.firstIndex(of: employeeAccount) {
+            employeeAccounts.remove(at: index)
+        }
+    }
+    
+    // MARK: - Project Management
+    
+    func addProject(_ project: Project, completion: @escaping (Bool) -> Void) {
+        
+        projects.append(project)
+        completion(true)
+    }
+    
+    // MARK: - Meeting Management
+    
+    func addMeeting(_ meeting: Meeting) {
+        meetings.append(meeting)
+    }
+    
+    
+   
 }

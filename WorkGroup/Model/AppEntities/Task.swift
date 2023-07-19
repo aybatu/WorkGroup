@@ -7,100 +7,73 @@
 
 import Foundation
 
-class Task: Codable, Hashable {
+class Task: Codable, Comparable {
+   
+    var title: String
+    var description: String
+    var assignedEmployees: [Employee]
+    var taskEmployeeLimit = 5
+    var isTaskCompleted: Bool
+    var taskStartDate: Date
+    var taskEndDate: Date
    
     
-    private var _title: String
-    private var _description: String
-    private var _assignedEmployees: Set<Employee>
-    private var _taskEmployeeLimit = 5
-    private var _isTaskCompleted: Bool
-    private var _taskStartDate: Date
-    private var _taskEndDate: Date
-    
-    var title: String {
-        return _title
-    }
-    var description: String {
-        return _description
-    }
-    var assignedEmployees: Set<Employee> {
-        return _assignedEmployees
-    }
-    var taskEmployeeLimit: Int {
-        return _taskEmployeeLimit
-    }
-    var isTaskCompleted: Bool {
-        return _isTaskCompleted
-    }
-    var taskStartDate: Date {
-        return _taskStartDate
-    }
-    var taskEndDate: Date {
-        return _taskEndDate
-    }
-    
     enum CodingKeys: String, CodingKey {
-           case title = "_title"
-           case description = "_description"
-           case assignedEmployees = "_assignedEmployees"
-           case taskEmployeeLimit = "_taskEmployeeLimit"
-           case isTaskCompleted = "_isTaskCompleted"
-           case taskStartDate = "_taskStartDate"
-           case taskEndDate = "_taskEndDate"
+           case title
+           case description
+           case assignedEmployees
+           case isTaskCompleted
+           case taskStartDate
+           case taskEndDate
        }
     
-    init(title: String, description: String, assignedEmployees: Set<Employee>, taskStartDate: Date, taskEndDate: Date) {
-        self._title = title
-        self._description = description
-        self._assignedEmployees = assignedEmployees
-        self._isTaskCompleted = false
-        self._taskStartDate = taskStartDate
-        self._taskEndDate = taskEndDate
+    init(title: String, description: String, assignedEmployees: [Employee], taskStartDate: Date, taskEndDate: Date) {
+        self.title = title
+        self.description = description
+        self.assignedEmployees = assignedEmployees
+        self.isTaskCompleted = false
+        self.taskStartDate = taskStartDate
+        self.taskEndDate = taskEndDate
     }
     
-    func hash(into hasher: inout Hasher) {
-       
-        hasher.combine(_title)
-    }
     
     func encode(to encoder: Encoder) throws {
          var container = encoder.container(keyedBy: CodingKeys.self)
-         try container.encode(_title, forKey: .title)
-         try container.encode(_description, forKey: .description)
-         try container.encode(_assignedEmployees, forKey: .assignedEmployees)
-         try container.encode(_taskEmployeeLimit, forKey: .taskEmployeeLimit)
-         try container.encode(_isTaskCompleted, forKey: .isTaskCompleted)
-         try container.encode(_taskStartDate, forKey: .taskStartDate)
-         try container.encode(_taskEndDate, forKey: .taskEndDate)
+         try container.encode(title, forKey: .title)
+         try container.encode(description, forKey: .description)
+         try container.encode(assignedEmployees, forKey: .assignedEmployees)
+        
+         try container.encode(isTaskCompleted, forKey: .isTaskCompleted)
+         try container.encode(taskStartDate, forKey: .taskStartDate)
+         try container.encode(taskEndDate, forKey: .taskEndDate)
      }
 
      required init(from decoder: Decoder) throws {
          let container = try decoder.container(keyedBy: CodingKeys.self)
-         _title = try container.decode(String.self, forKey: .title)
-         _description = try container.decode(String.self, forKey: .description)
-         _assignedEmployees = try container.decode(Set<Employee>.self, forKey: .assignedEmployees)
-         _taskEmployeeLimit = try container.decode(Int.self, forKey: .taskEmployeeLimit)
-         _isTaskCompleted = try container.decode(Bool.self, forKey: .isTaskCompleted)
-         _taskStartDate = try container.decode(Date.self, forKey: .taskStartDate)
-         _taskEndDate = try container.decode(Date.self, forKey: .taskEndDate)
+         title = try container.decode(String.self, forKey: .title)
+         description = try container.decode(String.self, forKey: .description)
+         assignedEmployees = try container.decode([Employee].self, forKey: .assignedEmployees)
+         
+         isTaskCompleted = try container.decode(Bool.self, forKey: .isTaskCompleted)
+         taskStartDate = try container.decode(Date.self, forKey: .taskStartDate)
+         taskEndDate = try container.decode(Date.self, forKey: .taskEndDate)
      }
     
     func assignEmployee(employee: Employee, completion: @escaping(Bool, Bool, Bool) -> Void) {
         var isTaskCapacity = false
         var isEmployeeAvailable = false
         var isTaskNewForEmployee = false
-        if self._assignedEmployees.count <= _taskEmployeeLimit {
+        if assignedEmployees.count <= taskEmployeeLimit {
             isTaskCapacity = true
             completion(isTaskCapacity, isEmployeeAvailable, isTaskNewForEmployee)
             if employee.userTasks.count < employee.employeeTaskCapacity {
                 isEmployeeAvailable = true
+                isTaskNewForEmployee = true
                 completion(isTaskCapacity, isEmployeeAvailable, isTaskNewForEmployee)
-                let (inserted, _) = self._assignedEmployees.insert(employee)
-                if inserted {
-                    isTaskNewForEmployee = true
+                assignedEmployees.append(employee)
+                 
                     completion(isTaskCapacity, isEmployeeAvailable, isTaskNewForEmployee)
-                }
+                
             }
             
         }
@@ -108,33 +81,36 @@ class Task: Codable, Hashable {
     }
     
     func completeTask() {
-        _isTaskCompleted = true
+        isTaskCompleted = true
     }
     
-    func editTaskTitle(title: String) {
-        _title = title
+    func editTaskTitle(newTitle: String) {
+        title = newTitle
     }
     
-    func editTaskDescription(description: String) {
-        _description = description
+    func editTaskDescription(newDescription: String) {
+        description = newDescription
     }
     
-    func editAssignedEmployees(employeeSet: Set<Employee>) {
-        _assignedEmployees = employeeSet
+    func editAssignedEmployees(employees: [Employee]) {
+        assignedEmployees = employees
     }
     
     func editStartDate(startDate: Date) {
-        _taskStartDate = startDate
+        taskStartDate = startDate
     }
     
     func editEndDate(endDate: Date) {
-        _taskEndDate = endDate
+        taskEndDate = endDate
     }
     
     func revertTaskCompletion() {
-        _isTaskCompleted = false
+        isTaskCompleted = false
     }
     
+    static func < (lhs: Task, rhs: Task) -> Bool {
+        return lhs.title < rhs.title
+    }
     static func == (lhs: Task, rhs: Task) -> Bool {
         return lhs.title == rhs.title
     }

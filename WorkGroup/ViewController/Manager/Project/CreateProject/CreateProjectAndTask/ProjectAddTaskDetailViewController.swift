@@ -30,9 +30,9 @@ class ProjectAddTaskDetailViewController: UIViewController {
     private var employeeArray: [Employee?] = []
     private let textViewStyle = TextView()
     private let textFieldStyle = TextFieldStyle()
-    private var assignedUserList: Set<Employee> = []
+    private var assignedUserList: [Employee] = []
     private let dropDownMenu = EmployeeListDropDownMenu()
-    private var taskSet: Set<Task> = []
+    private var taskSet: [Task] = []
     var company: Company?
     private  let loadingVC = LoadingViewController()
     var projectDetails: [String: Any?]?
@@ -184,37 +184,37 @@ class ProjectAddTaskDetailViewController: UIViewController {
     }
     
     private func addTask(completion: @escaping (AddTaskResult) -> Void) {
-        guard let taskName = taskTitleTextField.text, let taskDescription = taskDescriptionTextView.text else {
-            completion(.failure(message: "Task name and description must be filled. Please try again."))
-            return
-        }
-        let startDate = taskStartDatePicker.date
-        let endDate = taskEndDatePicker.date
-        if taskName == "" || taskDescription == "" {
-            completion(.failure(message: "Task name and description must be filled. Please try again."))
-            return
-        }
-        
-        if assignedUserList.isEmpty {
-            completion(.failure(message: "At least one employee must be assigned to the task. Please assign an employee and try again."))
-            return
-        }
-        
-        let newTask = Task(title: taskName, description: taskDescription, assignedEmployees: assignedUserList, taskStartDate: startDate, taskEndDate: endDate)
-        
-        let (inserted, _) = taskSet.insert(newTask)
-        
-        if !inserted {
-            completion(.failure(message: "A task with the same name already exists in the project. Please choose a different task name."))
-            return
-        } else {
-            for user in assignedUserList {
-                user.assignTask(task: newTask)
-            }
-        }
-        
-        completion(.success)
-        resetButtonTitles()
+//        guard let taskName = taskTitleTextField.text, let taskDescription = taskDescriptionTextView.text else {
+//            completion(.failure(message: "Task name and description must be filled. Please try again."))
+//            return
+//        }
+//        let startDate = taskStartDatePicker.date
+//        let endDate = taskEndDatePicker.date
+//        if taskName == "" || taskDescription == "" {
+//            completion(.failure(message: "Task name and description must be filled. Please try again."))
+//            return
+//        }
+//        
+//        if assignedUserList.isEmpty {
+//            completion(.failure(message: "At least one employee must be assigned to the task. Please assign an employee and try again."))
+//            return
+//        }
+//        
+//        let newTask = Task(title: taskName, description: taskDescription, assignedEmployees: assignedUserList, taskStartDate: startDate, taskEndDate: endDate)
+//        
+//        let (inserted, _) = taskSet.insert(newTask)
+//        
+//        if !inserted {
+//            completion(.failure(message: "A task with the same name already exists in the project. Please choose a different task name."))
+//            return
+//        } else {
+//            for user in assignedUserList {
+//                user.assignTask(task: newTask)
+//            }
+//        }
+//        
+//        completion(.success)
+//        resetButtonTitles()
     }
     
     private func createProject(completion: @escaping (CreateProjectResult) -> Void) {
@@ -278,63 +278,63 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let userAccount = employeeArray[indexPath.row] else {
-            
-            if selectedButton?.currentTitle != "Assign an Employee" {
-                let employeeName = selectedButton?.currentTitle
-                let _ = assignedUserList.contains { employee in
-                    if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedUserList.remove(employee)
-                        return true
-                    }
-                    return false
-                }
-            }
-                selectedButton?.setTitle("Assign an Employee", for: .normal)
- 
-            tableView.removeFromSuperview()
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
-        }
-        
-        let (inserted, _) = assignedUserList.insert(userAccount)
-        
-        if !inserted {
-          
-            userExistAlert()
-        } else if selectedButton?.currentTitle != "Assign an Employee" {
-            let employeeName = selectedButton?.currentTitle
-            let shouldRemoveEmployee = assignedUserList.contains { employee in
-                if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedUserList.remove(employee)
-                    return true
-                }
-                return false
-            }
-            
-            if shouldRemoveEmployee {
-                userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
-                    switch isAvailable {
-                    case .available:
-                        self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
-                    case .unavailable(let error):
-                        self?.employeeIsNotAvailableAlert(message: error)
-                    }
-                }
-            }
-      
-        } else {
-            userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
-                switch isAvailable {
-                case .available:
-                    self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
-                case .unavailable(let error):
-                    self?.employeeIsNotAvailableAlert(message: error)
-                }
-            }
-      
-        }
-        
-           
-            
+//        guard let userAccount = employeeArray[indexPath.row] else {
+//            
+//            if selectedButton?.currentTitle != "Assign an Employee" {
+//                let employeeName = selectedButton?.currentTitle
+//                let _ = assignedUserList.contains { employee in
+//                    if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedUserList.remove(employee)
+//                        return true
+//                    }
+//                    return false
+//                }
+//            }
+//                selectedButton?.setTitle("Assign an Employee", for: .normal)
+// 
+//            tableView.removeFromSuperview()
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            return
+//        }
+//        
+//        let (inserted, _) = assignedUserList.insert(userAccount)
+//        
+//        if !inserted {
+//          
+//            userExistAlert()
+//        } else if selectedButton?.currentTitle != "Assign an Employee" {
+//            let employeeName = selectedButton?.currentTitle
+//            let shouldRemoveEmployee = assignedUserList.contains { employee in
+//                if "\(employee.userFirstName) \(employee.userLastName)" == employeeName { assignedUserList.remove(employee)
+//                    return true
+//                }
+//                return false
+//            }
+//            
+//            if shouldRemoveEmployee {
+//                userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+//                    switch isAvailable {
+//                    case .available:
+//                        self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
+//                    case .unavailable(let error):
+//                        self?.employeeIsNotAvailableAlert(message: error)
+//                    }
+//                }
+//            }
+//      
+//        } else {
+//            userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+//                switch isAvailable {
+//                case .available:
+//                    self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
+//                case .unavailable(let error):
+//                    self?.employeeIsNotAvailableAlert(message: error)
+//                }
+//            }
+//      
+//        }
+//        
+//           
+//            
         
         tableView.removeFromSuperview()
         tableView.deselectRow(at: indexPath, animated: true)

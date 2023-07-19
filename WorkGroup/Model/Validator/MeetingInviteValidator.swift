@@ -10,7 +10,7 @@ import Foundation
 struct MeetingInviteValidator {
     func isEmployeeAvailable(meetingDate: Date, meetingStartTime: Date, employee: Employee, completion: @escaping(InviteMeetingResult) -> Void) {
         // Check for any existing meetings for the employee that overlap with the new meeting
-        for existingMeeting in employee.employeeMeetings {
+        for existingMeeting in employee.employeeInvitedMeetings {
             if existingMeeting.meetingDate == meetingDate {
                 let breakTime = meetingStartTime.timeIntervalSince(existingMeeting.meetingEndTime)
                 // Check for overlap
