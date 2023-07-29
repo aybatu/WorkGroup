@@ -149,6 +149,7 @@ struct Constant {
         struct Login {
             static let userNamePassInvalid = "Invalid username or password."
             static let companyRegisterNoInvalid = "Invalid company registration number."
+            static let notConnected = "There was a connection issue either on you side or server side. Please check your internet and try again."
         }
         struct CreateAccount {
             static let isAccountExist = "email address is already registered in the system. Please try another email address or check if it is correct."

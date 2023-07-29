@@ -68,7 +68,7 @@ class Company: Codable {
     
     // MARK: - User Account Management
     
-    func addUserAccount(_ userAccountRequest: UserAccountRequest) {
+    func addUserAccount(_ userAccountRequest: CreateUserAccountRequest) {
         let emailAddress = userAccountRequest.emailAddress
         let password = userAccountRequest.password
         let firstName = userAccountRequest.userFirstName

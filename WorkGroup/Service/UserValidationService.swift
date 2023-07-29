@@ -50,9 +50,7 @@ struct UserValidationService {
                        
                         if let userAccount = foundUserAccount, userAccount.password == password {
                             isValidUser = true
-                            print(
-                                userAccount.emailAddress
-                            )
+                            
                             switch userAccount.accountType {
                             case .ADMIN:
                                 accountType = .ADMIN

@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct UserAccountRequest: Codable {
+struct CreateUserAccountRequest: Codable {
     let accountType: AccountTypes
     let emailAddress: String
-        let userFirstName: String
-        let userLastName: String
-        let password: String
+    let userFirstName: String
+    let userLastName: String
+    let password: String
 }

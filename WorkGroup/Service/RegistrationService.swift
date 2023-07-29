@@ -24,7 +24,6 @@ struct RegistrationService {
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
-                    print("Error: \(error.localizedDescription)")
                     completion(false, nil)
                     return
                 }
@@ -40,11 +39,9 @@ struct RegistrationService {
                                 completion(true, nil) // Registration number not found
                             }
                         } catch {
-                            print("Error parsing JSON: \(error.localizedDescription)")
                             completion(false, nil)
                         }
                     } else {
-                        print("HTTP status code: \(httpResponse.statusCode)")
                         completion(false, nil)
                     }
                 }
@@ -52,7 +49,6 @@ struct RegistrationService {
             
             task.resume()
         } catch {
-            print("Error encoding data: \(error.localizedDescription)")
             completion(false, nil)
         }
     }

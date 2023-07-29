@@ -60,20 +60,57 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-               
                if indexPath.row < userAccounts.count {
                    let deletedUserAccount = userAccounts[indexPath.row]
-
-                   // Perform any necessary deletion operations
-
-                   // Remove the deleted user account from the set
-                   userAccounts.remove(at: indexPath.row)
-
-                   // Update the table view by deleting the row
-                   tableView.deleteRows(at: [indexPath], with: .automatic)
+                   
+                   // Create the alert
+                   let alertController = UIAlertController(
+                       title: "Confirm Deletion",
+                       message: "Are you sure you want to delete this account?",
+                       preferredStyle: .alert
+                   )
+                   
+                   // Add actions to the alert
+                   alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                   
+                   alertController.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+                       // Perform the account deletion
+                       self.deleteUserAccount(tableView: tableView, at: indexPath, userAccount: deletedUserAccount)
+                   })
+                   
+                   // Present the alert
+                   self.present(alertController, animated: true, completion: nil)
                }
            }
+    }
+    
+    private func deleteUserAccount(tableView: UITableView, at indexPath: IndexPath, userAccount: any UserAccount) {
+        guard let companyRegNo = company?.registrationNumber else {return}
+        let deleteService = CompanyDeleteAccountService()
+        let request = DeleteUserAccountRequest(
+            accountType: userAccount.accountType,
+            emailAddress: userAccount.emailAddress,
+            userFirstName: userAccount.userFirstName,
+            userLastName: userAccount.userLastName,
+            password: userAccount.password
+        )
+        
+        deleteService.deleteAccount(companyRegistrationNumber: companyRegNo, request: request) { success, errorMessage in
+            DispatchQueue.main.async {
+                if success {
+                    // Account deletion successful
+                    // Update the userAccounts array and delete the row from the table view
+                    self.userAccounts.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                } else {
+                    // Account deletion failed
+                    if let errorMessage = errorMessage {
+                        // Display error message to the user (you can implement your own error handling here)
+                        print("Error deleting account: \(errorMessage)")
+                    }
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

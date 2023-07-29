@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
             loadingVC.modalPresentationStyle = .fullScreen
             present(loadingVC, animated: false)
             
-            self.companyValidation?.validateCompanyRegistrationNumber(registrationNumber: registerNo) { isCompany, foundCompany in
+            self.companyValidation?.validateCompanyRegistrationNumber(registrationNumber: registerNo) { isNetworkAvailable, isCompany, foundCompany in
                 if isCompany {
                     self.userValidationService?.validateUser(company: foundCompany, email: email, password: password) { isValidUser, isValidCompany, accountType in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -76,6 +76,12 @@ class LoginViewController: UIViewController {
                                     self.presentAlert(message: Constant.Warning.Login.userNamePassInvalid)
                                 }
                             }
+                        }
+                    }
+                } else if !isNetworkAvailable {
+                    DispatchQueue.main.async {
+                        loadingVC.dismiss(animated: false) {
+                            self.presentAlert(message: Constant.Warning.Login.notConnected)
                         }
                     }
                 } else {
@@ -140,7 +146,7 @@ extension LoginViewController {
     private func isCompany(registerNo: String, completion: @escaping (Company?) -> Void) {
         let companyValidation = CompanyValidationService()
         
-        companyValidation.validateCompanyRegistrationNumber(registrationNumber: registerNo) { isCompanyFound, company in
+        companyValidation.validateCompanyRegistrationNumber(registrationNumber: registerNo) { isNetworkAvailable, isCompanyFound, company in
             if isCompanyFound {
                 completion(company)
             } else {

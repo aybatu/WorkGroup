@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CreateOwnerAccount {
+class CreateOwnerAccountService {
    
     func register<T: UserAccount>(userAccount: T, company: Company, completion: @escaping (Bool, String?) -> Void) {
         
@@ -35,7 +35,6 @@ class CreateOwnerAccount {
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
-                    print("Error: \(error.localizedDescription)")
                     completion(false, nil)
                     return
                 }
@@ -55,7 +54,6 @@ class CreateOwnerAccount {
                                 completion(false, nil)
                             }
                         } catch {
-                            print("Error parsing response: \(error.localizedDescription)")
                             completion(false, nil)
                         }
                     } else {
@@ -66,7 +64,6 @@ class CreateOwnerAccount {
 
             task.resume()
         } catch {
-            print("Error encoding data: \(error.localizedDescription)")
             completion(false, nil)
         }
     }

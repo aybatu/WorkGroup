@@ -8,7 +8,7 @@
 import Foundation
 class CompanyCreateAccountService {
     
-    func createAccount(companyRegistrationNumber: String, accountType: String, request: UserAccountRequest, completion: @escaping (Bool, String?) -> Void) {
+    func createAccount(companyRegistrationNumber: String, accountType: String, request: CreateUserAccountRequest, completion: @escaping (Bool, String?) -> Void) {
         let urlString = "http://localhost:8080/\(companyRegistrationNumber)/\(accountType)" // Replace with your actual API endpoint
         
         guard let url = URL(string: urlString) else {

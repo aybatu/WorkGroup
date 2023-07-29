@@ -13,7 +13,6 @@ class Manager: UserAccount {
     var userFirstName: String
     var userLastName: String
     var password: String
-    private let managerTaskCapacity: Int = 10
     var managerMeetings: [Meeting]
     
     enum CodingKeys: String, CodingKey {
