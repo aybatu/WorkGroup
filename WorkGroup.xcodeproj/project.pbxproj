@@ -78,6 +78,7 @@
 		1BDF7E4A2A74047D003FDEE9 /* DeleteUserAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E492A74047D003FDEE9 /* DeleteUserAccountRequest.swift */; };
 		1BDF7E4C2A74290C003FDEE9 /* CompanyDeleteAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E4B2A74290C003FDEE9 /* CompanyDeleteAccountService.swift */; };
 		1BDF7E4F2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E4E2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift */; };
+		1BDF7E512A756781003FDEE9 /* UpdateAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */; };
 		1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */; };
 		1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */; };
 		1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */; };
@@ -205,6 +206,7 @@
 		1BDF7E492A74047D003FDEE9 /* DeleteUserAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAccountRequest.swift; sourceTree = "<group>"; };
 		1BDF7E4B2A74290C003FDEE9 /* CompanyDeleteAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDeleteAccountService.swift; sourceTree = "<group>"; };
 		1BDF7E4E2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserAccountRequest.swift; sourceTree = "<group>"; };
+		1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountService.swift; sourceTree = "<group>"; };
 		1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceEmployeeListViewController.swift; sourceTree = "<group>"; };
 		1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDateViewController.swift; sourceTree = "<group>"; };
 		1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceGraphViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 		1B4BBDA42A4A6A6F008BF6A7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */,
 				1B1800D62A437F18003E67AF /* DataBase.swift */,
 				1BEB29B72A5F8BB5001EE469 /* RegistrationService.swift */,
 				1BEB29C12A5FC605001EE469 /* CrateOwnerAccountService.swift */,
@@ -962,6 +965,7 @@
 				1BECD7852A3B3321006889CA /* MeetingEditDetailsViewController.swift in Sources */,
 				1BE466C02A43B6F30073973F /* LoadingViewController.swift in Sources */,
 				1BD49D3A2A3D27D100E0AA41 /* CreateCompanyAccountFailViewController.swift in Sources */,
+				1BDF7E512A756781003FDEE9 /* UpdateAccountService.swift in Sources */,
 				1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */,
 				1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */,
 				1BD24C382A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift in Sources */,

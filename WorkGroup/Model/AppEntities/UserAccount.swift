@@ -31,5 +31,7 @@ extension UserAccount {
     func changePassword(newPassword: String) {
         // Implementation for changing password...
     }
+    func changeUserAccountType(newUserAccountType: AccountTypes) {
+    }
 }
 

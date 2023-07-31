@@ -11,7 +11,7 @@ class AdminMainMenuViewController: UIViewController {
     
     var company: Company?
     private var userAccounts = [any UserAccount]()
-   
+    private let companyValidationService = CompanyValidationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +20,16 @@ class AdminMainMenuViewController: UIViewController {
         navigationItem.rightBarButtonItem = logoutButton
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        companyValidationService.validateCompanyRegistrationNumber(registrationNumber: company?.registrationNumber ?? "") { isNetworkAvailable, isCompany, company in
+            if isCompany {
+                self.company = company
+            }
+        }
+    }
     @IBAction func createUserAccountButton(_ sender: UIButton) {
-        let loadingVC = LoadingViewController()
-     
+ 
         self.performSegue(withIdentifier: Constant.Segue.Admin.mainMenuToCreateAccount, sender: self)
         
     }

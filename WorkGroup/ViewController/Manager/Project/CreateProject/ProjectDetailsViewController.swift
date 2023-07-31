@@ -30,6 +30,7 @@ class ProjectDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         createProjectNavBar.title = "PROJECT DETAILS"
         projectTasksButton.isEnabled = false
         setUpDatePicker()

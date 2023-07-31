@@ -7,9 +7,15 @@
 import Foundation
 
 struct RegistrationService {
-    func register(company: Company, completion: @escaping (Bool, String?) -> Void) {
+    func register(company: Company, completion: @escaping (Bool, String?, String?) -> Void) {
+        var isCompanyRegistered = false
+        var companyRegistrationNumber: String?
+        var errorMsg: String?
         guard let url = URL(string: "http://localhost:8080/registercompany") else {
-            completion(false, nil)
+            isCompanyRegistered = false
+            errorMsg = "Please check you internet connection. Application could not resolve the URL."
+            companyRegistrationNumber = nil
+            completion(isCompanyRegistered, companyRegistrationNumber, errorMsg)
             return
         }
         
@@ -24,7 +30,10 @@ struct RegistrationService {
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
-                    completion(false, nil)
+                    isCompanyRegistered = false
+                    errorMsg = error.localizedDescription
+                    companyRegistrationNumber = nil
+                    completion(isCompanyRegistered, companyRegistrationNumber, errorMsg)
                     return
                 }
                 
@@ -34,22 +43,39 @@ struct RegistrationService {
                             if let responseData = data,
                                let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any],
                                let registrationNumber = json["registrationNumber"] as? String {
-                                completion(true, registrationNumber)
+                                errorMsg = nil
+                                isCompanyRegistered = true
+                               companyRegistrationNumber = registrationNumber
+                                completion(isCompanyRegistered, companyRegistrationNumber, errorMsg)
                             } else {
-                                completion(true, nil) // Registration number not found
+                                isCompanyRegistered = true
+                                companyRegistrationNumber = nil
+                                errorMsg = "There was an error while fetching registration number. Please try again."
+                                completion(isCompanyRegistered, companyRegistrationNumber, companyRegistrationNumber) // Registration number not found
                             }
                         } catch {
-                            completion(false, nil)
+                            isCompanyRegistered = false
+                            companyRegistrationNumber = nil
+                            errorMsg = error.localizedDescription
+                            completion(isCompanyRegistered, companyRegistrationNumber, errorMsg)
                         }
                     } else {
-                        completion(false, nil)
+                        guard let dataSafe = data else {return}
+                        isCompanyRegistered = false
+                        companyRegistrationNumber = nil
+                        errorMsg = String(data: dataSafe, encoding: .utf8)
+                        completion(isCompanyRegistered, companyRegistrationNumber, errorMsg)
+                    
                     }
                 }
             }
             
             task.resume()
         } catch {
-            completion(false, nil)
+            isCompanyRegistered = false
+            companyRegistrationNumber = nil
+            errorMsg = "Data could not resolved."
+            completion(isCompanyRegistered, companyRegistrationNumber, errorMsg)
         }
     }
 }

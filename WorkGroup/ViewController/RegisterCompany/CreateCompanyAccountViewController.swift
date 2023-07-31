@@ -186,17 +186,17 @@ extension CreateCompanyAccountViewController {
         
         loadingVC.setDatabaseAction {
             let registrationService = RegistrationService()
-            registrationService.register(company: registeredCompany) { result, registrationNo in
+            registrationService.register(company: registeredCompany) { result, registrationNo, errorMsg in
                 if result {
                     if let registrationNoSafe = registrationNo {
                         registeredCompany.registrationNumber = registrationNoSafe
                        
                         completion(.success)
                     } else {
-                        completion(.failure(message: "The company saved successfully. There is an issue with the company registration number. Please try again."))
+                        completion(.failure(message: errorMsg ?? ""))
                     }
                 } else {
-                    completion(.failure(message: "There was an error while registering the company. Please check your internet connection and try again."))
+                    completion(.failure(message: errorMsg ?? ""))
                 }
             }
         }

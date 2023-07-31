@@ -68,7 +68,9 @@ class Employee: UserAccount {
     }
     
     
-    
+    func changeAccountType(newAccountType: AccountTypes) {
+        accountType = newAccountType
+    }
     func changeName(newName: String) {
         userFirstName = newName
     }
@@ -81,9 +83,7 @@ class Employee: UserAccount {
     func changePassword(newPassword: String) {
         password = newPassword
     }
-    func changeAccountType(newAccountType: AccountTypes) {
-        accountType = newAccountType
-    }
+    
     func checkEmployeeAvailablity(completion: @escaping(AssignNewTaskToEmployee) -> Void) {
         if userTasks.count < employeeTaskCapacity {
             completion(.available)

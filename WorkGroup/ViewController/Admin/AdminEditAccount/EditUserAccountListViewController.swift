@@ -75,6 +75,7 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
                    
                    alertController.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
                        // Perform the account deletion
+                       
                        self.deleteUserAccount(tableView: tableView, at: indexPath, userAccount: deletedUserAccount)
                    })
                    
@@ -101,6 +102,7 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
                     // Account deletion successful
                     // Update the userAccounts array and delete the row from the table view
                     self.userAccounts.remove(at: indexPath.row)
+             
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 } else {
                     // Account deletion failed
@@ -128,7 +130,7 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
                    
                     if selectedIndexPath.row < userAccounts.count {
                         let selectedUserAccount = userAccounts[selectedIndexPath.row]
-
+                        editUserAccountDetailsVC.company = company
                         editUserAccountDetailsVC.userAccount = selectedUserAccount
                         editUserAccountDetailsVC.userAccounts = userAccounts
                     }

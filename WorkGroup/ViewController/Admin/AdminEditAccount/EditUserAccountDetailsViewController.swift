@@ -8,7 +8,7 @@
 import UIKit
 
 class EditUserAccountDetailsViewController: UIViewController{
-
+    
     private var tapGesture: UITapGestureRecognizer!
     @IBOutlet weak var saveChangesButton: UIButton!
     @IBOutlet weak var employeeAccountTypeButton: UIButton!
@@ -26,14 +26,15 @@ class EditUserAccountDetailsViewController: UIViewController{
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmTextField: UITextField!
     
-
+    
     private var tableView = UITableView()
     private let userAccountTypeDropDownMenu = UserAccountTypeDropDownMenu()
     
     var userAccount: (any UserAccount)?
     var userAccounts: [any UserAccount]?
     private let accountTypeDropDownMenu = UserAccountTypeDropDownMenu()
-    private let accountTypes: [AccountTypes] = AccountTypes.allCases
+    private let accountTypes: [AccountTypes] = AccountTypes.employeeCases
+    var company: Company?
     private var accountType: AccountTypes?
     private let textFieldStyle = TextFieldStyle()
     private var textFields: [UITextField] = []
@@ -57,27 +58,27 @@ class EditUserAccountDetailsViewController: UIViewController{
         setupTapGesture()
         enableSaveChangesButton()
     }
-    
+  
     override func viewWillDisappear(_ animated: Bool) {
-           super.viewWillDisappear(animated)
+        super.viewWillDisappear(animated)
         tableView.removeFromSuperview()
         
-       }
+    }
     
     private func setupTapGesture() {
-           tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-           tapGesture?.cancelsTouchesInView = false
-           view.addGestureRecognizer(tapGesture!)
-       }
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture?.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture!)
+    }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
-            // Dismiss the dropdown menu
+        // Dismiss the dropdown menu
         tableView.removeFromSuperview()
-
-            // Dismiss the keyboard
-            view.endEditing(true)
-
-        }
+        
+        // Dismiss the keyboard
+        view.endEditing(true)
+        
+    }
     
     private func setupTextFields() {
         textFields = [nameTextField, lastNameTextField,emailTextField, emailConfirmTextField, passwordTextField, passwordConfirmTextField]
@@ -89,7 +90,7 @@ class EditUserAccountDetailsViewController: UIViewController{
     }
     
     private func addUserCurrentInfoUpdateView() {
-       
+        
         guard let userSafe = userAccount else {return}
         let emailAddress = userSafe.emailAddress
         let firstName = userSafe.userFirstName
@@ -97,9 +98,9 @@ class EditUserAccountDetailsViewController: UIViewController{
         let lastName = userSafe.userLastName
         
         if let name = nameTextField,
-        let email = emailTextField,
-        let pass = passwordTextField,
-            let surname = lastNameTextField {
+           let email = emailTextField,
+           let pass = passwordTextField,
+           let surname = lastNameTextField {
             name.text = firstName
             email.text = emailAddress
             pass.text = password
@@ -136,17 +137,28 @@ class EditUserAccountDetailsViewController: UIViewController{
         loadingViewController.modalPresentationStyle = .fullScreen
         present(loadingViewController, animated: false)
         
-        loadingViewController.dismiss(animated: false) {
-            self.editUserAccountChanges { isEdited in
-                switch isEdited {
-                case .success:
-                    self.performSegue(withIdentifier: Constant.Segue.Admin.editUserAccountToSuccess, sender: self)
-                case .failure(let error):
-                    self.isFailWithError = error
-                    self.performSegue(withIdentifier: Constant.Segue.Admin.editUserAccountToFail, sender: self)
+      
+        
+                self.editUserAccountChanges { isEdited in
+                    switch isEdited {
+                    case .success:
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            loadingViewController.dismiss(animated: false) {
+                                self.performSegue(withIdentifier: Constant.Segue.Admin.editUserAccountToSuccess, sender: self)
+                            }
+                        
+                        }
+                    case .failure(let error):
+                        self.isFailWithError = error
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            loadingViewController.dismiss(animated: false) {
+                                self.performSegue(withIdentifier: Constant.Segue.Admin.editUserAccountToFail, sender: self)
+                            }
+                        }
+                    }
                 }
-            }
-        }
+            
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -206,38 +218,86 @@ extension EditUserAccountDetailsViewController: UITextFieldDelegate {
 extension EditUserAccountDetailsViewController {
     private func editUserAccountChanges(completion: @escaping(EditAccountResult) -> Void) {
         guard let name = nameTextField.text,
-                  let lastName = lastNameTextField.text,
-                  let email = emailTextField.text,
-                  let password = passwordTextField.text else {
-                completion(.failure(message: "Missing required fields."))
-                return
-            }
+              let lastName = lastNameTextField.text,
+              let originalUserAccount = userAccount,
+              let registrationNumber = company?.registrationNumber,
+              let email = emailTextField.text,
+              let password = passwordTextField.text else {
+            completion(.failure(message: "Missing required fields."))
+            return
+        }
+        let updateUserAccountRequest = UpdateUserAccountRequest(
+            originalEmailAddress: originalUserAccount.emailAddress,
+            newAccountType: accountType ?? originalUserAccount.accountType,
+            newEmailAddress: email,
+            newUserFirstName: name,
+            newUserLastName: lastName,
+            newPassword: password,
+            originalAccountType: originalUserAccount.accountType
+        )
+        
+        
+        let updateUserAccountService = UpdateAccountService()
+        updateUserAccountService.updateAccount(companyRegistrationNumber: registrationNumber, request: updateUserAccountRequest) {[self] isUpdated, error in
             
-            let search = Search<Employee>()
-            
-            if let userAccounts = userAccounts, let userAccount = userAccount {
+            if isUpdated {
+                if let accountTypeSafe = accountType {
                 
+                    if originalUserAccount.accountType != accountTypeSafe {
+                    
+                        if accountTypeSafe == AccountTypes.EMPLOYEE {
+                    
+                           let newEmployee = Employee(emailAddress: email, userFirstName: name, userLastName: lastName, password: password)
+                            company?.managerAccounts.removeAll{ $0.emailAddress == originalUserAccount.emailAddress }
+                            company?.employeeAccounts.append(newEmployee)
+                        } else if accountTypeSafe == AccountTypes.MANAGER {
                
-            }
-            
-            userAccount?.changeName(newName: name)
-            userAccount?.changeLastName(newLastName: lastName)
-            userAccount?.changeEmail(newEmail: email)
-            userAccount?.changePassword(newPassword: password)
-           
+                            let newManager = Manager(emailAddress: email, userFirstName: name, userLastName: lastName, password: password)
+                            company?.employeeAccounts.removeAll { $0.emailAddress == originalUserAccount.emailAddress }
+                             company?.managerAccounts.append(newManager)
+                        }
+                    } else {
+                        updateUserData(userAccount: originalUserAccount, password: password, email: email, name: name, lastName: lastName, accountType: accountTypeSafe)
+                    }
+                } else {
+                  
+                    updateUserData(userAccount: originalUserAccount, password: password, email: email, name: name, lastName: lastName, accountType: originalUserAccount.accountType)
+          
+                }
+                completion(.success)
+            }else {
                 
-            
-            completion(.success)
+                completion(.failure(message: error ?? ""))
+            }
+        }
+        
+        
     }
     
-   
+    private func updateUserData(userAccount: any UserAccount, password: String, email: String, name: String, lastName: String, accountType: AccountTypes) {
+        if userAccount.accountType == AccountTypes.EMPLOYEE {
+            (userAccount as! Employee).changePassword(newPassword: password)
+            (userAccount as! Employee).changeEmail(newEmail: email)
+            (userAccount as! Employee).changeName(newName: name)
+            (userAccount as! Employee).changeLastName(newLastName: lastName)
+            (userAccount as! Employee).changeAccountType(newAccountType: accountType)
+        } else {
+            (userAccount as! Manager).changePassword(newPassword: password)
+            (userAccount as! Manager).changeEmail(newEmail: email)
+            (userAccount as! Manager).changeName(newName: name)
+            (userAccount as! Manager).changeLastName(newLastName: lastName)
+            (userAccount as! Manager).changeAccountType(newAccountType: accountType)
+        }
+    }
+    
+    
 }
 
 extension EditUserAccountDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.DropDownMenu.userAccountTypeCellIdentifier) as? UserAccountTypeCell ?? UserAccountTypeCell(style: .default, reuseIdentifier: Constant.TableCellIdentifier.DropDownMenu.userAccountTypeCellIdentifier)
-            
+        
         cell.textLabel?.text = accountTypes[indexPath.row].rawValue
         
         return cell

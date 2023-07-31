@@ -670,7 +670,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SZb-H9-AVR">
                                         <rect key="frame" x="0.0" y="143.66666666666666" width="353" height="53.333333333333343"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a@a.com" borderStyle="roundedRect" placeholder="E-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvy-LV-byY">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="m@a.com" borderStyle="roundedRect" placeholder="E-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvy-LV-byY">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -1278,67 +1278,68 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="top" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="xTa-zZ-nsb">
-                                        <rect key="frame" x="0.0" y="284.33333333333331" width="353" height="139.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="322" width="353" height="64.333333333333314"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="s5a-cb-KrR">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="139.66666666666666"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="OT5-46-0t5">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="64.333333333333329"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="tM2-nr-dDO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="68.333333333333329"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cmv-r6-Jrt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="64.333333333333329"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cpH-1Q-YpQ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="68.333333333333329"/>
-                                                                <subviews>
-                                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Dbj-pR-sMC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                                        <connections>
-                                                                            <action selector="meetingDatePicker:" destination="yXb-9i-eLc" eventType="valueChanged" id="S7x-1l-0wA"/>
-                                                                        </connections>
-                                                                    </datePicker>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Meeting date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Pm-R2-Klg">
-                                                                        <rect key="frame" x="0.0" y="54" width="353" height="14.333333333333329"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Dbj-pR-sMC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="AfU-it-ngB"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="meetingDatePicker:" destination="yXb-9i-eLc" eventType="valueChanged" id="S7x-1l-0wA"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Meeting date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Pm-R2-Klg">
+                                                                <rect key="frame" x="0.0" y="50" width="120" height="14.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-H8-3Xd">
-                                                        <rect key="frame" x="0.0" y="73.333333333333371" width="353" height="66.333333333333314"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-Rt-dkd">
+                                                        <rect key="frame" x="131.66666666666666" y="0.0" width="110" height="64.333333333333329"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-Rt-dkd">
-                                                                <rect key="frame" x="0.0" y="0.0" width="181" height="66.333333333333329"/>
-                                                                <subviews>
-                                                                    <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="Fbe-4Y-5JQ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="181" height="52"/>
-                                                                        <connections>
-                                                                            <action selector="meetingStartTimePicker:" destination="yXb-9i-eLc" eventType="valueChanged" id="TxF-cg-vDj"/>
-                                                                        </connections>
-                                                                    </datePicker>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ocz-2a-oKw">
-                                                                        <rect key="frame" x="61" y="51.999999999999943" width="59.333333333333343" height="14.333333333333329"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="JBe-TK-qN5">
-                                                                <rect key="frame" x="264" y="0.0" width="89" height="66.333333333333329"/>
-                                                                <subviews>
-                                                                    <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="bRR-p1-lvF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="89" height="50"/>
-                                                                    </datePicker>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End time." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n9-ZI-vpA">
-                                                                        <rect key="frame" x="0.0" y="51.999999999999943" width="89" height="14.333333333333329"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
+                                                            <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="Fbe-4Y-5JQ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="WKO-oF-c8W"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="mPS-vQ-41Z"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="meetingStartTimePicker:" destination="yXb-9i-eLc" eventType="valueChanged" id="TxF-cg-vDj"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ocz-2a-oKw">
+                                                                <rect key="frame" x="0.0" y="50" width="110" height="14.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JBe-TK-qN5">
+                                                        <rect key="frame" x="253" y="0.0" width="100" height="64.333333333333329"/>
+                                                        <subviews>
+                                                            <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="bRR-p1-lvF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="7SS-Wq-U04"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="sBb-hE-5WC"/>
+                                                                </constraints>
+                                                            </datePicker>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End time." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n9-ZI-vpA">
+                                                                <rect key="frame" x="0.0" y="50" width="100" height="14.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -1358,6 +1359,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="xTa-zZ-nsb" firstAttribute="centerX" secondItem="Wgq-1o-Ed3" secondAttribute="centerX" id="Fsw-ev-SCw"/>
                                     <constraint firstItem="xTa-zZ-nsb" firstAttribute="centerY" secondItem="Wgq-1o-Ed3" secondAttribute="centerY" id="Z9P-Ym-VY5"/>
                                 </constraints>
                             </stackView>
@@ -1384,7 +1386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USy-r2-OE6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9243.925233644859" y="1188.9848812095033"/>
+            <point key="canvasLocation" x="9243.5114503816785" y="1188.7323943661972"/>
         </scene>
         <!--MeetingEmployeeInviteListView-->
         <scene sceneID="nrh-2Y-qOc">
@@ -1611,7 +1613,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hDN-22-nXh">
-                                        <rect key="frame" x="0.0" y="335" width="353" height="206.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="341" width="353" height="194.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="A project deadline must be clarified. You can adjust project start and end date by picking dates below." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ak-M4-wef">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
@@ -1621,12 +1623,36 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zsj-Rq-Run">
                                                 <rect key="frame" x="0.0" y="45.999999999999993" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="8zG-sH-6NA">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="1l3-IY-epr">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                        <connections>
-                                                            <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="3Xt-YG-3W6"/>
-                                                        </connections>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZJ-EI-5gK">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="Eyj-qv-AL1"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="zI7-46-Y7O"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker clipsSubviews="YES" contentMode="center" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="8zG-sH-6NA">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="2wL-zm-uQx"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="3Xt-YG-3W6"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DwY-bM-l2V">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="PYv-zg-txD"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="ldM-8h-Eed"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select your project start date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HV-3g-ANy">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1636,35 +1662,37 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWy-ok-2lp">
-                                                <rect key="frame" x="0.0" y="125.33333333333337" width="353" height="81.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="125.33333333333337" width="353" height="69.333333333333314"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0y7-zw-4Kf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="62"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3W-ML-Hr7">
-                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="62"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsf-Ev-awK">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            </view>
-                                                            <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="zmw-a8-cIO">
-                                                                <rect key="frame" x="20" y="0.0" width="313" height="62"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="62" id="AZR-YA-Lmp"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="ED8-qd-qM0"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="f9j-ED-6ZO"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker clipsSubviews="YES" contentMode="center" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="zmw-a8-cIO">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="6gc-Xp-brT"/>
                                                                 </constraints>
                                                             </datePicker>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usA-cc-nch">
-                                                                <rect key="frame" x="338" y="0.0" width="15" height="62"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NC-Py-dHs">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="sUL-Lz-Epx"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="tgt-fJ-lwo"/>
+                                                                </constraints>
                                                             </view>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="zmw-a8-cIO" firstAttribute="leading" secondItem="c3W-ML-Hr7" secondAttribute="trailing" constant="5" id="EBf-8x-YMp"/>
-                                                            <constraint firstItem="zmw-a8-cIO" firstAttribute="centerX" secondItem="0y7-zw-4Kf" secondAttribute="centerX" id="KeM-l1-xKz"/>
-                                                            <constraint firstItem="usA-cc-nch" firstAttribute="centerY" secondItem="0y7-zw-4Kf" secondAttribute="centerY" id="jh9-ws-BxX"/>
-                                                            <constraint firstAttribute="trailing" secondItem="c3W-ML-Hr7" secondAttribute="trailing" constant="338" id="krA-m6-1Bc"/>
-                                                        </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select your project end date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHV-f6-pMg">
-                                                        <rect key="frame" x="0.0" y="67" width="353" height="14.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1795,13 +1823,37 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Z6r-DE-sRv">
                                                 <rect key="frame" x="0.0" y="40.999999999999993" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Hj7-8p-3Bo">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="scL-9I-uiw">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                        <connections>
-                                                            <action selector="startDatePicker:" destination="yfj-e6-I56" eventType="valueChanged" id="JMo-cG-dM9"/>
-                                                            <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="Y35-aX-qqm"/>
-                                                        </connections>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQs-Py-x5K">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="UD0-mb-T55"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="fQB-o6-n7o"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Hj7-8p-3Bo">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="WlF-jO-1cn"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="startDatePicker:" destination="yfj-e6-I56" eventType="valueChanged" id="JMo-cG-dM9"/>
+                                                                    <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="Y35-aX-qqm"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmB-LI-rBB">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="ciU-tv-h4t"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="jZt-bt-pXd"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select project's new start date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2R-oK-kch">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1813,9 +1865,33 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bwQ-bn-Cwk">
                                                 <rect key="frame" x="0.0" y="115.33333333333331" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="XLy-9Z-LvB">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="d8X-DM-bjx">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdS-wi-75P">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="L2b-ez-5Qe"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="ayi-WI-Olo"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="XLy-9Z-LvB">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="lsE-ar-ThC"/>
+                                                                </constraints>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HpG-Ur-DiL">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="PuO-wu-Juo"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="Xss-vB-5aA"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select project's new end date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykV-9G-2MD">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2551,13 +2627,37 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zy0-lP-LX1">
                                                 <rect key="frame" x="0.0" y="45.999999999999993" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="afL-QZ-2Au">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="3Y8-yx-8tM">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                        <connections>
-                                                            <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="Lep-2m-w6V"/>
-                                                            <action selector="startDatePicker:" destination="nIC-v0-XH1" eventType="valueChanged" id="pjd-6H-pSz"/>
-                                                        </connections>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W67-lx-uRK">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="Fy6-r1-fT1"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="NrJ-lu-O1k"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="afL-QZ-2Au">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="ziX-cx-1eY"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="Lep-2m-w6V"/>
+                                                                    <action selector="startDatePicker:" destination="nIC-v0-XH1" eventType="valueChanged" id="pjd-6H-pSz"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPf-iw-ueU">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="2D1-zf-pAP"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="uBg-0W-PKn"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select task start date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BC9-y9-ke5">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2569,9 +2669,33 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6sK-6L-hIw">
                                                 <rect key="frame" x="0.0" y="125.33333333333337" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-Qa-Kpo">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="buS-YA-ZiJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bav-nO-H9i">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="dV4-wQ-BSc"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="x8r-Ab-8f0"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-Qa-Kpo">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="HEe-2S-en1"/>
+                                                                </constraints>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cb-DJ-ERA">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="MOi-ol-fjR"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="huw-yK-bqz"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select task end date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kp-rP-xte">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2765,13 +2889,37 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iMm-26-btx">
                                                 <rect key="frame" x="0.0" y="40.999999999999993" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="KQ2-77-282">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="S5p-Dn-5Vd">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                        <connections>
-                                                            <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="38j-U9-oM4"/>
-                                                            <action selector="startDatePicker:" destination="uWX-Ry-orK" eventType="valueChanged" id="9cA-oh-ogW"/>
-                                                        </connections>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-1v-Nze">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="75X-gy-cqJ"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="bZn-eS-JdH"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="KQ2-77-282">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="HEg-FS-efr"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="38j-U9-oM4"/>
+                                                                    <action selector="startDatePicker:" destination="uWX-Ry-orK" eventType="valueChanged" id="9cA-oh-ogW"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SpV-pm-ggA">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="nez-tt-0Ec"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="tWG-t5-31R"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select task's new start date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBJ-w7-lqF">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2783,9 +2931,33 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xAR-F1-ZSZ">
                                                 <rect key="frame" x="0.0" y="115.33333333333331" width="353" height="69.333333333333314"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Ecy-Jm-YxB">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="kAD-CU-MRn">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                                                    </datePicker>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KV-NU-LEF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="2CG-ZF-qYc"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="e5u-tL-FRL"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Ecy-Jm-YxB">
+                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="QYW-xB-cgj"/>
+                                                                </constraints>
+                                                            </datePicker>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NME-HH-pfE">
+                                                                <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="HtX-XD-yZz"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="OsT-Tr-14j"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Please select task's new end date." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQg-Oa-RSO">
                                                         <rect key="frame" x="0.0" y="55" width="353" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -4454,23 +4626,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qCx-mB-yBb">
-                                <rect key="frame" x="20" y="687" width="353" height="125"/>
+                                <rect key="frame" x="20" y="752" width="353" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHh-BE-RaS">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="Lhh-KR-LVd"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Account List">
-                                            <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="accountListButton:" destination="qhh-Pn-kma" eventType="touchUpInside" id="pjz-g3-mwa"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a21-Lj-9XW">
-                                        <rect key="frame" x="0.0" y="65" width="353" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="rgM-z3-y9l"/>
                                         </constraints>
