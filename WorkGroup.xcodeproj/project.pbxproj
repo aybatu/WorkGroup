@@ -79,6 +79,7 @@
 		1BDF7E4C2A74290C003FDEE9 /* CompanyDeleteAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E4B2A74290C003FDEE9 /* CompanyDeleteAccountService.swift */; };
 		1BDF7E4F2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E4E2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift */; };
 		1BDF7E512A756781003FDEE9 /* UpdateAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */; };
+		1BDF7E552A792F65003FDEE9 /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E542A792F65003FDEE9 /* ProjectService.swift */; };
 		1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */; };
 		1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */; };
 		1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */; };
@@ -207,6 +208,7 @@
 		1BDF7E4B2A74290C003FDEE9 /* CompanyDeleteAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDeleteAccountService.swift; sourceTree = "<group>"; };
 		1BDF7E4E2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserAccountRequest.swift; sourceTree = "<group>"; };
 		1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountService.swift; sourceTree = "<group>"; };
+		1BDF7E542A792F65003FDEE9 /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
 		1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceEmployeeListViewController.swift; sourceTree = "<group>"; };
 		1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDateViewController.swift; sourceTree = "<group>"; };
 		1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceGraphViewController.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				1B555E052A6305F9000307FD /* CompanyValidationService.swift */,
 				1B25B00C2A65B710008BCE0F /* CompanyCreateAccountService.swift */,
 				1BDF7E4B2A74290C003FDEE9 /* CompanyDeleteAccountService.swift */,
+				1BDF7E542A792F65003FDEE9 /* ProjectService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				1BCA43F02A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift in Sources */,
 				1B7879CA2A3A68A300CC17E1 /* ProjectTaskEditSuccessfulViewController.swift in Sources */,
 				1BBE94DC2A2FACC10053A264 /* MainMenuViewController.swift in Sources */,
+				1BDF7E552A792F65003FDEE9 /* ProjectService.swift in Sources */,
 				1BECF2632A52F4C70050A615 /* EditProjectResult.swift in Sources */,
 				1BEB29BE2A5F9060001EE469 /* Admin.swift in Sources */,
 				1BCA43E82A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift in Sources */,

@@ -47,7 +47,7 @@ class Employee: UserAccount {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(accountType.rawValue, forKey: .accountType)
+        try container.encode(accountType, forKey: .accountType)
         try container.encode(emailAddress, forKey: .emailAddress)
         try container.encode(userFirstName, forKey: .userFirstName)
         try container.encode(userLastName, forKey: .userLastName)

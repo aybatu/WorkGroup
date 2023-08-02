@@ -9,11 +9,13 @@ import Foundation
 
 class Project: Comparable, Codable {
     
-     var title: String
-     var description: String
-     var tasks: [Task]
-     var startDate: Date
-     var finishDate: Date
+    var title: String
+    var description: String
+    var tasks: [Task]
+    var startDate: Date
+    var endDate: Date
+    
+    private let customDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
     
     // MARK: - Codable
     
@@ -22,25 +24,47 @@ class Project: Comparable, Codable {
         case description
         case tasks
         case startDate
-        case finishDate
+        case endDate
     }
-   
     
-    init(title: String, description: String, tasks: [Task], startDate: Date, finishDate: Date) {
+    
+    init(title: String, description: String, tasks: [Task], startDate: Date, endDate: Date) {
         self.title = title
         self.description = description
         self.tasks = tasks
         self.startDate = startDate
-        self.finishDate = finishDate
+        self.endDate = endDate
     }
+    
+    
+    
+    // ... your existing code ...
+    
+    // MARK: - Codable
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         title = try container.decode(String.self, forKey: .title)
         description = try container.decode(String.self, forKey: .description)
         tasks = try container.decode([Task].self, forKey: .tasks)
-        startDate = try container.decode(Date.self, forKey: .startDate)
-        finishDate = try container.decode(Date.self, forKey: .finishDate)
+        
+        // Decode dates using the custom date format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = customDateFormat
+        
+        if let startDateString = try? container.decode(String.self, forKey: .startDate),
+           let startDate = dateFormatter.date(from: startDateString) {
+            self.startDate = startDate
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .startDate, in: container, debugDescription: "Invalid date format")
+        }
+        
+        if let endDateString = try? container.decode(String.self, forKey: .endDate),
+           let endDate = dateFormatter.date(from: endDateString) {
+            self.endDate = endDate
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .endDate, in: container, debugDescription: "Invalid date format")
+        }
     }
     
     func encode(to encoder: Encoder) throws {
@@ -48,8 +72,12 @@ class Project: Comparable, Codable {
         try container.encode(title, forKey: .title)
         try container.encode(description, forKey: .description)
         try container.encode(tasks, forKey: .tasks)
-        try container.encode(startDate, forKey: .startDate)
-        try container.encode(finishDate, forKey: .finishDate)
+        
+        // Encode dates using the custom date format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = customDateFormat
+        try container.encode(dateFormatter.string(from: startDate), forKey: .startDate)
+        try container.encode(dateFormatter.string(from: endDate), forKey: .endDate)
     }
     
     func hash(into hasher: inout Hasher) {
@@ -64,7 +92,7 @@ class Project: Comparable, Codable {
     }
     
     func editEndDate(newEndDate: Date) {
-        finishDate = newEndDate
+        endDate = newEndDate
     }
     
     func editTitle(newTitle: String) {
@@ -82,8 +110,5 @@ class Project: Comparable, Codable {
     static func < (lhs: Project, rhs: Project) -> Bool {
         return lhs.title < rhs.title
     }
-    
-  
-    
- 
+
 }

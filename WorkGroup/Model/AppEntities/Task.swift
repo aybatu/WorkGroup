@@ -13,16 +13,15 @@ class Task: Codable, Comparable {
     var description: String
     var assignedEmployees: [Employee]
     var taskEmployeeLimit = 5
-    var isTaskCompleted: Bool
+    var isTaskCompleted: Bool = false
     var taskStartDate: Date
     var taskEndDate: Date
-   
+    private let customDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
     
     enum CodingKeys: String, CodingKey {
            case title
            case description
            case assignedEmployees
-           case isTaskCompleted
            case taskStartDate
            case taskEndDate
        }
@@ -31,7 +30,6 @@ class Task: Codable, Comparable {
         self.title = title
         self.description = description
         self.assignedEmployees = assignedEmployees
-        self.isTaskCompleted = false
         self.taskStartDate = taskStartDate
         self.taskEndDate = taskEndDate
     }
@@ -42,10 +40,10 @@ class Task: Codable, Comparable {
          try container.encode(title, forKey: .title)
          try container.encode(description, forKey: .description)
          try container.encode(assignedEmployees, forKey: .assignedEmployees)
-        
-         try container.encode(isTaskCompleted, forKey: .isTaskCompleted)
-         try container.encode(taskStartDate, forKey: .taskStartDate)
-         try container.encode(taskEndDate, forKey: .taskEndDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = customDateFormat
+        try container.encode(dateFormatter.string(from: taskStartDate), forKey: .taskStartDate)
+        try container.encode(dateFormatter.string(from: taskEndDate), forKey: .taskEndDate)
      }
 
      required init(from decoder: Decoder) throws {
@@ -53,10 +51,23 @@ class Task: Codable, Comparable {
          title = try container.decode(String.self, forKey: .title)
          description = try container.decode(String.self, forKey: .description)
          assignedEmployees = try container.decode([Employee].self, forKey: .assignedEmployees)
+         // Decode dates using the custom date format
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = customDateFormat
          
-         isTaskCompleted = try container.decode(Bool.self, forKey: .isTaskCompleted)
-         taskStartDate = try container.decode(Date.self, forKey: .taskStartDate)
-         taskEndDate = try container.decode(Date.self, forKey: .taskEndDate)
+         if let taskStartDateString = try? container.decode(String.self, forKey: .taskStartDate),
+            let taskStartDate = dateFormatter.date(from: taskStartDateString) {
+             self.taskStartDate = taskStartDate
+         } else {
+             throw DecodingError.dataCorruptedError(forKey: .taskStartDate, in: container, debugDescription: "Invalid date format")
+         }
+         
+         if let taskEndDateString = try? container.decode(String.self, forKey: .taskEndDate),
+            let taskEndDate = dateFormatter.date(from: taskEndDateString) {
+             self.taskEndDate = taskEndDate
+         } else {
+             throw DecodingError.dataCorruptedError(forKey: .taskEndDate, in: container, debugDescription: "Invalid date format")
+         }
      }
     
     func assignEmployee(employee: Employee, completion: @escaping(Bool, Bool, Bool) -> Void) {

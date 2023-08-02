@@ -38,12 +38,15 @@ struct CompanyValidationService {
                            completion(true, false, nil)
                        }
                    } catch {
+                    
                        completion(true, false, nil)
                    }
                } else if httpResponse.statusCode == 404 {
                    // Company not found
+  
                    completion(true, false, nil)
                } else {
+         
                    completion(true, false, nil)
                }
            }.resume()

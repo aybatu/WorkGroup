@@ -47,7 +47,7 @@ class ProjectDetailsEditViewController: UIViewController {
             let projectTitle = projectSafe.title
             let projectDescription = projectSafe.description
             let projectStartDate = projectSafe.startDate
-            let projectEndDate = projectSafe.finishDate
+            let projectEndDate = projectSafe.endDate
             
             projectTitleTextField.text = projectTitle
             projectDescriptionTextView.text = projectDescription
