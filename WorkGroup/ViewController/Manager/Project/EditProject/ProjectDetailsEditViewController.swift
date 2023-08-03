@@ -26,7 +26,7 @@ class ProjectDetailsEditViewController: UIViewController {
         Constant.Dictionary.ProjectDetailsDictionary.projectEndDate: Date()
     ]
     private var editProjectDetailFailWithError: String?
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +49,13 @@ class ProjectDetailsEditViewController: UIViewController {
             let projectStartDate = projectSafe.startDate
             let projectEndDate = projectSafe.endDate
             
+            setUpDatePicker(projectStartDate: projectStartDate)
+            
             projectTitleTextField.text = projectTitle
             projectDescriptionTextView.text = projectDescription
             startDatePicker.date = projectStartDate
             endDatePicker.date = projectEndDate
-            setUpDatePicker()
+            
             
             projectDetails[Constant.Dictionary.ProjectDetailsDictionary.projectTitle] = projectTitle
             projectDetails[Constant.Dictionary.ProjectDetailsDictionary.projectDescription] = projectDescription
@@ -63,11 +65,11 @@ class ProjectDetailsEditViewController: UIViewController {
         }
     }
     
-    private func setUpDatePicker() {
+    private func setUpDatePicker(projectStartDate: Date) {
         // Set the minimum and maximum dates for the startDatePicker
         
-        startDatePicker.minimumDate = Date()
-        startDatePicker.maximumDate = Calendar.current.date(byAdding: .month, value: 3, to: Date())
+        startDatePicker.minimumDate = projectStartDate
+        startDatePicker.maximumDate = Calendar.current.date(byAdding: .month, value: 3, to: projectStartDate)
         
         endDatePicker.center = .zero
         // Set the minimum and maximum dates for the endDatePicker
@@ -87,20 +89,27 @@ class ProjectDetailsEditViewController: UIViewController {
         
         present(loadingVC, animated: false)
         
-        loadingVC.dismiss(animated: false) { [weak self] in
-            self?.editProjectDetails {[weak self] result in
-                switch result {
-                case .success:
-                    self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.EditProject.projectDetailSaveToSuccess, sender: self)
-                case .failure(let error):
-                    self?.editProjectDetailFailWithError = error
-                    self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.EditProject.projectDetailSaveToFail, sender: self)
-                    
+        
+        editProjectDetails {[weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self?.loadingVC.dismiss(animated: false) { [weak self] in
+                        self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.EditProject.projectDetailSaveToSuccess, sender: self)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self?.loadingVC.dismiss(animated: false) { [weak self] in
+                        self?.editProjectDetailFailWithError = error
+                        self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.EditProject.projectDetailSaveToFail, sender: self)
+                    }
                 }
             }
+            
         }
-        
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constant.Segue.Manager.Project.EditProject.editProjectDetailToTaskList {
@@ -145,16 +154,19 @@ class ProjectDetailsEditViewController: UIViewController {
 extension ProjectDetailsEditViewController {
     private func editProjectDetails(completion: @escaping (EditProjectResult) -> Void) {
         guard let projectTitle = projectTitleTextField.text,
-              let projectDescription = projectDescriptionTextView.text
+              let projectDescription = projectDescriptionTextView.text,
+              let originalProjectTitle = projectDetails[Constant.Dictionary.ProjectDetailsDictionary.projectTitle] as? String,
+              let registrationNo = company?.registrationNumber
         else {
             completion(.failure(message: "Some of the project fields are empty. Please check and try again."))
             return
         }
+        let projectService = ProjectService()
         
         let startDate = startDatePicker.date
         let endDate = endDatePicker.date
         
-        if projectTitle != projectDetails[Constant.Dictionary.ProjectDetailsDictionary.projectTitle] as? String {
+        if projectTitle != originalProjectTitle {
             let isProjectTitleExist = company?.projects.contains { project in
                 return project.title == projectTitle
             }
@@ -167,9 +179,15 @@ extension ProjectDetailsEditViewController {
                     projectSafe.editDecription(newDescription: projectDescription)
                     projectSafe.editStartDate(newStartDate: startDate)
                     projectSafe.editEndDate(newEndDate: endDate)
-                    completion(.success)
-                } else {
-                    completion(.failure(message: "There was an error while saving changes. Please try again."))
+                    
+                    let newUpdateRequest = UpdateProjectRequest(originalProjectTitle: originalProjectTitle, updatedProject: projectSafe)
+                    projectService.updateProject(registrationNumber: registrationNo, updatedProjectRequest: newUpdateRequest) { isProjectUpdated, errorMsg in
+                        if isProjectUpdated {
+                            completion(.success)
+                        } else {
+                            completion(.failure(message: errorMsg ?? ""))
+                        }
+                    }
                 }
             }
         } else {
@@ -178,12 +196,20 @@ extension ProjectDetailsEditViewController {
                 projectSafe.editDecription(newDescription: projectDescription)
                 projectSafe.editStartDate(newStartDate: startDate)
                 projectSafe.editEndDate(newEndDate: endDate)
-                completion(.success)
-            } else {
-                completion(.failure(message: "There was an error while saving changes. Please try again."))
+                
+                let newUpdateRequest = UpdateProjectRequest(originalProjectTitle: originalProjectTitle, updatedProject: projectSafe)
+                projectService.updateProject(registrationNumber: registrationNo, updatedProjectRequest: newUpdateRequest) { isProjectUpdated, errorMsg in
+                    if isProjectUpdated {
+                        completion(.success)
+                    } else {
+                        completion(.failure(message: errorMsg ?? ""))
+                    }
+                }
+                
             }
         }
         
     }
+    
     
 }

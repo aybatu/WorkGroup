@@ -26,7 +26,11 @@ class ProjectTaskEditSuccessfulViewController: UIViewController {
     
     @IBAction func backToMenuButton(_ sender: UIButton) {
         guard let navigationController = self.navigationController else {return}
-        navigationController.popToRootViewController(animated: true)
+        let viewControllers = navigationController.viewControllers
+        if viewControllers.count > 0 {
+            let taskListViewController = viewControllers[2]
+            navigationController.popToViewController(taskListViewController, animated: true)
+        }
     }
     
 

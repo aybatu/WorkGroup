@@ -11,7 +11,6 @@ class AdminMainMenuViewController: UIViewController {
     
     var company: Company?
     private var userAccounts = [any UserAccount]()
-    private let companyValidationService = CompanyValidationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +21,7 @@ class AdminMainMenuViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let companyValidationService = CompanyValidationService()
         companyValidationService.validateCompanyRegistrationNumber(registrationNumber: company?.registrationNumber ?? "") { isNetworkAvailable, isCompany, company in
             if isCompany {
                 self.company = company

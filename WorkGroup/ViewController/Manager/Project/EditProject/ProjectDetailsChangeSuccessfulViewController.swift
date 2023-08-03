@@ -14,17 +14,6 @@ class ProjectDetailsChangeSuccessfulViewController: UIViewController {
         navigationItem.hidesBackButton = true
     }
     
-
-  
-    @IBAction func projectListButton(_ sender: UIButton) {
-        guard let navigationController = self.navigationController else {return}
-        let viewControllers = navigationController.viewControllers
-        
-        if viewControllers.count > 0 {
-            let projectListViewController = navigationController.viewControllers[1]
-            navigationController.popToViewController(projectListViewController, animated: true)
-        }
-    }
     
     @IBAction func backToMenuButton(_ sender: UIButton) {
         guard let navigationController = self.navigationController else {return}

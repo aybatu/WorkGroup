@@ -104,7 +104,7 @@ class CreateUserAccountViewController: UIViewController {
             present(loadingViewController, animated: false)
             
             
-            let createAccount = CompanyCreateAccountService()
+            let createAccount = CompanyService()
             let userAccountRequest = CreateUserAccountRequest(accountType: accountType,emailAddress: emailAddress, userFirstName: employeeName, userLastName: employeeSurname, password: password)
             
             createAccount.createAccount(companyRegistrationNumber: companyRegistrationNumber, accountType: accountType.rawValue, request: userAccountRequest) {[weak self] result, error in

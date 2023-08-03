@@ -81,4 +81,63 @@ struct ProjectService {
         // Start the data task
         task.resume()
     }
+    
+    func updateProject(registrationNumber: String, updatedProjectRequest: UpdateProjectRequest, completion: @escaping (Bool, String?) -> Void) {
+        // Prepare the URL for the PUT request
+        let urlString = "http://localhost:8080/\(registrationNumber)/updateProject"
+        guard let url = URL(string: urlString) else {
+            completion(false, "Invalid URL")
+            return
+        }
+
+        // Create a URLRequest with the PUT method
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        // Set the request body with JSON data
+        do {
+            let jsonData = try JSONEncoder().encode(updatedProjectRequest)
+            request.httpBody = jsonData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            completion(false, "Error encoding JSON data")
+            return
+        }
+
+        // Create a URLSession data task to send the request
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // Handle the response or error here
+            if let error = error {
+                print("Error: \(error)")
+                completion(false, "Server response error. Please try again.")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    // Request was successful
+                    completion(true, nil)
+                } else {
+                    // Request failed with an error message
+                    if let responseData = data {
+                        do {
+                            // Try to decode the response data as a JSON dictionary
+                            if let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any],
+                               let errorMessage = json["error"] as? String {
+                                completion(false, errorMessage)
+                                return
+                            }
+                        } catch {
+                            // Failed to parse the response data as JSON
+                            print("Error parsing error response data: \(error)")
+                        }
+                    }
+                    completion(false, "Unknown error occurred. Please try again.")
+                }
+            }
+        }
+
+        // Start the data task
+        task.resume()
+    }
 }

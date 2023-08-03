@@ -1635,9 +1635,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker clipsSubviews="YES" contentMode="center" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="8zG-sH-6NA">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="2wL-zm-uQx"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="2wL-zm-uQx"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="3Xt-YG-3W6"/>
@@ -1676,9 +1676,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker clipsSubviews="YES" contentMode="center" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="zmw-a8-cIO">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="6gc-Xp-brT"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="6gc-Xp-brT"/>
                                                                 </constraints>
                                                             </datePicker>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NC-Py-dHs">
@@ -1835,9 +1835,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Hj7-8p-3Bo">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="WlF-jO-1cn"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="WlF-jO-1cn"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <action selector="startDatePicker:" destination="yfj-e6-I56" eventType="valueChanged" id="JMo-cG-dM9"/>
@@ -1877,9 +1877,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="XLy-9Z-LvB">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="lsE-ar-ThC"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="lsE-ar-ThC"/>
                                                                 </constraints>
                                                             </datePicker>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HpG-Ur-DiL">
@@ -2639,9 +2639,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="afL-QZ-2Au">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="ziX-cx-1eY"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="ziX-cx-1eY"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="Lep-2m-w6V"/>
@@ -2681,9 +2681,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-Qa-Kpo">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="HEe-2S-en1"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="HEe-2S-en1"/>
                                                                 </constraints>
                                                             </datePicker>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cb-DJ-ERA">
@@ -2901,9 +2901,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="KQ2-77-282">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="HEg-FS-efr"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="HEg-FS-efr"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <action selector="startDatePicker:" destination="w0A-Do-jWa" eventType="valueChanged" id="38j-U9-oM4"/>
@@ -2943,9 +2943,9 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Ecy-Jm-YxB">
-                                                                <rect key="frame" x="116.66666666666666" y="0.0" width="120" height="50"/>
+                                                                <rect key="frame" x="111.66666666666666" y="0.0" width="130" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="QYW-xB-cgj"/>
+                                                                    <constraint firstAttribute="width" constant="130" id="QYW-xB-cgj"/>
                                                                 </constraints>
                                                             </datePicker>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NME-HH-pfE">
@@ -3180,7 +3180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xwu-dt-2yv">
-                                <rect key="frame" x="20" y="383.33333333333331" width="353" height="85.333333333333314"/>
+                                <rect key="frame" x="20" y="373.33333333333331" width="353" height="105.66666666666669"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-Td-ob6">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -3201,8 +3201,8 @@
                                             <constraint firstItem="Mae-go-UId" firstAttribute="centerX" secondItem="O2p-Td-ob6" secondAttribute="centerX" id="xsF-0W-tXs"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task is edited successfully!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-QO-Ugu">
-                                        <rect key="frame" x="0.0" y="65" width="353" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task is edited successfully! Save changes in project details menu to commit updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-QO-Ugu">
+                                        <rect key="frame" x="0.0" y="65" width="353" height="40.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -3234,7 +3234,7 @@
                                             <constraint firstAttribute="height" constant="60" id="tCn-u0-0rk"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Back To Menu"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Back To Project Details"/>
                                         <connections>
                                             <action selector="backToMenuButton:" destination="htr-WH-Ted" eventType="touchUpInside" id="0XE-XP-RlZ"/>
                                         </connections>
@@ -3596,7 +3596,7 @@
                                             <constraint firstAttribute="height" constant="60" id="Rct-Rp-cQ2"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Back To Menu"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Back To Project Details"/>
                                         <connections>
                                             <action selector="backToMenuButton:" destination="7oL-Ub-t3z" eventType="touchUpInside" id="RnY-xn-i2r"/>
                                         </connections>
@@ -4178,23 +4178,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c0r-Eh-lil">
-                                <rect key="frame" x="20" y="687" width="353" height="125"/>
+                                <rect key="frame" x="20" y="752" width="353" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrF-ZA-ReT">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="CVW-Xv-hN6"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Project List">
-                                            <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="projectListButton:" destination="55g-th-ZOk" eventType="touchUpInside" id="ncd-Ro-Zcj"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VF8-D6-40S">
-                                        <rect key="frame" x="0.0" y="65" width="353" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="3P6-Ip-OdN"/>
                                         </constraints>

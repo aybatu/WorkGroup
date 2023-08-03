@@ -12,6 +12,7 @@ class ManagerAccountMenuViewController: UIViewController {
     @IBOutlet weak var managerMenuNavBar: UINavigationItem!
     var company: Company?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         managerMenuNavBar.title = "MANAGER MENU"
@@ -20,6 +21,15 @@ class ManagerAccountMenuViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let companyValidationService = CompanyValidationService()
+        companyValidationService.validateCompanyRegistrationNumber(registrationNumber: company?.registrationNumber ?? "") { isNetworkAvailable, isCompany, company in
+            if isCompany {
+                self.company = company
+            }
+        }
+    }
     
     @objc func logoutButtonTapped() {
         // Show a confirmation alert or perform any necessary logout actions

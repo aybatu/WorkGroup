@@ -225,9 +225,7 @@ class ProjectAddTaskDetailViewController: UIViewController {
             return
         } else {
             taskArr.append(newTask)
-            for user in assignedUserList {
-//                user.userTasks.append(newTask)
-            }
+           
         }
         
         completion(.success)

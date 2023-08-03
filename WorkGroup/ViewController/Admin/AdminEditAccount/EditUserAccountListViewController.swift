@@ -87,7 +87,7 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
     
     private func deleteUserAccount(tableView: UITableView, at indexPath: IndexPath, userAccount: any UserAccount) {
         guard let companyRegNo = company?.registrationNumber else {return}
-        let deleteService = CompanyDeleteAccountService()
+        let deleteService = CompanyService()
         let request = DeleteUserAccountRequest(
             accountType: userAccount.accountType,
             emailAddress: userAccount.emailAddress,
