@@ -75,7 +75,7 @@ struct ProjectService {
                     completion(isProjectCreated, errorMsg)
                 }
             }
-
+            
         }
         
         // Start the data task
@@ -89,11 +89,11 @@ struct ProjectService {
             completion(false, "Invalid URL")
             return
         }
-
+        
         // Create a URLRequest with the PUT method
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
-
+        
         // Set the request body with JSON data
         do {
             let jsonData = try JSONEncoder().encode(updatedProjectRequest)
@@ -103,7 +103,7 @@ struct ProjectService {
             completion(false, "Error encoding JSON data")
             return
         }
-
+        
         // Create a URLSession data task to send the request
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             // Handle the response or error here
@@ -112,7 +112,7 @@ struct ProjectService {
                 completion(false, "Server response error. Please try again.")
                 return
             }
-
+            
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     // Request was successful
@@ -136,7 +136,70 @@ struct ProjectService {
                 }
             }
         }
-
+        
+        // Start the data task
+        task.resume()
+    }
+    
+    func markProjectCompleted(registrationNumber: String, project: Project, completion: @escaping (Bool, String?) -> Void) {
+        var isProjectCompleted = false
+        var errorMsg:String?
+        let urlString = "http://localhost:8080/\(registrationNumber)/completeProject"
+        
+        guard let url = URL(string: urlString) else {
+            isProjectCompleted = false
+            errorMsg = "Invalid URL"
+            completion(isProjectCompleted, errorMsg)
+            return
+        }
+        
+        // Create a URLRequest with the PUT method
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        
+        // Set the request body with JSON data
+        do {
+            let jsonData = try JSONEncoder().encode(project)
+            request.httpBody = jsonData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            isProjectCompleted = false
+            errorMsg = "Error encoding JSON data"
+            completion(isProjectCompleted, errorMsg)
+            return
+        }
+        
+        // Create a URLSession data task to send the request
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // Handle the response or error here
+            if let error = error {
+                isProjectCompleted = false
+                errorMsg = "Error: \(error)"
+                completion(isProjectCompleted, errorMsg)
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    isProjectCompleted = true
+                    errorMsg = nil
+                    completion(isProjectCompleted, errorMsg)
+                } else {
+                    // Request failed with an error message
+                    if let responseData = data {
+                        if let errorMessage = String(data: responseData, encoding: .utf8) {
+                            // Print the error message for debugging purposes
+                            isProjectCompleted = false
+                            errorMsg = errorMessage
+                            completion(isProjectCompleted, errorMsg)
+                            return
+                        }
+                    }
+                    completion(false, "Unknown error occurred. Please try again.")
+                }
+            }
+        }
+        
         // Start the data task
         task.resume()
     }

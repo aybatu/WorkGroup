@@ -31,8 +31,8 @@ struct Constant {
             struct Meeting {
                 static let meetingListToMeetingDetails = "EmployeeMeetingListViewToDetails"
             }
-           
-   
+            
+            
             static let employeeDateListToPerformanceGraph = "DateToPerformanceGraphEmployee"
         }
         
@@ -75,7 +75,7 @@ struct Constant {
                     static let projectDetailSaveToFail = "ProjectDetailsChangeToFail"
                     static let projectDetailSaveToSuccess = "ProjectDetailsChangeToSuccess"
                     static let editProjectDetailToTaskList = "EditProjectDetailsToTaskList"
-                  
+                    
                     
                     struct EditTask {
                         static let taskListToEditTaskDetails = "TaskListToEditTask"
@@ -84,7 +84,7 @@ struct Constant {
                     }
                 }
                 
-               
+                
             }
             
             struct Meeting {
@@ -99,32 +99,23 @@ struct Constant {
                     static let editInvitedEmployeeToFail = "MeetingEditInvitedEmployeeToFail"
                     static let editInvitedEmployeeToSuccess = "MeetingEditInvitedEmployeeToSuccess"
                 }
-              
+                
             }
             
-           
+            
             static let employeeListToPerformanceDate = "EmployeeListToPerformanceDateListManager"
             static let performanceDateToPerformanceGraph = "PerformanceDateToPerformanceGraph"
             
         }
     }
     struct TableCellIdentifier {
-        struct Admin {
-            static let editUserListCellIdentifier = "EmployeeListTableViewCellIdentifier"
-            static let editUserListCellNib = "EmployeeListTableCell"
-        }
+        
         struct Employee {
             static let employeeTaskLisCellIdentifier = "EmployeeTaskListCell"
             static let employeeMeetingListCellIdentifier = "EmployeeMeetingListCell"
             static let employeePerformanceDateListCellIdentifier = "EmployeePerformanceDateListCell"
         }
         struct Manager {
-            
-            static let editProjectListCellIdentifier = "EditProjectCell"
-            static let taskListCellIdentifier = "EditTaskCellManager"
-            static let meetingEmployeListCellIdentifier = "MeetingInviteEmployeeCell"
-            static let editMeetingListCellIdentifier = "EditMeetingsMangerCell"
-            static let editMeetingEmployeeListCellIdentifier = "EditMeetingEmployeeListCell"
             static let employeeListForPerformanceReportCellIdentifier = "EmployeePerformanceGraphListManagerCell"
             static let employeePerformanceDateCellIdentifier = "EmployeePerformanceDateCell"
         }
@@ -171,5 +162,13 @@ struct Constant {
             static let meetindEndTime = "MeetingEndTime"
             static let invitedEmployeeList = "InvitedEmployeeList"
         }
+    }
+    struct CustomCell {
+        static let employeeListCellIdentifier = "EmployeeListTableViewCellIdentifier"
+        static let employeeListCellNib = "EmployeeListTableCell"
+        static let meetingListCellNib = "MeetingListTableCell"
+        static let meetingListCellIdentifier = "MeetingListCellIdentifier"
+        static let projectListTableCellIdentifier = "ProjectListTableCellIdentifier"
+        static let projectListCellNib = "ProjectListTableCell"
     }
 }

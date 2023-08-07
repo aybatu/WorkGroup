@@ -42,16 +42,18 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
         employeeListTableView.delegate = self
         employeeListTableView.dataSource = self
         navigationItem.title = "Employee List"
+        
+        employeeListTableView.register(UINib(nibName: Constant.CustomCell.employeeListCellNib, bundle: nil), forCellReuseIdentifier: Constant.CustomCell.employeeListCellIdentifier)
     }
     override func viewWillAppear(_ animated: Bool) {
-//        for employee in employeeList {
-//            if let meetingSafe = meeting {
-//                if employee.employeeMeetings.contains(meetingSafe) {
-//                    selectedEmployeeList.append(employee)
-//                }
-//            }
-//        }
-//        employeeListTableView.reloadData()
+        for employee in employeeList {
+            if let meetingSafe = meeting {
+                if employee.employeeInvitedMeetings.contains(meetingSafe) {
+                    selectedEmployeeList.append(employee)
+                }
+            }
+        }
+        employeeListTableView.reloadData()
     }
     
     private func createMeeting() {
@@ -73,28 +75,38 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     
     @IBAction func sendMeetingInviteButton(_ sender: UIButton) {
         let loadingVC = LoadingViewController()
+        let meetingService = MeetingService()
+        
         loadingVC.modalPresentationStyle = .fullScreen
         
         present(loadingVC, animated: false)
         
         
         if selectedEmployeeList.count > 0 {
-            guard let meetingSafe = meeting else {
-                performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.sendMeetingRequestToFail, sender: self)
+            guard let meetingSafe = meeting, let companySafe = company, let registerNo = companySafe.registrationNumber else {
                 return
             }
+            let meetingRequest = ScheduleMeetingRequest(meeting: meetingSafe, invitedEmployeeList: selectedEmployeeList)
             
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                if let companySafe = self?.company {
+            meetingService.scheduleMeeting(companyRegistrationNo: registerNo, meetingRequest: meetingRequest) { isMeetingScheduled, error in
+                if isMeetingScheduled {
                     companySafe.addMeeting(meetingSafe)
-                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                        loadingVC.dismiss(animated: false) {
+                            self?.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.sendMeetingRequestTotSuccess, sender: self)
+                        }
+                    }
+                } else {
+                    self.failWithError = error
+                    DispatchQueue.main.async {
+                        loadingVC.dismiss(animated: false) {
+                            self.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.sendMeetingRequestToFail, sender: self)
+                        }
+                    }
                 }
-                
             }
-            loadingVC.dismiss(animated: false) { [weak self] in
-                self?.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.ScheduleMeeting.sendMeetingRequestTotSuccess, sender: self)
-            }
+          
         } else {
             loadingVC.dismiss(animated: false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
@@ -118,11 +130,11 @@ class MeetingInviteEmployeeViewController: UIViewController, UITableViewDelegate
     
     private func performDiscard() {
         if let meetingSafe = meeting {
-//            for employee in selectedEmployeeList {
-//                if employee.employeeMeetings.contains(meetingSafe) {
-//                    employee.removeMeeting(meeting: meetingSafe)
-//                }
-//            }
+            for employee in selectedEmployeeList {
+                if employee.employeeInvitedMeetings.contains(meetingSafe) {
+                    employee.removeMeeting(meeting: meetingSafe)
+                }
+            }
         }
         
         guard let navigationController = self.navigationController else {return}
@@ -145,7 +157,7 @@ extension MeetingInviteEmployeeViewController {
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = employeeListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.meetingEmployeListCellIdentifier, for: indexPath)
+        let cell = employeeListTableView.dequeueReusableCell(withIdentifier: Constant.CustomCell.employeeListCellIdentifier, for: indexPath) as! EmployeeListTableCell
         guard let meetingSafe = meeting else {return cell}
         
         let employee: Employee
@@ -155,7 +167,9 @@ extension MeetingInviteEmployeeViewController {
             employee = employeeList[indexPath.row]
         }
         
-        cell.textLabel?.text = "\(employee.userFirstName) \(employee.userLastName)"
+        cell.employeeNameLabel.text = "\(employee.userFirstName) \(employee.userLastName)"
+        cell.employeeEmailAddressLabel.text = employee.emailAddress
+        cell.employeeAccountTypeLabel.isHidden = true
         
         if employee.employeeInvitedMeetings.contains(meetingSafe) {
             cell.accessoryType = .checkmark

@@ -84,14 +84,6 @@ class Employee: UserAccount {
         password = newPassword
     }
     
-    func checkEmployeeAvailablity(completion: @escaping(AssignNewTaskToEmployee) -> Void) {
-        if userTasks.count < employeeTaskCapacity {
-            completion(.available)
-        } else {
-            completion(.unavailable(message: "Employee already assigned for three different tasks. Please choose another emplyee."))
-        }
-    }
-    
     func assignTask(task: Task) {
         userTasks.append(task)
     }

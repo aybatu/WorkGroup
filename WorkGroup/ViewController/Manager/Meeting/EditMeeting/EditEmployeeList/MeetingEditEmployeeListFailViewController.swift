@@ -8,10 +8,15 @@
 import UIKit
 
 class MeetingEditEmployeeListFailViewController: UIViewController {
-
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    var errorMsg: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let errorMsg = errorMsg {
+            errorLabel.text = errorMsg
+        }
         navigationItem.hidesBackButton = true
     }
     

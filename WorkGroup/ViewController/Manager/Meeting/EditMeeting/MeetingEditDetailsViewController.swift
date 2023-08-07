@@ -66,12 +66,13 @@ class MeetingEditDetailsViewController: UIViewController {
         }
     }
     private func setupMeetingDate() {
-        let currentDate = Date()
+        guard let meetingSafe = meeting else {return}
+        let currentDate = meetingSafe.meetingDate
         let calendar = Calendar.current
 
-        if let oneDayAfterCurrentDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
-            meetingDatePicker.minimumDate = calendar.startOfDay(for: oneDayAfterCurrentDate)
-        }
+  
+        meetingDatePicker.minimumDate = calendar.startOfDay(for: currentDate)
+        
        
         let oneMonthFromNow = Calendar.current.date(byAdding: .month, value: 1, to: currentDate)
         meetingDatePicker.maximumDate = oneMonthFromNow

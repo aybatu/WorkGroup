@@ -14,6 +14,7 @@ class Project: Comparable, Codable {
     var tasks: [Task]
     var startDate: Date
     var endDate: Date
+    var isProjectComplete: Bool = false
     
     private let customDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
     

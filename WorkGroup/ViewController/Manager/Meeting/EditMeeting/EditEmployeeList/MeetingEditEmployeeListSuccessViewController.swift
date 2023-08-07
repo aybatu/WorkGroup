@@ -9,21 +9,18 @@ import UIKit
 
 class MeetingEditEmployeeListSuccessViewController: UIViewController {
 
+    @IBOutlet weak var responseLabel: UILabel!
+    
+    var response: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let responseSafe = response {
+            responseLabel.text = responseSafe
+        }
         navigationItem.hidesBackButton = true
     }
     
-    @IBAction func backToEditMeetingButton(_ sender: UIButton) {
-        guard let navigationController = self.navigationController else {return}
-        let viewControllers = navigationController.viewControllers
-        
-        if viewControllers.count > 0 {
-            let meetingListViewController = viewControllers[1]
-            navigationController.popToViewController(meetingListViewController, animated: true)
-        }
-    }
     
     @IBAction func backToMainMenuButton(_ sender: UIButton) {
         guard let navigationController = self.navigationController else {return}

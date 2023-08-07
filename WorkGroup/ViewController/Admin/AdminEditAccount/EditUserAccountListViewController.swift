@@ -19,7 +19,7 @@ class EditUserAccountListViewController: UIViewController {
         employeeListTableView.allowsSelection = true
         employeeListTableView.delegate = self
         employeeListTableView.dataSource = self
-        employeeListTableView.register(UINib(nibName: Constant.TableCellIdentifier.Admin.editUserListCellNib, bundle: nil), forCellReuseIdentifier: Constant.TableCellIdentifier.Admin.editUserListCellIdentifier)
+        employeeListTableView.register(UINib(nibName: Constant.CustomCell.employeeListCellNib, bundle: nil), forCellReuseIdentifier: Constant.CustomCell.employeeListCellIdentifier)
       
     }
     
@@ -38,7 +38,7 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Admin.editUserListCellIdentifier, for: indexPath) as! EmployeeListTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomCell.employeeListCellIdentifier, for: indexPath) as! EmployeeListTableCell
        
       
         if indexPath.row < userAccounts.count {
@@ -47,7 +47,7 @@ extension EditUserAccountListViewController: UITableViewDelegate, UITableViewDat
             cell.employeeEmailAddressLabel.text = "Email: " + userAccount.emailAddress
             cell.employeeAccountTypeLabel.text = "Permission: " + userAccount.accountType.rawValue
         }
-
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectListTableCellIdentifier" rowHeight="107" id="H2x-hW-r6j" customClass="ProjectListTableCell" customModule="WorkGroup" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="107"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H2x-hW-r6j" id="enJ-EU-UTN">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="107"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="EKS-hZ-L3I">
+                        <rect key="frame" x="10" y="10" width="373" height="87"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3J3-TU-mnh">
+                                <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Title Example" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fL-Sa-cBp">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="Pqb-FM-dHM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49H-j8-fSF">
+                                        <rect key="frame" x="0.0" y="18" width="373" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="dqR-u3-Hjk"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure tr</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5Ac-A2-wGd">
+                                <rect key="frame" x="0.0" y="53" width="373" height="16.666666666666671"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date: 12/09/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIC-zf-FC6">
+                                        <rect key="frame" x="0.0" y="0.0" width="129.66666666666666" height="16.666666666666668"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date: 12/09/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEW-F9-aaO">
+                                        <rect key="frame" x="249.66666666666671" y="0.0" width="123.33333333333334" height="16.666666666666668"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SIU-D6-sYd">
+                                <rect key="frame" x="0.0" y="72.666666666666671" width="373" height="14.333333333333329"/>
+                                <color key="progressTintColor" systemColor="systemRedColor"/>
+                                <color key="trackTintColor" systemColor="systemGreenColor"/>
+                            </progressView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="EKS-hZ-L3I" secondAttribute="bottom" constant="10" id="3ZR-67-TEH"/>
+                    <constraint firstAttribute="trailing" secondItem="EKS-hZ-L3I" secondAttribute="trailing" constant="10" id="fkG-ha-WYQ"/>
+                    <constraint firstItem="EKS-hZ-L3I" firstAttribute="top" secondItem="enJ-EU-UTN" secondAttribute="top" constant="10" id="noW-3d-dOG"/>
+                    <constraint firstItem="EKS-hZ-L3I" firstAttribute="leading" secondItem="enJ-EU-UTN" secondAttribute="leading" constant="10" id="r0U-Us-nYs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="descriptionLabel" destination="49H-j8-fSF" id="Bjc-cz-akG"/>
+                <outlet property="endDateLabel" destination="uEW-F9-aaO" id="ald-Gc-h26"/>
+                <outlet property="progressBar" destination="SIU-D6-sYd" id="YmH-Ha-4eY"/>
+                <outlet property="startDateLabel" destination="KIC-zf-FC6" id="ybh-x3-69A"/>
+                <outlet property="titleLabel" destination="2fL-Sa-cBp" id="PUx-mE-2jz"/>
+            </connections>
+            <point key="canvasLocation" x="-147.32824427480915" y="62.323943661971832"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

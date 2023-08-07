@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MeetingListCellIdentifier" rowHeight="95" id="VAt-v8-d2h" customClass="MeetingListTableCell" customModule="WorkGroup" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="95"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VAt-v8-d2h" id="ejk-V1-D5c">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="CyQ-xD-0CT">
+                        <rect key="frame" x="10" y="10" width="373" height="75"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="blE-dj-pes">
+                                <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting Title Example" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHP-DB-O8M">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="OEk-Ie-mpO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSr-hd-O55">
+                                        <rect key="frame" x="0.0" y="18" width="373" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="1AL-iZ-Tz5"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure tr</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="wEf-6x-f8N">
+                                <rect key="frame" x="0.0" y="53" width="373" height="14.333333333333329"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: 12/09/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBk-kh-seV">
+                                        <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="14.333333333333334"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time: 13:45 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvz-1j-LMl">
+                                        <rect key="frame" x="141" y="0.0" width="101" height="14.333333333333334"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End time: 14:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csw-Fz-y6Z">
+                                        <rect key="frame" x="284.66666666666669" y="0.0" width="88.333333333333314" height="14.333333333333334"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="obX-Ey-Bnv">
+                                <rect key="frame" x="0.0" y="70.333333333333329" width="373" height="4.6666666666666714"/>
+                            </progressView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CyQ-xD-0CT" firstAttribute="top" secondItem="ejk-V1-D5c" secondAttribute="top" constant="10" id="64h-s7-Yk7"/>
+                    <constraint firstAttribute="bottom" secondItem="CyQ-xD-0CT" secondAttribute="bottom" constant="10" id="PnD-HL-tvl"/>
+                    <constraint firstItem="CyQ-xD-0CT" firstAttribute="leading" secondItem="ejk-V1-D5c" secondAttribute="leading" constant="10" id="pOU-y2-b1M"/>
+                    <constraint firstAttribute="trailing" secondItem="CyQ-xD-0CT" secondAttribute="trailing" constant="10" id="zu0-D1-Q5H"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="meetingDateLabel" destination="eBk-kh-seV" id="4vO-d4-RDE"/>
+                <outlet property="meetingDescriptionLabel" destination="XSr-hd-O55" id="Hwl-co-zao"/>
+                <outlet property="meetingEndTimeLabel" destination="csw-Fz-y6Z" id="qt6-S2-WWA"/>
+                <outlet property="meetingStartTimeLabel" destination="qvz-1j-LMl" id="LBz-YA-XPX"/>
+                <outlet property="meetingTimeProgressBar" destination="obX-Ey-Bnv" id="Ib3-w6-dhv"/>
+                <outlet property="meetingTitleLabel" destination="OHP-DB-O8M" id="Liw-Vs-2I2"/>
+            </connections>
+            <point key="canvasLocation" x="-121.37404580152672" y="55.985915492957751"/>
+        </tableViewCell>
+    </objects>
+</document>

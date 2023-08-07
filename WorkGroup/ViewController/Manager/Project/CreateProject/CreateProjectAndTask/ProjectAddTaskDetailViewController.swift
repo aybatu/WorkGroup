@@ -313,6 +313,7 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
             return
         }
         
+        let employeeAvailabilityValidator = EmployeeAvailablityValidator()
         var inserted = false
         
         for employee in assignedUserList {
@@ -338,7 +339,7 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
             }
             
             if shouldRemoveEmployee {
-                userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+                employeeAvailabilityValidator.checkEmployeeAvailablity(employee: userAccount) { [weak self] isAvailable in
                     switch isAvailable {
                     case .available:
                         self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)
@@ -350,7 +351,7 @@ extension ProjectAddTaskDetailViewController: UITableViewDelegate, UITableViewDa
             }
             
         } else {
-            userAccount.checkEmployeeAvailablity { [weak self] isAvailable in
+            employeeAvailabilityValidator.checkEmployeeAvailablity(employee: userAccount) { [weak self] isAvailable in
                 switch isAvailable {
                 case .available:
                     self?.selectedButton?.setTitle("\(userAccount.userFirstName) \(userAccount.userLastName)", for: .normal)

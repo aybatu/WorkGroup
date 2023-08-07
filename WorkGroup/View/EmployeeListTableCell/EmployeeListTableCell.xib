@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmployeeListTableViewCellIdentifier" rowHeight="85" id="p7d-cn-9We" customClass="EmployeeListTableCell" customModule="WorkGroup" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmployeeListTableViewCellIdentifier" rowHeight="85" id="p7d-cn-9We" customClass="EmployeeListTableCell" customModule="WorkGroup" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="362" height="85"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p7d-cn-9We" id="BSf-S7-sKJ">
@@ -16,28 +17,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JM3-oj-krg">
-                        <rect key="frame" x="10" y="2" width="90" height="71.666666666666671"/>
+                        <rect key="frame" x="10" y="12" width="90" height="61.666666666666671"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="9bz-er-4Pj"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Khs-r0-E8h">
-                        <rect key="frame" x="105" y="0.0" width="257" height="75"/>
+                        <rect key="frame" x="105" y="10" width="257" height="65"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Employee name: John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5l9-8X-v7M">
-                                <rect key="frame" x="0.0" y="0.0" width="257" height="21.666666666666668"/>
+                                <rect key="frame" x="0.0" y="0.0" width="257" height="18.333333333333332"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Email address: jdoe@company.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENo-jV-rMF">
-                                <rect key="frame" x="0.0" y="26.666666666666664" width="257" height="21.666666666666664"/>
+                                <rect key="frame" x="0.0" y="23.333333333333336" width="257" height="18.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Account type: MANAGER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9U-qQ-xwt">
-                                <rect key="frame" x="0.0" y="53.333333333333336" width="257" height="21.666666666666664"/>
+                                <rect key="frame" x="0.0" y="46.666666666666664" width="257" height="18.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,11 +47,11 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JM3-oj-krg" firstAttribute="top" secondItem="BSf-S7-sKJ" secondAttribute="top" id="8lK-tU-SDh"/>
+                    <constraint firstItem="JM3-oj-krg" firstAttribute="top" secondItem="BSf-S7-sKJ" secondAttribute="top" constant="10" id="8lK-tU-SDh"/>
                     <constraint firstItem="Khs-r0-E8h" firstAttribute="leading" secondItem="JM3-oj-krg" secondAttribute="trailing" constant="5" id="Bg6-qk-sSF"/>
+                    <constraint firstItem="Khs-r0-E8h" firstAttribute="top" secondItem="BSf-S7-sKJ" secondAttribute="top" constant="10" id="TJB-Mg-cOo"/>
                     <constraint firstItem="JM3-oj-krg" firstAttribute="leading" secondItem="BSf-S7-sKJ" secondAttribute="leading" constant="10" id="cUz-fa-hfN"/>
                     <constraint firstAttribute="trailing" secondItem="Khs-r0-E8h" secondAttribute="trailing" id="pmn-qw-JPN"/>
-                    <constraint firstItem="Khs-r0-E8h" firstAttribute="top" secondItem="BSf-S7-sKJ" secondAttribute="top" id="riZ-I0-nNH"/>
                     <constraint firstAttribute="bottom" secondItem="JM3-oj-krg" secondAttribute="bottom" constant="10" id="vKS-mw-pmn"/>
                     <constraint firstAttribute="bottom" secondItem="Khs-r0-E8h" secondAttribute="bottom" constant="10" id="xHF-i7-ob7"/>
                 </constraints>

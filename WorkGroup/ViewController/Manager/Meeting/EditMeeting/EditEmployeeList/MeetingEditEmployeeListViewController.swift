@@ -21,6 +21,8 @@ class MeetingEditEmployeeListViewController: UIViewController {
     private var selectedEmployeeList: [Employee] = []
     private var originalInvitedEmployeeList: [Employee]?
     var meetingDetails: [String: Any?]?
+    private var failWithError: String?
+    private var response: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class MeetingEditEmployeeListViewController: UIViewController {
         invitedEmployeeListTableView.delegate = self
         invitedEmployeeListTableView.dataSource = self
         invitedEmployeeListTableView.allowsMultipleSelection = true
+        invitedEmployeeListTableView.register(UINib(nibName: Constant.CustomCell.employeeListCellNib, bundle: nil),  forCellReuseIdentifier: Constant.CustomCell.employeeListCellIdentifier)
         
     }
     
@@ -40,21 +43,21 @@ class MeetingEditEmployeeListViewController: UIViewController {
     
     private func loadData() {
         
-//        if let companySafe = company {
-//            employeeList = Array(companySafe.employeeAccounts)
-//        }
-//        if let meetingSafe = meeting {
-//            for employee in employeeList {
-//                if employee.employeeMeetings.contains(meetingSafe) {
-//                    selectedEmployeeList.insert(employee)
-//                }
-//            }
-//            originalInvitedEmployeeList = selectedEmployeeList
-//        }
-//        
-//        DispatchQueue.main.async { [weak self] in
-//            self?.invitedEmployeeListTableView.reloadData()
-//        }
+        if let companySafe = company {
+            employeeList = companySafe.employeeAccounts
+        }
+        if let meetingSafe = meeting {
+            for employee in employeeList {
+                if employee.employeeInvitedMeetings.contains(meetingSafe) {
+                    selectedEmployeeList.append(employee)
+                }
+            }
+            originalInvitedEmployeeList = selectedEmployeeList
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.invitedEmployeeListTableView.reloadData()
+        }
     }
     
     @IBAction func saveChangesButton(_ sender: UIButton) {
@@ -67,24 +70,35 @@ class MeetingEditEmployeeListViewController: UIViewController {
               let updatedMeetingDescription = meetingDetails?[Constant.Dictionary.MeetingDetailsDictionary.meetindDescription] as? String,
               let updatedMeetingDate = meetingDetails?[Constant.Dictionary.MeetingDetailsDictionary.meetingDate] as? Date,
               let updatedMeetingStartTime = meetingDetails?[Constant.Dictionary.MeetingDetailsDictionary.meetingStartTime] as? Date,
-              let updatedMeetingEndTime = meetingDetails?[Constant.Dictionary.MeetingDetailsDictionary.meetindEndTime] as? Date else
+              let updatedMeetingEndTime = meetingDetails?[Constant.Dictionary.MeetingDetailsDictionary.meetindEndTime] as? Date,
+              let companyRegNo = company?.registrationNumber else
         {
             performSegue(withIdentifier: Constant.Segue.Manager.Meeting.EditMeeting.editInvitedEmployeeToFail, sender: self)
             return
             
         }
-        
-        meetingSafe.meetingTitle = updatedMeetingTitle
-        meetingSafe.meetingDescription = updatedMeetingDescription
-        meetingSafe.meetingDate = updatedMeetingDate
-        meetingSafe.meetingStartTime = updatedMeetingStartTime
-        meetingSafe.meetingEndTime = updatedMeetingEndTime
+        let updatedMeeting = Meeting(meetingDate: updatedMeetingDate, meetingStartTime: updatedMeetingStartTime, meetingEndTime: updatedMeetingEndTime, meetingTitle: updatedMeetingTitle, meetingDescription: updatedMeetingDescription)
+       
      
         if selectedEmployeeList.count > 0 {
+            let meetingService = MeetingService()
+            let updateMeetingRequest = UpdateMeetingRequest(originalMeeting: meetingSafe, meeting: updatedMeeting, invitedEmployeeList: selectedEmployeeList)
             
-            loadingVC.dismiss(animated: false) { [weak self] in
-                
-                self?.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.EditMeeting.editInvitedEmployeeToSuccess, sender: self)
+            meetingService.updateMeeting(registrationNumber: companyRegNo, request: updateMeetingRequest) { isMeetingScheduled, error in
+                if isMeetingScheduled {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        loadingVC.dismiss(animated: false) {
+                            self.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.EditMeeting.editInvitedEmployeeToSuccess, sender: self)
+                        }
+                    }
+                } else {
+                    self.failWithError = error
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        loadingVC.dismiss(animated: false) {
+                            self.performSegue(withIdentifier: Constant.Segue.Manager.Meeting.EditMeeting.editInvitedEmployeeToFail, sender: self)
+                        }
+                    }
+                }
             }
         } else {
             loadingVC.dismiss(animated: false)
@@ -92,8 +106,19 @@ class MeetingEditEmployeeListViewController: UIViewController {
                 self?.showAlert("At least an employee should be invited to create a meeting.")
             }
         }
-        
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.Segue.Manager.Meeting.EditMeeting.editInvitedEmployeeToSuccess {
+            if let successVC = segue.destination as? MeetingEditEmployeeListSuccessViewController {
+                successVC.response = response
+            }
+        }
+        if segue.identifier == Constant.Segue.Manager.Meeting.EditMeeting.editInvitedEmployeeToFail {
+            if let failVC = segue.destination as? MeetingEditEmployeeListFailViewController {
+                failVC.errorMsg = failWithError
+            }
+        }
     }
     
     @IBAction func discardButton(_ sender: UIButton) {
@@ -139,12 +164,14 @@ extension MeetingEditEmployeeListViewController: UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = invitedEmployeeListTableView.dequeueReusableCell(withIdentifier: Constant.TableCellIdentifier.Manager.editMeetingEmployeeListCellIdentifier, for: indexPath)
+        let cell = invitedEmployeeListTableView.dequeueReusableCell(withIdentifier: Constant.CustomCell.employeeListCellIdentifier, for: indexPath) as! EmployeeListTableCell
         guard let meetingSafe = meeting else {return cell}
         
         let employee = employeeList[indexPath.row]
         
-        cell.textLabel?.text = "\(employee.userFirstName) \(employee.userLastName)"
+        cell.employeeNameLabel.text = "\(employee.userFirstName) \(employee.userLastName)"
+        cell.employeeEmailAddressLabel.text = employee.emailAddress
+        cell.employeeAccountTypeLabel.isHidden = true
         
         if employee.employeeInvitedMeetings.contains(meetingSafe) {
             cell.accessoryType = .checkmark
@@ -171,7 +198,7 @@ extension MeetingEditEmployeeListViewController: UITableViewDelegate, UITableVie
                 DispatchQueue.main.async {
                     switch result {
                     case .success:
-//                        self?.selectedEmployeeList.insert(employee)
+                        self?.selectedEmployeeList.append(employee)
                         employee.addMeeting(meeting: meetingSafe)
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
