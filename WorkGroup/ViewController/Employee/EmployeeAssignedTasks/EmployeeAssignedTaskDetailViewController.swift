@@ -8,45 +8,47 @@
 import UIKit
 
 class EmployeeAssignedTaskDetailViewController: UIViewController {
-    @IBOutlet weak var taskTitleTextLabel: UILabel!
+    @IBOutlet weak var projectTitleLabel: UILabel!
     
-    @IBOutlet weak var taskDescriptionTextLabel: UILabel!
+    @IBOutlet weak var projectDescriptionLabel: UILabel!
     
-    @IBOutlet weak var taskEndDateTextLabel: UILabel!
-    @IBOutlet weak var taskStartDateTextLabel: UILabel!
-    private var isTaskCompleted: Bool = true
+    @IBOutlet weak var taskTitleLabel: UILabel!
+    
+    @IBOutlet weak var taskDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var assignedEmployeesLabel: UILabel!
     var task: Task?
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
+    var project: Project?
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         
     }
     
-    @IBAction func markTaskCompleted(_ sender: UIButton) {
-        if isTaskCompleted {
-            performSegue(withIdentifier: Constant.Segue.Employee.AssignedTask.taskDetailToSuccess, sender: nil)
-        } else {
-            performSegue(withIdentifier: Constant.Segue.Employee.AssignedTask.taskDetailToFail, sender: nil)
-        }
-    }
+    
     
     private func loadData() {
         if let taskTitle = task?.title,
-            let taskDescription = task?.description,
-            let taskStartDate = task?.taskStartDate,
-            let taskEndDate = task?.taskEndDate {
-            taskTitleTextLabel.text = taskTitle
-            taskDescriptionTextLabel.text = taskDescription
-            taskStartDateTextLabel.text = dateFormatter.string(from: taskStartDate)
-            taskEndDateTextLabel.text = dateFormatter.string(from: taskEndDate)
+           let taskDescription = task?.description, let projectTitle = project?.title,
+           let projectDescription = project?.description,
+           let assignedEmployees = task?.assignedEmployees
+        {
+            taskTitleLabel.text = taskTitle
+            taskDescriptionLabel.text = taskDescription
+            projectDescriptionLabel.text = projectDescription
+            projectTitleLabel.text = projectTitle
             
-            
+            var assignedEmployeesList = ""
+            for employee in assignedEmployees {
+                if assignedEmployees.last == employee {
+                    assignedEmployeesList += "\(employee.userFirstName) \(employee.userLastName)"
+                }else {
+                    assignedEmployeesList += "\(employee.userFirstName) \(employee.userLastName), "
+                }
+                
+            }
+            assignedEmployeesLabel.text = assignedEmployeesList
         }
     }
-
+    
 }

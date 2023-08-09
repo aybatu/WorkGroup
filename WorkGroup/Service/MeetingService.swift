@@ -12,7 +12,7 @@ struct MeetingService {
         var errorMsg: String? = nil
         var isMeetingCreated = false
         
-        let urlString = "http://localhost:8080/\(companyRegistrationNo)/createMeeting"
+        let urlString = "http://3.72.4.71:8080/\(companyRegistrationNo)/createMeeting"
         
         guard let url = URL(string:  urlString) else {
             isMeetingCreated = false
@@ -73,7 +73,7 @@ struct MeetingService {
     func updateMeeting(registrationNumber: String, request: UpdateMeetingRequest, completion: @escaping (Bool, String?) -> Void) {
         var isMeetingScheduled = false
         var errorMsg: String? = nil
-        guard let url = URL(string: "http://localhost:8080/\(registrationNumber)/updateMeeting") else {
+        guard let url = URL(string: "http://3.72.4.71:8080/\(registrationNumber)/updateMeeting") else {
             isMeetingScheduled = false
             errorMsg = "Invalid URL"
             completion(isMeetingScheduled, errorMsg)

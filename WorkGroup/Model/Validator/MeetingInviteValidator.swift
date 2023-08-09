@@ -22,13 +22,12 @@ struct MeetingInviteValidator {
             let formattedMeetingStartTime = timeFormatter.string(from: meetingStartTime)
 
             // Convert the formatted date string to a Date object
-            if let meetingDate = dateFormatter.date(from: formattedMeetingDate) {
+        if dateFormatter.date(from: formattedMeetingDate) != nil {
                 // Convert the formatted time string to a Date object
                 if let meetingStartTime = timeFormatter.date(from: formattedMeetingStartTime) {
                     // Check for any existing meetings for the employee that overlap with the new meeting
                     for existingMeeting in employee.employeeInvitedMeetings {
                         let existingMeetingFormattedDate = dateFormatter.string(from: existingMeeting.meetingDate)
-                        let existingMeetingFormattedStartTime = timeFormatter.string(from: existingMeeting.meetingStartTime)
                         let existingMeetingFormattedEndTime = timeFormatter.string(from: existingMeeting.meetingEndTime)
 
                         if existingMeetingFormattedDate == formattedMeetingDate {

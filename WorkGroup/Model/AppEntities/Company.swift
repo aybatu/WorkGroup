@@ -17,6 +17,7 @@ class Company: Codable {
     var managerAccounts: [Manager]
     var projects: [Project]
     var meetings: [Meeting]
+    var completedProjects: [Project]
     
     enum CodingKeys: String, CodingKey {
         case registrationNumber
@@ -26,6 +27,7 @@ class Company: Codable {
         case managerAccounts
         case projects
         case meetings
+        case completedProjects
     }
     
     init(companyName: String, ownerAccount: Admin) {
@@ -35,6 +37,7 @@ class Company: Codable {
         self.projects = []
         self.employeeAccounts = []
         self.managerAccounts = []
+        self.completedProjects = []
     }
     
     // MARK: - Decodable
@@ -49,7 +52,7 @@ class Company: Codable {
         employeeAccounts = try container.decode([Employee].self, forKey: .employeeAccounts)
         projects = try container.decode([Project].self, forKey: .projects)
         meetings = try container.decode([Meeting].self, forKey: .meetings)
-        
+        completedProjects = try container.decode([Project].self, forKey: .completedProjects)
     
     }
     
@@ -57,13 +60,14 @@ class Company: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
         try container.encode(registrationNumber, forKey: .registrationNumber)
         try container.encode(companyName, forKey: .companyName)
         try container.encode(ownerAccount, forKey: .ownerAccount)
         try container.encode(employeeAccounts, forKey: .employeeAccounts)
+        try container.encode(managerAccounts, forKey: .managerAccounts)
         try container.encode(projects, forKey: .projects)
         try container.encode(meetings, forKey: .meetings)
+        try container.encode(completedProjects, forKey: .completedProjects)
     }
     
     // MARK: - User Account Management
@@ -106,6 +110,10 @@ class Company: Codable {
         meetings.append(meeting)
     }
     
-    
-   
+    func completeProject(project: Project) {
+        if let projectIndex = projects.firstIndex(of: project) {
+            projects.remove(at: projectIndex)
+            completedProjects.append(project)
+        }
+    }
 }

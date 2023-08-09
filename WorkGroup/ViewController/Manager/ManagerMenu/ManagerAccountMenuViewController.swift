@@ -64,6 +64,11 @@ class ManagerAccountMenuViewController: UIViewController {
                 meetingListVC.company = company
             }
         }
+        if segue.identifier == Constant.Segue.Manager.MainMenu.managerMenuToCompletedTaskRequestList {
+            if let taskRequestListVC = segue.destination as? CompletedTaskListTableViewController {
+                taskRequestListVC.company = company
+            }
+        }
     }
     
     func logout() {

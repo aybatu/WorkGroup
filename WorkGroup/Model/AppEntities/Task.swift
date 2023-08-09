@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Task: Codable, Comparable {
+class Task: Codable, Comparable, Hashable {
    
     var title: String
     var description: String
@@ -16,6 +16,7 @@ class Task: Codable, Comparable {
     var isTaskCompleted: Bool = false
     var taskStartDate: Date
     var taskEndDate: Date
+    var taskCompleteRequest = false
     private let customDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
     
     enum CodingKeys: String, CodingKey {
@@ -117,6 +118,10 @@ class Task: Codable, Comparable {
     
     func revertTaskCompletion() {
         isTaskCompleted = false
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
     }
     
     static func < (lhs: Task, rhs: Task) -> Bool {

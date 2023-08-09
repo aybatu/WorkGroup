@@ -11,7 +11,7 @@ struct RegistrationService {
         var isCompanyRegistered = false
         var companyRegistrationNumber: String?
         var errorMsg: String?
-        guard let url = URL(string: "http://localhost:8080/registercompany") else {
+        guard let url = URL(string: "http://3.72.4.71:8080/registercompany") else {
             isCompanyRegistered = false
             errorMsg = "Please check you internet connection. Application could not resolve the URL."
             companyRegistrationNumber = nil

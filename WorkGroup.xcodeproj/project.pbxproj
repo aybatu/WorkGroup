@@ -59,6 +59,9 @@
 		1B7879CC2A3A68B100CC17E1 /* ProjectTaskEditFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7879CB2A3A68B100CC17E1 /* ProjectTaskEditFailViewController.swift */; };
 		1B89119D2A7F22F500C898BF /* ProjectListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89119C2A7F22F500C898BF /* ProjectListTableCell.swift */; };
 		1B89119F2A7F232D00C898BF /* ProjectListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B89119E2A7F232D00C898BF /* ProjectListTableCell.xib */; };
+		1BA2D2B22A82E91700A94B3B /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2D2B12A82E91600A94B3B /* TaskService.swift */; };
+		1BA2D2B42A82ED0D00A94B3B /* TaskCompletionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2D2B32A82ED0D00A94B3B /* TaskCompletionRequest.swift */; };
+		1BA2D2B82A82EFF300A94B3B /* CompleteProjectTaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2D2B72A82EFF300A94B3B /* CompleteProjectTaskRequest.swift */; };
 		1BA695002A3515B40098C542 /* ManagerAccountMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA694FF2A3515B40098C542 /* ManagerAccountMenuViewController.swift */; };
 		1BA695032A3516430098C542 /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA695022A3516430098C542 /* ProjectDetailsViewController.swift */; };
 		1BBE94A92A2F501C0053A264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94A82A2F501C0053A264 /* AppDelegate.swift */; };
@@ -72,13 +75,8 @@
 		1BBE94DC2A2FACC10053A264 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBE94DB2A2FACC10053A264 /* MainMenuViewController.swift */; };
 		1BCA43E32A3CE9B100A2ED59 /* EmployeeMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43E22A3CE9B100A2ED59 /* EmployeeMainMenuViewController.swift */; };
 		1BCA43E62A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43E52A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift */; };
-		1BCA43E82A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43E72A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift */; };
 		1BCA43EB2A3CED9600A2ED59 /* EmployeeAssignedTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43EA2A3CED9600A2ED59 /* EmployeeAssignedTaskListViewController.swift */; };
 		1BCA43ED2A3CEDA500A2ED59 /* EmployeeAssignedTaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43EC2A3CEDA500A2ED59 /* EmployeeAssignedTaskDetailViewController.swift */; };
-		1BCA43F02A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43EF2A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift */; };
-		1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43F12A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift */; };
-		1BCA43F42A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43F32A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift */; };
-		1BCA43F62A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA43F52A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift */; };
 		1BD24C342A4CFF9A001E2F70 /* CreateProjectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24C332A4CFF9A001E2F70 /* CreateProjectResult.swift */; };
 		1BD24C362A4CFFAA001E2F70 /* AddTaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24C352A4CFFAA001E2F70 /* AddTaskResult.swift */; };
 		1BD24C382A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24C372A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift */; };
@@ -90,9 +88,6 @@
 		1BDF7E4F2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E4E2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift */; };
 		1BDF7E512A756781003FDEE9 /* UpdateAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */; };
 		1BDF7E552A792F65003FDEE9 /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF7E542A792F65003FDEE9 /* ProjectService.swift */; };
-		1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */; };
-		1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */; };
-		1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */; };
 		1BE466C02A43B6F30073973F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466BF2A43B6F30073973F /* LoadingViewController.swift */; };
 		1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466C62A43C3DE0073973F /* BinarySearch.swift */; };
 		1BE466C92A43C6280073973F /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE466C82A43C6280073973F /* UserAccount.swift */; };
@@ -193,6 +188,9 @@
 		1B7879CB2A3A68B100CC17E1 /* ProjectTaskEditFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTaskEditFailViewController.swift; sourceTree = "<group>"; };
 		1B89119C2A7F22F500C898BF /* ProjectListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListTableCell.swift; sourceTree = "<group>"; };
 		1B89119E2A7F232D00C898BF /* ProjectListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListTableCell.xib; sourceTree = "<group>"; };
+		1BA2D2B12A82E91600A94B3B /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		1BA2D2B32A82ED0D00A94B3B /* TaskCompletionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletionRequest.swift; sourceTree = "<group>"; };
+		1BA2D2B72A82EFF300A94B3B /* CompleteProjectTaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteProjectTaskRequest.swift; sourceTree = "<group>"; };
 		1BA694F92A34BB000098C542 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1BA694FF2A3515B40098C542 /* ManagerAccountMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerAccountMenuViewController.swift; sourceTree = "<group>"; };
 		1BA695022A3516430098C542 /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
@@ -211,13 +209,8 @@
 		1BBE94DB2A2FACC10053A264 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		1BCA43E22A3CE9B100A2ED59 /* EmployeeMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMainMenuViewController.swift; sourceTree = "<group>"; };
 		1BCA43E52A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMeetingListViewController.swift; sourceTree = "<group>"; };
-		1BCA43E72A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMeetingDetailsViewController.swift; sourceTree = "<group>"; };
 		1BCA43EA2A3CED9600A2ED59 /* EmployeeAssignedTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeAssignedTaskListViewController.swift; sourceTree = "<group>"; };
 		1BCA43EC2A3CEDA500A2ED59 /* EmployeeAssignedTaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeAssignedTaskDetailViewController.swift; sourceTree = "<group>"; };
-		1BCA43EF2A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePerformanceDateListViewController.swift; sourceTree = "<group>"; };
-		1BCA43F12A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePerformanceGraphViewController.swift; sourceTree = "<group>"; };
-		1BCA43F32A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMarkTaskCompleteFailViewController.swift; sourceTree = "<group>"; };
-		1BCA43F52A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMarkTaskCompleteSuccessViewController.swift; sourceTree = "<group>"; };
 		1BD24C332A4CFF9A001E2F70 /* CreateProjectResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectResult.swift; sourceTree = "<group>"; };
 		1BD24C352A4CFFAA001E2F70 /* AddTaskResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResult.swift; sourceTree = "<group>"; };
 		1BD24C372A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignANewTaskEmployeeResult.swift; sourceTree = "<group>"; };
@@ -229,9 +222,6 @@
 		1BDF7E4E2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserAccountRequest.swift; sourceTree = "<group>"; };
 		1BDF7E502A756781003FDEE9 /* UpdateAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountService.swift; sourceTree = "<group>"; };
 		1BDF7E542A792F65003FDEE9 /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
-		1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceEmployeeListViewController.swift; sourceTree = "<group>"; };
-		1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDateViewController.swift; sourceTree = "<group>"; };
-		1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceGraphViewController.swift; sourceTree = "<group>"; };
 		1BE466BF2A43B6F30073973F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		1BE466C62A43C3DE0073973F /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		1BE466C82A43C6280073973F /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -408,6 +398,7 @@
 				1B25B00C2A65B710008BCE0F /* CompanyService.swift */,
 				1BDF7E542A792F65003FDEE9 /* ProjectService.swift */,
 				1B214A6A2A7D464900CDC545 /* MeetingService.swift */,
+				1BA2D2B12A82E91600A94B3B /* TaskService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -469,7 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				1BE31CAA2A3B957900C89B4F /* ManagerMenu */,
-				1BE31CA32A3B939C00C89B4F /* EmployeesPerformance */,
 				1BECD7772A3B3158006889CA /* Meeting */,
 				1BA695012A35160D0098C542 /* Project */,
 			);
@@ -489,7 +479,6 @@
 		1BA694FE2A3515630098C542 /* Employee */ = {
 			isa = PBXGroup;
 			children = (
-				1BCA43EE2A3CEDD500A2ED59 /* EmployeePerformance */,
 				1BCA43E92A3CED7200A2ED59 /* EmployeeAssignedTasks */,
 				1BCA43E42A3CE9BC00A2ED59 /* EmployeeMeetings */,
 				1BCA43E12A3CE99400A2ED59 /* EmployeeMainMenu */,
@@ -630,7 +619,6 @@
 			isa = PBXGroup;
 			children = (
 				1BCA43E52A3CE9DD00A2ED59 /* EmployeeMeetingListViewController.swift */,
-				1BCA43E72A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift */,
 			);
 			path = EmployeeMeetings;
 			sourceTree = "<group>";
@@ -640,19 +628,8 @@
 			children = (
 				1BCA43EA2A3CED9600A2ED59 /* EmployeeAssignedTaskListViewController.swift */,
 				1BCA43EC2A3CEDA500A2ED59 /* EmployeeAssignedTaskDetailViewController.swift */,
-				1BCA43F32A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift */,
-				1BCA43F52A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift */,
 			);
 			path = EmployeeAssignedTasks;
-			sourceTree = "<group>";
-		};
-		1BCA43EE2A3CEDD500A2ED59 /* EmployeePerformance */ = {
-			isa = PBXGroup;
-			children = (
-				1BCA43EF2A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift */,
-				1BCA43F12A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift */,
-			);
-			path = EmployeePerformance;
 			sourceTree = "<group>";
 		};
 		1BD49D342A3D276E00E0AA41 /* RegisterCompany */ = {
@@ -674,18 +651,10 @@
 				1B1DA2892A7BDA2A00AE6231 /* UpdateProjectRequest.swift */,
 				1B214A6C2A7D4EB700CDC545 /* ScheduleMeetingRequest.swift */,
 				1B75A5B62A7EA262007C5B1C /* UpdateMeetingRequest.swift */,
+				1BA2D2B32A82ED0D00A94B3B /* TaskCompletionRequest.swift */,
+				1BA2D2B72A82EFF300A94B3B /* CompleteProjectTaskRequest.swift */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		1BE31CA32A3B939C00C89B4F /* EmployeesPerformance */ = {
-			isa = PBXGroup;
-			children = (
-				1BE31CA42A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift */,
-				1BE31CA62A3B950C00C89B4F /* PerformanceDateViewController.swift */,
-				1BE31CA82A3B953000C89B4F /* PerformanceGraphViewController.swift */,
-			);
-			path = EmployeesPerformance;
 			sourceTree = "<group>";
 		};
 		1BE31CAA2A3B957900C89B4F /* ManagerMenu */ = {
@@ -958,17 +927,14 @@
 				1B277E532A49A36300D6BCAF /* EditAccountResult.swift in Sources */,
 				1B7879BB2A3A541D00CC17E1 /* ProjectEditTaskListViewController.swift in Sources */,
 				1B7879C02A3A668000CC17E1 /* CreatProjectSuccessfulViewController.swift in Sources */,
-				1BCA43F42A3CF23C00A2ED59 /* EmployeeMarkTaskCompleteFailViewController.swift in Sources */,
 				1B555E042A630362000307FD /* UserValidationService.swift in Sources */,
 				1B1296A92A43F10400866159 /* Company.swift in Sources */,
 				1BECD7762A3B2FF3006889CA /* ProjectAddTaskDetailViewController.swift in Sources */,
-				1BCA43F02A3CEDF000A2ED59 /* EmployeePerformanceDateListViewController.swift in Sources */,
 				1B7879CA2A3A68A300CC17E1 /* ProjectTaskEditSuccessfulViewController.swift in Sources */,
 				1BBE94DC2A2FACC10053A264 /* MainMenuViewController.swift in Sources */,
 				1BDF7E552A792F65003FDEE9 /* ProjectService.swift in Sources */,
 				1BECF2632A52F4C70050A615 /* EditProjectResult.swift in Sources */,
 				1BEB29BE2A5F9060001EE469 /* Admin.swift in Sources */,
-				1BCA43E82A3CED5A00A2ED59 /* EmployeeMeetingDetailsViewController.swift in Sources */,
 				1B45EA4D2A4B60EB00216F02 /* TextFieldCompanyValidatorView.swift in Sources */,
 				1B1DA28A2A7BDA2A00AE6231 /* UpdateProjectRequest.swift in Sources */,
 				1BE466C72A43C3DE0073973F /* BinarySearch.swift in Sources */,
@@ -979,13 +945,13 @@
 				1B45EA4F2A4C515600216F02 /* EmployeeListDropDownMenu.swift in Sources */,
 				1B25B0092A647B3F008BCE0F /* Manager.swift in Sources */,
 				1B214A652A7C135500CDC545 /* MeetingListTableCell.swift in Sources */,
-				1BCA43F22A3CEDFE00A2ED59 /* EmployeePerformanceGraphViewController.swift in Sources */,
 				1BECD77E2A3B3285006889CA /* MeetingCreateSuccessfulViewController.swift in Sources */,
 				1B7879C22A3A66BA00CC17E1 /* CreatProjectFailViewController.swift in Sources */,
 				1B555E062A6305F9000307FD /* CompanyValidationService.swift in Sources */,
 				1B1ADDF82A81871900340FF5 /* CompletedTaskListTableViewController.swift in Sources */,
 				1BDF7E4F2A7432BE003FDEE9 /* UpdateUserAccountRequest.swift in Sources */,
 				1BF7F6F72A48C91600BD7D12 /* CompanyAccountValidator.swift in Sources */,
+				1BA2D2B42A82ED0D00A94B3B /* TaskCompletionRequest.swift in Sources */,
 				1BFD03712A41C418007DBC75 /* ProjectAddTaskFailViewController.swift in Sources */,
 				1BEB29B82A5F8BB5001EE469 /* RegistrationService.swift in Sources */,
 				1BD49D362A3D27B400E0AA41 /* CreateCompanyAccountViewController.swift in Sources */,
@@ -1000,7 +966,6 @@
 				1BECD7902A3B371A006889CA /* MeetingEditEmployeeListSuccessViewController.swift in Sources */,
 				1B1B3EF72A479CFE0001D191 /* AccountCreationResult.swift in Sources */,
 				1B47055A2A3BA2A20013D9C9 /* EditUserAccountDetailsViewController.swift in Sources */,
-				1BE31CA52A3B94F600C89B4F /* PerformanceEmployeeListViewController.swift in Sources */,
 				1BECD77C2A3B321D006889CA /* MeetingInviteEmployeeViewController.swift in Sources */,
 				1BCA43ED2A3CEDA500A2ED59 /* EmployeeAssignedTaskDetailViewController.swift in Sources */,
 				1B4705562A3BA2460013D9C9 /* CreateUserAccountFailViewController.swift in Sources */,
@@ -1025,8 +990,8 @@
 				1BBE94A92A2F501C0053A264 /* AppDelegate.swift in Sources */,
 				1BEB29BA2A5F8E4B001EE469 /* Employee.swift in Sources */,
 				1B25B00D2A65B710008BCE0F /* CompanyService.swift in Sources */,
-				1BE31CA72A3B950C00C89B4F /* PerformanceDateViewController.swift in Sources */,
 				1BECD7872A3B3384006889CA /* MeetingEditDetailsFailViewController.swift in Sources */,
+				1BA2D2B82A82EFF300A94B3B /* CompleteProjectTaskRequest.swift in Sources */,
 				1BCA43E32A3CE9B100A2ED59 /* EmployeeMainMenuViewController.swift in Sources */,
 				1B7879B52A3A520E00CC17E1 /* ProjectListEdit.swift in Sources */,
 				1BECD7852A3B3321006889CA /* MeetingEditDetailsViewController.swift in Sources */,
@@ -1035,18 +1000,17 @@
 				1BDF7E512A756781003FDEE9 /* UpdateAccountService.swift in Sources */,
 				1B75A5B72A7EA262007C5B1C /* UpdateMeetingRequest.swift in Sources */,
 				1BBE94AB2A2F501C0053A264 /* SceneDelegate.swift in Sources */,
-				1BE31CA92A3B953000C89B4F /* PerformanceGraphViewController.swift in Sources */,
 				1BD24C382A4D3062001E2F70 /* AssignANewTaskEmployeeResult.swift in Sources */,
 				1B344B002A5417E40010F997 /* Meeting.swift in Sources */,
 				1B7879B92A3A534400CC17E1 /* ProjectDetailsEditViewController.swift in Sources */,
 				1BF7F6F52A48C8B700BD7D12 /* AccountValidator.swift in Sources */,
+				1BA2D2B22A82E91700A94B3B /* TaskService.swift in Sources */,
 				1B214A6B2A7D464900CDC545 /* MeetingService.swift in Sources */,
 				1BECD7892A3B3394006889CA /* MeetingEditDetailsSuccessfulViewController.swift in Sources */,
 				1B4705502A3BA1FE0013D9C9 /* AdminMainMenuViewController.swift in Sources */,
 				1B47055E2A3BA3120013D9C9 /* EditUserAccountFailViewController.swift in Sources */,
 				1BECD7802A3B3291006889CA /* MeetingCreateFailViewController.swift in Sources */,
 				1BFD036F2A41C40B007DBC75 /* ProjectAddTaskSuccessfulViewController.swift in Sources */,
-				1BCA43F62A3CF25E00A2ED59 /* EmployeeMarkTaskCompleteSuccessViewController.swift in Sources */,
 				1B7879C62A3A673500CC17E1 /* ProjectDetailsChangeFailViewController.swift in Sources */,
 				1B7782B12A448C9100CC6013 /* AccountTypes.swift in Sources */,
 				1B277E562A49AF1A00D6BCAF /* UserAccountTypeDropDownMenu.swift in Sources */,

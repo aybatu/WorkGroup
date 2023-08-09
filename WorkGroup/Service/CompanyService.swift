@@ -9,7 +9,7 @@ import Foundation
 class CompanyService {
     
     func createAccount(companyRegistrationNumber: String, accountType: String, request: CreateUserAccountRequest, completion: @escaping (Bool, String?) -> Void) {
-        let urlString = "http://localhost:8080/\(companyRegistrationNumber)/\(accountType)" // Replace with your actual API endpoint
+        let urlString = "http://3.72.4.71:8080/\(companyRegistrationNumber)/\(accountType)" // Replace with your actual API endpoint
         
         guard let url = URL(string: urlString) else {
             completion(false, "Invalid URL")
@@ -50,7 +50,7 @@ class CompanyService {
     }
     
     func deleteAccount(companyRegistrationNumber: String, request: DeleteUserAccountRequest, completion: @escaping (Bool, String?) -> Void) {
-            let urlString = "http://localhost:8080/\(companyRegistrationNumber)/deleteUserAccount"
+            let urlString = "http://3.72.4.71:8080/\(companyRegistrationNumber)/deleteUserAccount"
             
             guard let url = URL(string: urlString) else {
                 completion(false, "Invalid URL")

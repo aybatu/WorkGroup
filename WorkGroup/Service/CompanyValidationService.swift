@@ -10,7 +10,7 @@ import Foundation
 struct CompanyValidationService {
     
     func validateCompanyRegistrationNumber(registrationNumber: String, completion: @escaping (Bool, Bool, Company?) -> Void) {
-           let urlString = "http://localhost:8080/company/\(registrationNumber)"
+           let urlString = "http://3.72.4.71:8080/company/\(registrationNumber)"
       
            guard let url = URL(string: urlString) else {
                completion(false, false, nil)
@@ -23,7 +23,7 @@ struct CompanyValidationService {
                    return
                }
                if httpResponse.statusCode == 200 {
-  
+              
                    do {
                        // Parse the response data into a Company object
                        let decoder = JSONDecoder()
@@ -37,8 +37,8 @@ struct CompanyValidationService {
                        } else {
                            completion(true, false, nil)
                        }
-                   } catch {
-                    
+                   } catch let decondingError {
+                      print(decondingError)
                        completion(true, false, nil)
                    }
                } else if httpResponse.statusCode == 404 {

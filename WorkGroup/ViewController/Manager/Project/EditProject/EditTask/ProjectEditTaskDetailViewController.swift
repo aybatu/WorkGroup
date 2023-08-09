@@ -151,14 +151,12 @@ class ProjectEditTaskDetailViewController: UIViewController {
         editTask { [weak self] isTask in
             switch isTask {
             case .success:
-                if let taskSafe = self?.task, let newAssignedEmployeesSafe = self?.assignedEmployees {
+                if let taskSafe = self?.task {
                     let oldAssignedEmployees = taskSafe.assignedEmployees
                     for employee in oldAssignedEmployees {
                         employee.removeTask(task: taskSafe)
                     }
-//                    for employee in newAssignedEmployeesSafe {
-//                        employee.assignTask(task: taskSafe)
-//                    }
+
                     self?.performSegue(withIdentifier: Constant.Segue.Manager.Project.EditProject.EditTask.editTaskToSuccess, sender: self)
                 }
             case .failure(let message):

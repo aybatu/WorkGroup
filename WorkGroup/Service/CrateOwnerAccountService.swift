@@ -11,7 +11,7 @@ class CreateOwnerAccountService {
    
     func register<T: UserAccount>(userAccount: T, company: Company, completion: @escaping (Bool, String?) -> Void) {
         
-        guard let url = URL(string: "http://localhost:8080/registercompany") else {
+        guard let url = URL(string: "http://3.72.4.71:8080/registercompany") else {
             completion(false, nil)
             return
         }
@@ -34,8 +34,8 @@ class CreateOwnerAccountService {
             request.httpBody = try JSONSerialization.data(withJSONObject: combinedData)
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    completion(false, nil)
+                if let errorSafe = error {
+                    completion(false, errorSafe.localizedDescription)
                     return
                 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Project: Comparable, Codable {
+class Project: Comparable, Codable, Hashable {
     
     var title: String
     var description: String
@@ -15,7 +15,8 @@ class Project: Comparable, Codable {
     var startDate: Date
     var endDate: Date
     var isProjectComplete: Bool = false
-    
+    var completedTasksRequests: [Task]
+    var completedTasks: [Task]
     private let customDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
     
     // MARK: - Codable
@@ -26,6 +27,8 @@ class Project: Comparable, Codable {
         case tasks
         case startDate
         case endDate
+        case completedTasks
+        case completedTasksRequests
     }
     
     
@@ -35,6 +38,8 @@ class Project: Comparable, Codable {
         self.tasks = tasks
         self.startDate = startDate
         self.endDate = endDate
+        self.completedTasks = []
+        self.completedTasksRequests = []
     }
     
     
@@ -48,7 +53,8 @@ class Project: Comparable, Codable {
         title = try container.decode(String.self, forKey: .title)
         description = try container.decode(String.self, forKey: .description)
         tasks = try container.decode([Task].self, forKey: .tasks)
-        
+        completedTasks = try container.decode([Task].self, forKey: .completedTasks)
+        completedTasksRequests = try container.decode([Task].self, forKey: .completedTasksRequests)
         // Decode dates using the custom date format
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = customDateFormat
@@ -73,7 +79,8 @@ class Project: Comparable, Codable {
         try container.encode(title, forKey: .title)
         try container.encode(description, forKey: .description)
         try container.encode(tasks, forKey: .tasks)
-        
+        try container.encode(completedTasks, forKey: .completedTasks)
+        try container.encode(completedTasksRequests, forKey: .completedTasksRequests)
         // Encode dates using the custom date format
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = customDateFormat

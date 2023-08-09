@@ -10,7 +10,7 @@ import Foundation
 class UpdateAccountService {
     
     func updateAccount(companyRegistrationNumber: String, request: UpdateUserAccountRequest, completion: @escaping (Bool, String?) -> Void) {
-        let urlString = "http://localhost:8080/\(companyRegistrationNumber)/updateUserAccount" // Replace with your actual API endpoint
+        let urlString = "http://3.72.4.71:8080/\(companyRegistrationNumber)/updateUserAccount" // Replace with your actual API endpoint
         
         guard let url = URL(string: urlString) else {
             completion(false, "Invalid URL")

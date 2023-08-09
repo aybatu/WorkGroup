@@ -65,12 +65,14 @@ extension ProjectListEdit: UITableViewDelegate, UITableViewDataSource {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         if let company = company{
-            let companyArr = company.projects
-            cell.titleLabel.text =  companyArr[indexPath.row].title
-            cell.descriptionLabel.text =  companyArr[indexPath.row].description
-            cell.startDateLabel.text = "Start date: \(dateFormatter.string(from:  companyArr[indexPath.row].startDate))"
-            cell.endDateLabel.text = "End date: \(dateFormatter.string(from:  companyArr[indexPath.row].endDate))"
-            cell.progressBar.progress = progressCalculator(startDate:  companyArr[indexPath.row].startDate, endDate:  companyArr[indexPath.row].endDate)
+            let companyProjectArr = company.projects
+            if companyProjectArr[indexPath.row].isProjectComplete != true {
+                cell.titleLabel.text =  companyProjectArr[indexPath.row].title
+                cell.descriptionLabel.text =  companyProjectArr[indexPath.row].description
+                cell.startDateLabel.text = "Start date: \(dateFormatter.string(from:  companyProjectArr[indexPath.row].startDate))"
+                cell.endDateLabel.text = "End date: \(dateFormatter.string(from:  companyProjectArr[indexPath.row].endDate))"
+                cell.progressBar.progress = progressCalculator(startDate:  companyProjectArr[indexPath.row].startDate, endDate:  companyProjectArr[indexPath.row].endDate)
+            }
         }
         cell.accessoryType = .disclosureIndicator
         
@@ -87,12 +89,14 @@ extension ProjectListEdit: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let registrationNo = company?.registrationNumber, let projects = company?.projects else { return nil }
+        guard let registrationNo = company?.registrationNumber, let projects = company?.projects, let companySafe = company else { return nil }
         let projectService = ProjectService()
         let checkAction = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
             projectService.markProjectCompleted(registrationNumber: registrationNo, project: projects[indexPath.row]) { isProjectComplete, error in
                 DispatchQueue.main.async {
                     if isProjectComplete {
+                        companySafe.completeProject(project: projects[indexPath.row])
+                        tableView.reloadData()
                         completionHandler(true)
                     } else {
                         self.alert(message: error ?? "There was an error, please try again.")

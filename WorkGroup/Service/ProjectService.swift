@@ -12,7 +12,7 @@ struct ProjectService {
         var errorMsg = ""
         var isProjectCreated = false
         // URL for your backend endpoint
-        let urlString = "http://localhost:8080/\(registrationNumber)/projects"
+        let urlString = "http://3.72.4.71:8080/\(registrationNumber)/projects"
         guard let url = URL(string: urlString) else {
             isProjectCreated = false
             errorMsg = "Invalid URL"
@@ -84,7 +84,7 @@ struct ProjectService {
     
     func updateProject(registrationNumber: String, updatedProjectRequest: UpdateProjectRequest, completion: @escaping (Bool, String?) -> Void) {
         // Prepare the URL for the PUT request
-        let urlString = "http://localhost:8080/\(registrationNumber)/updateProject"
+        let urlString = "http://3.72.4.71:8080/\(registrationNumber)/updateProject"
         guard let url = URL(string: urlString) else {
             completion(false, "Invalid URL")
             return
@@ -144,7 +144,7 @@ struct ProjectService {
     func markProjectCompleted(registrationNumber: String, project: Project, completion: @escaping (Bool, String?) -> Void) {
         var isProjectCompleted = false
         var errorMsg:String?
-        let urlString = "http://localhost:8080/\(registrationNumber)/completeProject"
+        let urlString = "http://3.72.4.71:8080/\(registrationNumber)/completeProject"
         
         guard let url = URL(string: urlString) else {
             isProjectCompleted = false

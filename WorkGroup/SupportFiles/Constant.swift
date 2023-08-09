@@ -54,6 +54,7 @@ struct Constant {
                 static let managerViewToScheduleMeeting = "ManagerViewToScheduleMeeting"
                 static let managerViewToMeetingList = "ManagerViewToMeetingList"
                 static let managerViewToEmployeePerformanceList = "ManagerViewToEmployeePerformanceList"
+                static let managerMenuToCompletedTaskRequestList = "managerMainMenuToTaskRequestList"
             }
             struct Project {
                 
@@ -85,6 +86,10 @@ struct Constant {
                 }
                 
                 
+            }
+            
+            struct CompleteTaskRequest {
+                static let taskRequestToTaskDetail = "TaskCompleteRequestToTaskDetails"
             }
             
             struct Meeting {

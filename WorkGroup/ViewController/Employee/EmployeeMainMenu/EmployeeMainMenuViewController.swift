@@ -9,6 +9,7 @@ import UIKit
 
 class EmployeeMainMenuViewController: UIViewController {
     var userAccount: Employee?
+    var company: Company?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,18 @@ class EmployeeMainMenuViewController: UIViewController {
         navigationItem.rightBarButtonItem = logoutButton
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let userAccount = self.userAccount else {return}
+        let companyValidationService = CompanyValidationService()
+        companyValidationService.validateCompanyRegistrationNumber(registrationNumber: company?.registrationNumber ?? "") { isNetworkAvailable, isCompany, company in
+            if isCompany {
+                self.company = company
+                let updatedEmployee = company?.employeeAccounts.first(where: {$0.emailAddress == userAccount.emailAddress})
+                self.userAccount = updatedEmployee
+            }
+        }
+    }
     
     @objc func logoutButtonTapped() {
         // Show a confirmation alert or perform any necessary logout actions
@@ -33,6 +46,7 @@ class EmployeeMainMenuViewController: UIViewController {
         if segue.identifier == Constant.Segue.Employee.MainMenu.employeeMenuToTasks {
             if let taskListVC = segue.destination as? EmployeeAssignedTaskListViewController {
                 taskListVC.employee = userAccount
+                taskListVC.company = company
             }
         }
         if segue.identifier == Constant.Segue.Employee.MainMenu.employeeMenuToMeetings {
